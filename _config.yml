@@ -1,1 +1,4 @@
 theme: jekyll-theme-leap-day
+title: Integrated Seismic Program (ISP)
+description: Integrated Seismic Program is an amenable toolbox that joins functionality and standard algorithms commonly used in seismology. 
+The complete software is separated in several modules and each module is designed to overcome an specific task.
