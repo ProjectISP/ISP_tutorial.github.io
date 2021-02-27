@@ -1,2 +1,4 @@
 theme: jekyll-theme-leap-day
 title: Integrated Seismic Program (ISP)
+nav:
+    - Home: 'index.md'
