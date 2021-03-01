@@ -55,6 +55,8 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Earthquake Location</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#pick-event">Pick Event</a>
+    </li>
     </ul>
                     </li>
                     <li class="toctree-l1"><a class="" href="../tf.md">Time-Frequency Anlysis</a>
@@ -111,20 +113,91 @@
               
                 <h1 id="earthquake-location">Earthquake Location</h1>
 <p>The module Earthquake analysis allows you to analyze waveforms, polarization analysis of seismograms 3-components, calculate different magnitudes and finally locate an event and estimate the focal mechanism (First Polarity). We will walk through all of the functionality following this scheme:</p>
+<h2 id="pick-event">Pick Event</h2>
 <p>From top to bottom in the left side of the window you will see,</p>
+<ul>
+<li>
 <p>Event Info. This small box let enter information about an event, in this way you can plot the theoretical arrivals (ak-135F) with respect your seismograms.</p>
+</li>
+<li>
 <p>Files. By clicking in this button you will place the path of your files (<em>miniseed or </em>sac).</p>
+</li>
+<li>
 <p>Metadata. By clicking in this button you will place the path to you metadata file. The metadata file must contain the information of all of the stations seismograms you want to analyze (metadata must be a <em>xml or </em>dlsv).</p>
+</li>
+<li>
 <p>Start Time and End Time. The time boxes can be selected checking “Trim Time”. If you choose this option all the seismograms will be cut in accordance with the selected time window.</p>
+</li>
+<li>
 <p>Stations Info will deploy a table with the fundamental information of the seismograms.</p>
+</li>
+<li>
 <p>Phase box. This combo box allow the selection of specific phases for picking it in the seismograms.</p>
+</li>
+<li>
 <p>Waves box. You can Choose Body, surface, coda or noise. With this selected you can highlight a time window of the seismogram for further analysis.</p>
+</li>
+<li>
 <p>Net, Station and Channel. You can fill this boxes (also using wildcards) to select specific files from your files folder (check “select files”).</p>
+</li>
+<li>
 <p>Locate. After pick some phases in your seismogram you can locate an earthquake and show a location map. Previously you must have calculated travel-times for your velocity model (Further details in Event Location tab. 2.3)</p>
+</li>
+<li>
 <p>Stations Map will show you the location of the stations that corresponds to the seismograms of your folder. The seismograms metadata must match with the metadata information.</p>
+</li>
+<li>
 <p>Rotate. This option will rotate all your station - 3 components (must be named N,E,Z) to the GAC taking the reference the data of event info.</p>
+</li>
+<li>
 <p>Cross. This button will compute the cross-correlation (cc) or the autocorrelation of all processed seismograms with respect the reference “Ref”, the number of the seismogram from top to bottom.</p>
+</li>
+<li>
 <p>Process and Plot. This action will read the seismograms from the selected folder and will carry out the processing from the established “MACRO”. Further details in MACRO section "Macros".</p>
+</li>
+</ul>
+<p><img alt="Screenshot" src="../img/EventAnalysis.png" /></p>
+<p>Additional options from the toolbar are:</p>
+<p>File</p>
+<p>File: New location will clean the picks that are saved automatically for be ready to compute new picking/location.
+File: Write Files will write in the folder you select the processed seismograms.</p>
+<p>File: Open Settings will open a window with the specific parameters of the subprocess that 
+you can carry out in this module (sta/lta, wavelet detection, spectrogram, entropy…).</p>
+<p>Actions</p>
+<p>Actions: Macro will deploy a window with all of the processing options. (See section 7). All of the processing options will be applied once you press the button Processing and Plot.</p>
+<p>Actions: Magnitude Calculator will open a window in which you can compute different magnitudes. For open this you must have estimated an event and have selected the time-windows in the seismograms that you want the magnitudes be calculated.</p>
+<p>Actions: Run Picker will carry out the automatic detection/classification of P- and S- waves from the previously loaded “Neural Network”. You must have three components per stations (named <em>N,</em>E,*Z). BE CAREFULL this computationally demanding.</p>
+<p>Action: Detect event will associate the automatic picks carried out by the wavelet picker ant will declare an event. The events will be shown in the seismograms window.</p>
+<p>Action: Open Earth Model Viewer will open a tool to visualize 3D velocity models. For visualize an Earth Model you need the binary files (<em>buf and  </em>hdr) created in the tab Event location. </p>
+<pre><code>                    Compute
+</code></pre>
+<p>Compute: STA/LTA from all processed seismograms and will plot the result together. STA/LTA takes the parameters from Parameters Settings.</p>
+<p>Compute: CWT (CF) from all processed seismograms and will plot the result together. CWT takes the parameters from Parameters Settings.</p>
+<p>Compute: Envelope from all processed seismograms and will plot the result together. </p>
+<p>Compute: Spectral Entropy from all processed seismograms and will plot the result together. Spectral entropy is estimated in small time windows see Parameters Settings.
+.
+All Seismograms: Plot together all seismograms.</p>
+<p>Stack: Compute (linear, nth-root or PWS) stack of all processed seismograms.</p>
+<pre><code>                    Go
+</code></pre>
+<p>Will ship you to the rest of ISP modules (RFs, Array analysis….).</p>
+<h1 id="polarisation-analysis">Polarisation Analysis</h1>
+<p>The Polarization Analysis is designed to analyze the three seismograms components from a station.
+You can freely rotate using the rotation RT or the LQT your NEZ components an angle (Rot Angle) with an Incidence angle (Inc Angle).</p>
+<p>The Particle motion of the processed seismogram is view clicking in “Plot Polarization”. This option will plot all the time window in a 3D view and in three 2D plot views.</p>
+<p>If you want to make a sliding window analysis of the polarization press  “Polarization Analysis”. This will carry out a polarization analysis on windows length and frequency bandwidth specified by the user over the full analyzed seismogram.</p>
+<p><img alt="Screenshot" src="../img/polarization.png" /></p>
+<p>For a full particle motion analysis, press “Plot Polarization”. This will open another window with a 3D particle motion on the left and the three characteristic views on the right.</p>
+<p><img alt="Screenshot" src="../img/polarization2.png" /></p>
+<h1 id="multimedia-material">Multimedia Material</h1>
+<p>The following video shows a basic analysis of an earthquake</p>
+<!-- blank line -->
+<figure class="video_container">
+  <video controls="true" allowfullscreen="true" poster="/Users/robertocabieces/Desktop/tutorial/web/isp_web/docs/img/logo.png">
+    <source src="/Users/robertocabieces/Desktop/tutorial/web/isp_web/docs//img/Earthquake_Analysis.mp4" type="video/mp4">
+  </video>
+</figure>
+<!-- blank line -->
               
             </div>
           </div>
