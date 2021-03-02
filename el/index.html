@@ -51,28 +51,40 @@
                     <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                     </li>
                 </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../install.md">installation</a>
+                    </li>
+                </ul>
                 <p class="caption"><span class="caption-text">Modules</span></p>
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Earthquake Location</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#pick-event">Pick Event</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#multimedia-material">Multimedia Material</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#polarisation-analysis">Polarisation Analysis</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#event-location-and-focal-mechanism-fp">Event Location and Focal Mechanism (FP)</a>
+    </li>
     </ul>
                     </li>
-                    <li class="toctree-l1"><a class="" href="../tf.md">Time-Frequency Anlysis</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../tf/">Time-Frequency Analysis</a>
                     </li>
-                    <li class="toctree-l1"><a class="" href="../mti.md">Seismic Moment Tensor Inversion</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../mti/">Seismic Moment Tensor Inversion</a>
                     </li>
-                    <li class="toctree-l1"><a class="" href="../aa.md">Array Analysis</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../aa/">Array Analysis</a>
                     </li>
-                    <li class="toctree-l1"><a class="" href="../rf.md">Receiver Functions</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../rf/">Receiver Functions</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">About</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="" href="../license.md">License</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../refs/">References</a>
                     </li>
-                    <li class="toctree-l1"><a class="" href="../release-notes.md">Release Notes</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../license/">License</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release Notes</a>
                     </li>
                 </ul>
       </div>
@@ -112,7 +124,7 @@
             <div class="section">
               
                 <h1 id="earthquake-location">Earthquake Location</h1>
-<p>The module Earthquake analysis allows you to analyze waveforms, polarization analysis of seismograms 3-components, calculate different magnitudes and finally locate an event and estimate the focal mechanism (First Polarity). We will walk through all of the functionality following this scheme:</p>
+<p>The module Earthquake analysis allows you to analyse waveforms, polarization analysis of seismograms 3-components, calculate different magnitudes and finally locate an event and estimate the focal mechanism (First Polarity). We will walk through all of the functionality following this scheme:</p>
 <h2 id="pick-event">Pick Event</h2>
 <p>From top to bottom in the left side of the window you will see,</p>
 <ul>
@@ -123,7 +135,7 @@
 <p>Files. By clicking in this button you will place the path of your files (<em>miniseed or </em>sac).</p>
 </li>
 <li>
-<p>Metadata. By clicking in this button you will place the path to you metadata file. The metadata file must contain the information of all of the stations seismograms you want to analyze (metadata must be a <em>xml or </em>dlsv).</p>
+<p>Metadata. By clicking in this button you will place the path to you metadata file. The metadata file must contain the information of all of the stations seismograms you want to analyse (metadata must be a <em>xml or </em>dlsv).</p>
 </li>
 <li>
 <p>Start Time and End Time. The time boxes can be selected checking “Trim Time”. If you choose this option all the seismograms will be cut in accordance with the selected time window.</p>
@@ -158,12 +170,14 @@
 </ul>
 <p><img alt="Screenshot" src="../img/EventAnalysis.png" /></p>
 <p>Additional options from the toolbar are:</p>
-<p>File</p>
+<pre><code>                    File
+</code></pre>
 <p>File: New location will clean the picks that are saved automatically for be ready to compute new picking/location.
 File: Write Files will write in the folder you select the processed seismograms.</p>
 <p>File: Open Settings will open a window with the specific parameters of the subprocess that 
 you can carry out in this module (sta/lta, wavelet detection, spectrogram, entropy…).</p>
-<p>Actions</p>
+<pre><code>                    Actions
+</code></pre>
 <p>Actions: Macro will deploy a window with all of the processing options. (See section 7). All of the processing options will be applied once you press the button Processing and Plot.</p>
 <p>Actions: Magnitude Calculator will open a window in which you can compute different magnitudes. For open this you must have estimated an event and have selected the time-windows in the seismograms that you want the magnitudes be calculated.</p>
 <p>Actions: Run Picker will carry out the automatic detection/classification of P- and S- waves from the previously loaded “Neural Network”. You must have three components per stations (named <em>N,</em>E,*Z). BE CAREFULL this computationally demanding.</p>
@@ -181,15 +195,7 @@ All Seismograms: Plot together all seismograms.</p>
 <pre><code>                    Go
 </code></pre>
 <p>Will ship you to the rest of ISP modules (RFs, Array analysis….).</p>
-<h1 id="polarisation-analysis">Polarisation Analysis</h1>
-<p>The Polarization Analysis is designed to analyze the three seismograms components from a station.
-You can freely rotate using the rotation RT or the LQT your NEZ components an angle (Rot Angle) with an Incidence angle (Inc Angle).</p>
-<p>The Particle motion of the processed seismogram is view clicking in “Plot Polarization”. This option will plot all the time window in a 3D view and in three 2D plot views.</p>
-<p>If you want to make a sliding window analysis of the polarization press  “Polarization Analysis”. This will carry out a polarization analysis on windows length and frequency bandwidth specified by the user over the full analyzed seismogram.</p>
-<p><img alt="Screenshot" src="../img/polarization.png" /></p>
-<p>For a full particle motion analysis, press “Plot Polarization”. This will open another window with a 3D particle motion on the left and the three characteristic views on the right.</p>
-<p><img alt="Screenshot" src="../img/polarization2.png" /></p>
-<h1 id="multimedia-material">Multimedia Material</h1>
+<h2 id="multimedia-material">Multimedia Material</h2>
 <p>The following video shows a basic analysis of an earthquake
 <!-- blank line --></p>
 <figure class="video_container">
@@ -198,12 +204,54 @@ You can freely rotate using the rotation RT or the LQT your NEZ components an an
   </video>
 </figure>
 <!-- blank line -->
+
+<h2 id="polarisation-analysis">Polarisation Analysis</h2>
+<p>The Polarization Analysis is designed to analyze the three seismograms components from a station.
+You can freely rotate using the rotation RT or the LQT your NEZ components an angle (Rot Angle) with an Incidence angle (Inc Angle).</p>
+<p>The Particle motion of the processed seismogram is view clicking in “Plot Polarization”. This option will plot all the time window in a 3D view and in three 2D plot views.</p>
+<p>If you want to make a sliding window analysis of the polarization press  “Polarization Analysis”. This will carry out a polarization analysis on windows length and frequency bandwidth specified by the user over the full analyzed seismogram.</p>
+<p><img alt="Screenshot" src="../img/polarization.png" /></p>
+<p>For a full particle motion analysis, press “Plot Polarization”. This will open another window with a 3D particle motion on the left and the three characteristic views on the right.</p>
+<p><img alt="Screenshot" src="../img/polarization2.png" /></p>
+<h2 id="event-location-and-focal-mechanism-fp">Event Location and Focal Mechanism (FP)</h2>
+<p>In the Event Location Frame the user can configurate the velocity grid 1D/3D model, locate earthquakes and compute Focal Mechanisms.</p>
+<p><img alt="Screenshot" src="../img/Location.png" /></p>
+<p>First it is needed to set a Velocity grid framework (Grid reference and transformation type are mandatory). For now is only available Transformation Simple and Global.</p>
+<p>Next, the Grid dimensions (Grid Size). Case 2D the dimension always must be 2 and the grid reference is referred to the corner SW. Case 3D the grid reference is the center of the Grid.
+Choose the grid type and the wave and then generate the velocity model binary files by clicking “Generate Velocity Grid”.</p>
+<p>Once the binary files are generated you can check the results in the folder:</p>
+<p>ISP/earthquakeAnalysis/location_output/model</p>
+<ul>
+<li>Where and how place the velocity models?</li>
+</ul>
+<p>2D models (see example)</p>
+<p>LAYER   0.0  6.1 0.0    3.49  0.0  2.7 0.0
+LAYER  11.0  6.4 0.0    3.66  0.0  2.7 0.0
+LAYER  24.0  6.9 0.0    3.94  0.0  2.7 0.0
+LAYER  31.0  8.0 0.0    4.57  0.0  2.7 0.0</p>
+<p>ISP/earthquakeAnalysis/location_output/local_models</p>
+<p>3D models</p>
+<p>ISP/earthquakeAnalysis/location_output /model3D (see example)</p>
+<p>Every depth layer must be placed in files called, for example</p>
+<p>Layer.P.mod5.mod</p>
+<p>Which means that inside this file there is the grid for the layer at depth 5km.</p>
+<p>The layer must be a matrix with the values in the rows from top to bottom E to W and from left to right S to W</p>
+<p>The most important step is to generate the travel-times for all the stations inside the maximum distance the user determine.  Please be sure that you have load the metadata previously in seismogram analysis.</p>
+<p>The generated travel-times will save in </p>
+<p>ISP/earthquakeAnalysis/location_output/time</p>
+<p>Once you have complete the above steps you can locate the earthquake and the focal mechanism.
+**For global is not necessary generate the velocity grid and travel times.</p>
+<p>To visualize the detailed Probability Density Function, press “Plot PDF” once you have already carried out the location.</p>
+<p><img alt="Screenshot" src="../img/PDF.png" /></p>
+<p>Moreover, if you have picked the seismic phases and have been designated the polarity in “Event frame” , you will be able to  obtain the Focal Mechanism (it uses the subprogram FocMec)</p>
               
             </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../tf/" class="btn btn-neutral float-right" title="Time-Frequency Analysis">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -234,6 +282,8 @@ You can freely rotate using the rotation RT or the LQT your NEZ components an an
       
         <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../tf/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
