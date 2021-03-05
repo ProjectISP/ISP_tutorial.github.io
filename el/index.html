@@ -52,7 +52,7 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="" href="../install.md">installation</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../install/">Installation</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Modules</span></p>
@@ -67,6 +67,12 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#event-location-and-focal-mechanism-fp">Event Location and Focal Mechanism (FP)</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#earth-model-viewer">Earth model Viewer</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#magnitudes-estimation">Magnitudes Estimation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#shortcuts">Shortcuts</a>
+    </li>
     </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../tf/">Time-Frequency Analysis</a>
@@ -78,6 +84,17 @@
                     <li class="toctree-l1"><a class="reference internal" href="../rf/">Receiver Functions</a>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Additional Toolboxes</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../db/">Database</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../rd/">Retrieve Data</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ppsds/">PPSDs</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../synth/">Synthetic Generator</a>
+                    </li>
+                </ul>
                 <p class="caption"><span class="caption-text">About</span></p>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../refs/">References</a>
@@ -85,6 +102,8 @@
                     <li class="toctree-l1"><a class="reference internal" href="../license/">License</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release Notes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="" href="../FAQs.md">FAQs</a>
                     </li>
                 </ul>
       </div>
@@ -244,6 +263,92 @@ LAYER  31.0  8.0 0.0    4.57  0.0  2.7 0.0</p>
 <p>To visualize the detailed Probability Density Function, press “Plot PDF” once you have already carried out the location.</p>
 <p><img alt="Screenshot" src="../img/PDF.png" /></p>
 <p>Moreover, if you have picked the seismic phases and have been designated the polarity in “Event frame” , you will be able to  obtain the Focal Mechanism (it uses the subprogram FocMec)</p>
+<h2 id="earth-model-viewer">Earth model Viewer</h2>
+<p>The Earth Model Viewer is intended to help to visualize 3D Earth velocity models as Fig 2.8.
+Just select the binary file *.buf (can be generated from the model as described in previous section). Next, select the depth of the layer, the cross sections in longitude and latitude and the press plot.</p>
+<p><img alt="Screenshot" src="../img/Velocity_Viewer.png" /></p>
+<h2 id="magnitudes-estimation">Magnitudes Estimation</h2>
+<p>With the Magnitude Estimation you can calculate:
+Local Magnitude (ML) or Body-wave (mb), Surface-wave (Ms), Moment Magnitude (Mw) and Coda Magnitude.</p>
+<p>To estimate the magnitudes you have to select a time window of body, surface or coda on the seismograms. </p>
+<ol>
+<li>Units must be on velocity, so you must remove the response of the instrument to velocity, previously to open the Magnitudes window. For Local magnitude you have to remove the response of Wood-Anderson instrument.</li>
+<li>The hypocenter must be already calculated. The program will read the *.hyp file before open Magnitudes window.</li>
+</ol>
+<p>If you place 0.00 on all parameters of local or coda magnitudes, the program will calculate these magnitude with default parameters as follows:</p>
+<p>Coda Magnitude:</p>
+<p>Values for California
+a = 2.0; b = 0.0035; c= -0.87</p>
+<p>Mc_value = a<em>np.log10(t_coda)+b</em>dist+c</p>
+<p>Local Magnitude:</p>
+<p>a = 1.11; b =0.00189; c= -2.09</p>
+<p>ML_value = np.log10(max_amplitude)+a<em>np.log10(dist)+b</em>dist+c</p>
+<p>Briefly, Once you have open the Magnitude Window, select the magnitudes you want to compute and run the computation.</p>
+<p>In the upper panel it is shown the spectrum of the body waves and the fit to calculate the moment magnitude. In the bottom panel is shown the histograms of all magnitudes (the result of the magnitudes for all seismograms for all kind of magnitudes) and on the left an additional plot used to visualize the dispersion of the results.</p>
+<p><img alt="Screenshot" src="../img/Magnitudes.png" /></p>
+<h2 id="shortcuts">Shortcuts</h2>
+<table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th align="left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>'Ctrl+L'</td>
+<td align="left">Open Macro</td>
+</tr>
+<tr>
+<td>'Ctrl+O'</td>
+<td align="left">View Picks</td>
+</tr>
+<tr>
+<td>'Ctrl+I'</td>
+<td align="left">Deselect all</td>
+</tr>
+<tr>
+<td>'Ctrl+J'</td>
+<td align="left">Deselect a wave (Noise, Body, Surface)</td>
+</tr>
+<tr>
+<td>'Ctrl+C'</td>
+<td align="left">Clean events detected</td>
+</tr>
+<tr>
+<td>'Ctrl+M'</td>
+<td align="left">Open magnitudes calculator</td>
+</tr>
+<tr>
+<td>'Ctrl+P'</td>
+<td align="left">Open phases comboBox</td>
+</tr>
+<tr>
+<td>'Ctrl+K'</td>
+<td align="left">Save CFs (STA/LTA, Wavelet CF, Envelope, Entropy…)</td>
+</tr>
+<tr>
+<td>'Ctrl+N'</td>
+<td align="left">plot_all_seismograms</td>
+</tr>
+<tr>
+<td>'Ctrl+B'</td>
+<td align="left">stack_all_seismograms</td>
+</tr>
+<tr>
+<td>'a'</td>
+<td align="left">Compute individual spectrum</td>
+</tr>
+<tr>
+<td>'s'</td>
+<td align="left">Compute all spectrums</td>
+</tr>
+<tr>
+<td>'z'</td>
+<td align="left">Compute Spectrogram</td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div>
@@ -254,7 +359,7 @@ LAYER  31.0  8.0 0.0    4.57  0.0  2.7 0.0</p>
         <a href="../tf/" class="btn btn-neutral float-right" title="Time-Frequency Analysis">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../install/" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -280,7 +385,7 @@ LAYER  31.0  8.0 0.0    4.57  0.0  2.7 0.0</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../install/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../tf/" style="color: #fcfcfc">Next &raquo;</a></span>

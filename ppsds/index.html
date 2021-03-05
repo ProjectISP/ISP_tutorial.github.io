@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Seismic Moment Tensor Inversion - ISP Tutorial</title>
+  <title>PPSDs - ISP Tutorial</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Seismic Moment Tensor Inversion";
-    var mkdocs_page_input_path = "mti.md";
+    var mkdocs_page_name = "PPSDs";
+    var mkdocs_page_input_path = "ppsds.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -56,14 +56,12 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Modules</span></p>
-                <ul class="current">
+                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../el/">Earthquake Location</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../tf/">Time-Frequency Analysis</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Seismic Moment Tensor Inversion</a>
-    <ul class="current">
-    </ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../mti/">Seismic Moment Tensor Inversion</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../aa/">Array Analysis</a>
                     </li>
@@ -71,12 +69,14 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Additional Toolboxes</span></p>
-                <ul>
+                <ul class="current">
                     <li class="toctree-l1"><a class="reference internal" href="../db/">Database</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../rd/">Retrieve Data</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../ppsds/">PPSDs</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">PPSDs</a>
+    <ul class="current">
+    </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../synth/">Synthetic Generator</a>
                     </li>
@@ -113,11 +113,11 @@
     
       
         
-          <li>Modules &raquo;</li>
+          <li>Additional Toolboxes &raquo;</li>
         
       
     
-    <li>Seismic Moment Tensor Inversion</li>
+    <li>PPSDs</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -128,41 +128,14 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="moment-tensor-inversion">Moment Tensor Inversion</h1>
-<h1 id="create-earth-velocity-model">Create Earth velocity model</h1>
-<p>To start you need to load a Earth model. Go to Build à Earth Model and open the Earth Model Form, the fill it and save it.</p>
-<p><img alt="Screenshot" src="../img/model_MTI.png" /></p>
-<h1 id="bayesian-inversion">Bayesian Inversion</h1>
-<p>The user needs to fill the following fields to go on with the inversion:</p>
-<p>Metadata &gt;&gt; Path to the file where you have the metadata. This is necessary to extract the stations coordinates and the instrument information to do the deconvolution (this is not totally necessary, the user can manage the seismograms already in velocity units).</p>
-<ul>
-<li>
-<p>Files &gt;&gt; path to the seismogram files</p>
-</li>
-<li>
-<p>Earth Model &gt;&gt;&gt; Path to the Earth model file (see previous section for see how to make this file with ISP, the user can also do it manually).</p>
-</li>
-<li>
-<p>Time Window &gt;&gt;&gt; Set the window in which the seismograms will be used  (StartTime, EndTime and CHECK trim).</p>
-</li>
-<li>
-<p>Macro &gt;&gt; You can set a Macro to make basic processing over the seismograms</p>
-</li>
-</ul>
-<p>Now Follow this steps,</p>
-<p>Process and plot Seismograms
-Open Stations info.
-This action will allow you select which station/component will be used in the inversion</p>
-<p>Plot stations Map (First, fill Latitude Longitude and depth) This is optional
-- Fill the info:
-- Hipocenter location and Uncertainity (m)
-- Origin Time and Uncertainity
-- Magnitude
-- Frequency range for the inversion (see Fig 2 for example)
-- Distance filter. Avoid statations out of the distance filter (Distance from epicenter to station)
-- Option Deviatoric, Circle, Shape, Covariance (please because it uses previous noise window for inversion, select long enough prevent window (i.e., 10 min)) and use precalculated Green functions</p>
-<p><em>Pre-calculated Green Functions is useful because, once you have run an inversion then you may filter the inversion selecting different components or distances</em></p>
-<p><img alt="Screenshot" src="../img/Moment_Tensor.png" /></p>
+                <h1 id="probability-power-spectral-dentitiy-ppsd">Probability Power Spectral Dentitiy (PPSD)</h1>
+<p><img alt="Screenshot" src="../img/ppsd.png" /></p>
+<p>One the most common tools to evaluate the station performance of seismic data acquisition (Mcnamara and Buland, 2004) is to estimate the Probability Density Functions (PDFs). Once the PDFs are calculated, the seismic noise levels can be compared with the standard low and high noise levels, NLNM and NHNM (Peterson, 1993), or can be calculated cumulative spectrograms to observe seasonal variations.</p>
+<p>The ISP submodule “PPSD” allows to build a database to storage the PDFs of the stations/components desired from PPSDs, with an specific frame work for this task. Moreover the original databased can be upgraded with more data. Once the PDFs  are computed, they can be visualized into another framework that offers multiple visualization options. The Fig. 1 shows the visualization framework with the PDFs of three components from three different station and the Fig 2 &amp; 3 the diurnal and seasonal variation, respectively. The PDFs are also compared with earthquake power desnsity spectrums (Clinton and Heaton, 2002).</p>
+<p><img alt="Screenshot" src="../img/PPSDS_DB.png" /></p>
+<p><img alt="Screenshot" src="../img/PPSDs.png" /></p>
+<p><img alt="Screenshot" src="../img/Diurnal_variation.png" /></p>
+<p><img alt="Screenshot" src="../img/Seasonal.png" /></p>
               
             </div>
           </div>
@@ -170,10 +143,10 @@ This action will allow you select which station/component will be used in the in
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../aa/" class="btn btn-neutral float-right" title="Array Analysis">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../synth/" class="btn btn-neutral float-right" title="Synthetic Generator">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../tf/" class="btn btn-neutral" title="Time-Frequency Analysis"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../rd/" class="btn btn-neutral" title="Retrieve Data"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -199,10 +172,10 @@ This action will allow you select which station/component will be used in the in
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../tf/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../rd/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../aa/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../synth/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

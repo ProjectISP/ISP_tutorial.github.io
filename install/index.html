@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Seismic Moment Tensor Inversion - ISP Tutorial</title>
+  <title>Installation - ISP Tutorial</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Seismic Moment Tensor Inversion";
-    var mkdocs_page_input_path = "mti.md";
+    var mkdocs_page_name = "Installation";
+    var mkdocs_page_input_path = "install.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -51,19 +51,27 @@
                     <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                     </li>
                 </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../install/">Installation</a>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Installation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#intallation-for-end-users">Intallation for end users</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#intallation-for-developers">Intallation for developers</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#list-of-requirements">List of Requirements</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Modules</span></p>
-                <ul class="current">
+                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../el/">Earthquake Location</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../tf/">Time-Frequency Analysis</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Seismic Moment Tensor Inversion</a>
-    <ul class="current">
-    </ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../mti/">Seismic Moment Tensor Inversion</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../aa/">Array Analysis</a>
                     </li>
@@ -112,12 +120,8 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
-        
-          <li>Modules &raquo;</li>
-        
-      
     
-    <li>Seismic Moment Tensor Inversion</li>
+    <li>Installation</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -128,41 +132,35 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="moment-tensor-inversion">Moment Tensor Inversion</h1>
-<h1 id="create-earth-velocity-model">Create Earth velocity model</h1>
-<p>To start you need to load a Earth model. Go to Build à Earth Model and open the Earth Model Form, the fill it and save it.</p>
-<p><img alt="Screenshot" src="../img/model_MTI.png" /></p>
-<h1 id="bayesian-inversion">Bayesian Inversion</h1>
-<p>The user needs to fill the following fields to go on with the inversion:</p>
-<p>Metadata &gt;&gt; Path to the file where you have the metadata. This is necessary to extract the stations coordinates and the instrument information to do the deconvolution (this is not totally necessary, the user can manage the seismograms already in velocity units).</p>
+                <h1 id="installation">Installation</h1>
+<p>The installation file will install the requirements and will compile the source packages. At the end of the installation the user will be asked for an alias "isp". It is needed to have previously installed <a href="https://www.anaconda.com/">anaconda</a></p>
+<h2 id="intallation-for-end-users">Intallation for end users</h2>
+<p>To run the installation go to ./isp/installation and type ./ISP_installer.sh</p>
+<h2 id="intallation-for-developers">Intallation for developers</h2>
+<p>To run the installation go to ./isp/installation and type ./ISP_installer_venv.sh</p>
+<h3 id="list-of-requirements">List of Requirements</h3>
 <ul>
-<li>
-<p>Files &gt;&gt; path to the seismogram files</p>
-</li>
-<li>
-<p>Earth Model &gt;&gt;&gt; Path to the Earth model file (see previous section for see how to make this file with ISP, the user can also do it manually).</p>
-</li>
-<li>
-<p>Time Window &gt;&gt;&gt; Set the window in which the seismograms will be used  (StartTime, EndTime and CHECK trim).</p>
-</li>
-<li>
-<p>Macro &gt;&gt; You can set a Macro to make basic processing over the seismograms</p>
-</li>
+<li>sqlalchemy</li>
+<li>owslib</li>
+<li>Cython</li>
+<li>deprecated</li>
+<li>matplotlib</li>
+<li>numpy</li>
+<li>scipy &gt;= 1.4.1</li>
+<li>obspy</li>
+<li>pandas</li>
+<li>PyQt5</li>
+<li>PyQtWebEngine</li>
+<li>mtspec</li>
+<li>nitime</li>
+<li>Cartopy</li>
+<li>pillow</li>
+<li>PyWavelets</li>
+<li>dill</li>
+<li>Keras==2.3.1</li>
+<li>Tensorflow==2.3.1</li>
 </ul>
-<p>Now Follow this steps,</p>
-<p>Process and plot Seismograms
-Open Stations info.
-This action will allow you select which station/component will be used in the inversion</p>
-<p>Plot stations Map (First, fill Latitude Longitude and depth) This is optional
-- Fill the info:
-- Hipocenter location and Uncertainity (m)
-- Origin Time and Uncertainity
-- Magnitude
-- Frequency range for the inversion (see Fig 2 for example)
-- Distance filter. Avoid statations out of the distance filter (Distance from epicenter to station)
-- Option Deviatoric, Circle, Shape, Covariance (please because it uses previous noise window for inversion, select long enough prevent window (i.e., 10 min)) and use precalculated Green functions</p>
-<p><em>Pre-calculated Green Functions is useful because, once you have run an inversion then you may filter the inversion selecting different components or distances</em></p>
-<p><img alt="Screenshot" src="../img/Moment_Tensor.png" /></p>
+<p>Good luck with the process</p>
               
             </div>
           </div>
@@ -170,10 +168,10 @@ This action will allow you select which station/component will be used in the in
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../aa/" class="btn btn-neutral float-right" title="Array Analysis">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../el/" class="btn btn-neutral float-right" title="Earthquake Location">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../tf/" class="btn btn-neutral" title="Time-Frequency Analysis"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -199,10 +197,10 @@ This action will allow you select which station/component will be used in the in
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../tf/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../aa/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../el/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
