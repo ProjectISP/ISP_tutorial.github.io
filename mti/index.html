@@ -63,6 +63,12 @@
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Seismic Moment Tensor Inversion</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#create-earth-velocity-model">Create Earth velocity model</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bayesian-inversion">Bayesian Inversion</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#multimedia-material-mti">Multimedia Material (MTI)</a>
+    </li>
     </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../aa/">Array Analysis</a>
@@ -129,10 +135,10 @@
             <div class="section">
               
                 <h1 id="moment-tensor-inversion">Moment Tensor Inversion</h1>
-<h1 id="create-earth-velocity-model">Create Earth velocity model</h1>
+<h2 id="create-earth-velocity-model">Create Earth velocity model</h2>
 <p>To start you need to load a Earth model. Go to Build à Earth Model and open the Earth Model Form, the fill it and save it.</p>
 <p><img alt="Screenshot" src="../img/model_MTI.png" /></p>
-<h1 id="bayesian-inversion">Bayesian Inversion</h1>
+<h2 id="bayesian-inversion">Bayesian Inversion</h2>
 <p>The user needs to fill the following fields to go on with the inversion:</p>
 <p>Metadata &gt;&gt; Path to the file where you have the metadata. This is necessary to extract the stations coordinates and the instrument information to do the deconvolution (this is not totally necessary, the user can manage the seismograms already in velocity units).</p>
 <ul>
@@ -163,6 +169,14 @@ This action will allow you select which station/component will be used in the in
 - Option Deviatoric, Circle, Shape, Covariance (please because it uses previous noise window for inversion, select long enough prevent window (i.e., 10 min)) and use precalculated Green functions</p>
 <p><em>Pre-calculated Green Functions is useful because, once you have run an inversion then you may filter the inversion selecting different components or distances</em></p>
 <p><img alt="Screenshot" src="../img/Moment_Tensor.png" /></p>
+<h2 id="multimedia-material-mti">Multimedia Material (MTI)</h2>
+<!-- blank line -->
+<figure class="video_container">
+  <video controls="true" allowfullscreen="true" poster="../img/poster_image.png" width="740" height="400">
+    <source src="../img/MTI.mp4" type="video/mp4">
+  </video>
+</figure>
+<!-- blank line -->
               
             </div>
           </div>
