@@ -130,9 +130,22 @@
               
                 <h1 id="retrieve-data">Retrieve Data</h1>
 <p><img alt="Screenshot" src="../img/manage.png" /></p>
-<p>Retrieve Data framework is an interface to facilitate download specific events to time-series.</p>
+<p>Retrieve Data framework is an interface to facilitate download specific events to time-series or select a period and download data from different stations.</p>
 <p><img alt="Screenshot" src="../img/download_event.png" /></p>
-<p>The available FDSN we services are:</p>
+<p>Step1: </p>
+<p>Select a FDSN web service and click load. This action will load the inventory.</p>
+<p>Step2:</p>
+<p>You can plot the inventory stations and can be add to the posterior request with double-click on the map or manually added. Also you can remove it with right button double-click.</p>
+<p>From this point you can follow different actions,
+Download Time Series: Just set Starttime and Endtime and click on the button. This will download the mini seeds of the stations/channels requested for that period.</p>
+<p>Download Metadata: This action will download the stations.xml of the stations/channels requested.</p>
+<p>Step3:</p>
+<p>If we want to download earthquake seismograms from a period of time for specific stations/channels.</p>
+<p>Step1:</p>
+<p>Download catalog (see figure) and select the rows of the earthquake you are interested. Next, fill the gaps for  net, stations and channels. You can plot the stations and use double-click action to select the stations.</p>
+<p>Step 2:</p>
+<p>Fill the cut time-window (s) before and after the first arrival and click on Download event data. </p>
+<p>The available FDSN web services are:</p>
 <ul>
 <li>BGR         http://eida.bgr.de</li>
 <li>EMSC        http://www.seismicportal.eu</li>
@@ -159,6 +172,7 @@
 <li>USGS        http://earthquake.usgs.gov</li>
 <li>USP         http://sismo.iag.usp.br</li>
 </ul>
+<p>There is also the possibility to connect to your own server to download the inventory and the data.</p>
               
             </div>
           </div>
