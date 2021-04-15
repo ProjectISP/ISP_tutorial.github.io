@@ -57,10 +57,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#intallation-for-end-users">Intallation for end users</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#intallation-for-developers">Intallation for developers</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#list-of-requirements">List of Requirements</a>
     </li>
-        </ul>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-for-windows-users">Installation for Windows users</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#list-of-requirements">List of Requirements</a>
     </li>
     </ul>
                     </li>
@@ -138,7 +138,26 @@
 <p>To run the installation go to ./isp/installation and type ./ISP_installer.sh</p>
 <h2 id="intallation-for-developers">Intallation for developers</h2>
 <p>To run the installation go to ./isp/installation and type ./ISP_installer_venv.sh</p>
-<h3 id="list-of-requirements">List of Requirements</h3>
+<h2 id="installation-for-windows-users">Installation for Windows users</h2>
+<p>1.- Install WSL (Windows Subsystem for Linux) (instalar version 2) y Ubuntu 20.04:
+    - https://docs.microsoft.com/en-us/windows/wsl/install-win10
+2.- Install VcXsrv Windows X Server:
+    - https://sourceforge.net/p/vcxsrv/wiki/Using%20VcXsrv%20Windows%20X%20Server/
+    - Start with option -nowgl, and on Ubuntu "export LIBGL_ALWAYS_INDIRECT=" (https://superuser.com/questions/1502708/wsl-qt-application-fails-to-start) inside Ubuntu: export Display=:0</p>
+<p>May be point 2 fails, so you need to try:
+    - Start in " "C:\Program Files\VcXsrv\vcxsrv.exe" :0 -multiwindow -clipboard -wgl -ac ", nest type in the WSL terminal:
+    export DISPLAY_NUMBER="0.0"
+    export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):$DISPLAY_NUMBER
+    See:
+    https://stackoverflow.com/questions/61860208/wsl-2-run-graphical-linux-desktop-applications-from-windows-10-bash-shell-erro</p>
+<p>3.- Install Anaconda:
+    - https://linuxize.com/post/how-to-install-anaconda-on-ubuntu-20-04/
+    - Add to path "export PATH=~/anaconda3/bin:$PATH" al fichero .bashrc</p>
+<p>4.- Install normally ISP:
+    - git clone https://github.com/rcabdia/ISP.git
+    - Edit file ~/ISP/install/ISP_installer.sh and change "pip install PyQt5 PyQtWebEngine" por "pip install PyQt5==5.13 PyQtWebEngine==5.13"
+    - Install and start</p>
+<h2 id="list-of-requirements">List of Requirements</h2>
 <ul>
 <li>sqlalchemy</li>
 <li>owslib</li>
