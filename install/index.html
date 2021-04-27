@@ -54,9 +54,9 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Installation</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#intallation-for-end-users">Intallation for end users</a>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-for-end-users">Installation for end users</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#intallation-for-developers">Intallation for developers</a>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-for-developers">Installation for developers</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#installation-for-windows-users">Installation for Windows users</a>
     </li>
@@ -135,10 +135,12 @@
             <div class="section">
               
                 <h1 id="installation">Installation</h1>
-<p>The installation file will install the requirements and will compile the source packages. At the end of the installation the user will be asked for an alias "isp". It is needed to have previously installed <a href="https://www.anaconda.com/">anaconda</a></p>
-<h2 id="intallation-for-end-users">Intallation for end users</h2>
+<p>First of all clone the repository from <a href="https://github.com/ProjectISP/ISP">ISP master branch</a>.
+The installation file will install the requirements and will compile the source packages. At the end of the installation the user will be asked for an alias "isp". It is needed to have previously installed <a href="https://www.anaconda.com/">anaconda</a></p>
+<h2 id="installation-for-end-users">Installation for end users</h2>
 <p>To run the installation go to ./isp/installation and type ./ISP_installer.sh</p>
-<h2 id="intallation-for-developers">Intallation for developers</h2>
+<p><em>WARNING</em> We have detected some issues in PyQt installation when it is used Linux (i.e. Ubuntu 20.04), so in the requirements section of ISP_installer.sh, just comment pip install for pyqt and let conda PyQt installation. </p>
+<h2 id="installation-for-developers">Installation for developers</h2>
 <p>To run the installation go to ./isp/installation and type ./ISP_installer_venv.sh</p>
 <h2 id="installation-for-windows-users">Installation for Windows users</h2>
 <p>1.- Install WSL (Windows Subsystem for Linux) (instalar version 2) y Ubuntu 20.04:
