@@ -1,467 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/issues</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/pulls</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/actions</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/projects</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/security</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/ec74579bc7d2c78ebf55c4f209c56e90702f51e0</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/6972124e0289c45a3389c697910577be6cdb92ea</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/56cc6fb7b4a90ae72598d9d26b4edff0239d6e1c</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/2ef5afd3600d382734a2152d34377a17fff93a3d</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/d516f9fce3bf9ca2961d81ebefc265e8501e66c2</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/blob/master/.DS_Store</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/blob/master/.nojekyll</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/blob/master/404.html</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/blob/master/googlee6adb46edb53dada.html</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/blob/master/index.html</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/labels</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/compare</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/security/policy</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/security/advisories</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/ec74579bc7d2c78ebf55c4f209c56e90702f51e0?branch=ec74579bc7d2c78ebf55c4f209c56e90702f51e0&amp;diff=unified</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/ec74579bc7d2c78ebf55c4f209c56e90702f51e0?branch=ec74579bc7d2c78ebf55c4f209c56e90702f51e0&amp;diff=split</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/c9b15a2ec6031d1c0f214c7e9e5f497d720541ba</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/6972124e0289c45a3389c697910577be6cdb92ea?branch=6972124e0289c45a3389c697910577be6cdb92ea&amp;diff=unified</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/6972124e0289c45a3389c697910577be6cdb92ea?branch=6972124e0289c45a3389c697910577be6cdb92ea&amp;diff=split</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/56cc6fb7b4a90ae72598d9d26b4edff0239d6e1c?branch=56cc6fb7b4a90ae72598d9d26b4edff0239d6e1c&amp;diff=unified</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/56cc6fb7b4a90ae72598d9d26b4edff0239d6e1c?branch=56cc6fb7b4a90ae72598d9d26b4edff0239d6e1c&amp;diff=split</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/b271ea263580a10ad60838881442dd8d44c68791</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/2ef5afd3600d382734a2152d34377a17fff93a3d?branch=2ef5afd3600d382734a2152d34377a17fff93a3d&amp;diff=unified</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/2ef5afd3600d382734a2152d34377a17fff93a3d?branch=2ef5afd3600d382734a2152d34377a17fff93a3d&amp;diff=split</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/b82b306f01b53db5b13564bcef5daecd26499d6c</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/d516f9fce3bf9ca2961d81ebefc265e8501e66c2?branch=d516f9fce3bf9ca2961d81ebefc265e8501e66c2&amp;diff=unified</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/d516f9fce3bf9ca2961d81ebefc265e8501e66c2?branch=d516f9fce3bf9ca2961d81ebefc265e8501e66c2&amp;diff=split</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/blob/ec74579bc7d2c78ebf55c4f209c56e90702f51e0/.DS_Store</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/find/master</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/blob/ec74579bc7d2c78ebf55c4f209c56e90702f51e0/.nojekyll</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/blob/ec74579bc7d2c78ebf55c4f209c56e90702f51e0/404.html</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/blob/ec74579bc7d2c78ebf55c4f209c56e90702f51e0/googlee6adb46edb53dada.html</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/blob/ec74579bc7d2c78ebf55c4f209c56e90702f51e0/index.html</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/labels?sort=name-asc</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/labels?sort=name-desc</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/labels?sort=count-desc</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/labels?sort=count-asc</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/labels/bug</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/labels/documentation</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/labels/duplicate</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/labels/enhancement</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/labels/good%20first%20issue</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/labels/help%20wanted</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/labels/invalid</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/labels/question</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/labels/wontfix</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones?state=open</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones?state=closed</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones?direction=desc&amp;sort=due_date&amp;state=open</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones?direction=asc&amp;sort=due_date&amp;state=open</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones?direction=asc&amp;sort=completeness&amp;state=open</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones?direction=desc&amp;sort=completeness&amp;state=open</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones?direction=asc&amp;sort=title&amp;state=open</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones?direction=desc&amp;sort=title&amp;state=open</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones?direction=desc&amp;sort=count&amp;state=open</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones?direction=asc&amp;sort=count&amp;state=open</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/security/advisories?state=published</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/c9b15a2ec6031d1c0f214c7e9e5f497d720541ba?branch=c9b15a2ec6031d1c0f214c7e9e5f497d720541ba&amp;diff=unified</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/c9b15a2ec6031d1c0f214c7e9e5f497d720541ba?branch=c9b15a2ec6031d1c0f214c7e9e5f497d720541ba&amp;diff=split</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/8a462db563d93bdd4bf32f305f5343fa640b49b3</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/b271ea263580a10ad60838881442dd8d44c68791?branch=b271ea263580a10ad60838881442dd8d44c68791&amp;diff=unified</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/b271ea263580a10ad60838881442dd8d44c68791?branch=b271ea263580a10ad60838881442dd8d44c68791&amp;diff=split</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/b82b306f01b53db5b13564bcef5daecd26499d6c?branch=b82b306f01b53db5b13564bcef5daecd26499d6c&amp;diff=unified</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/b82b306f01b53db5b13564bcef5daecd26499d6c?branch=b82b306f01b53db5b13564bcef5daecd26499d6c&amp;diff=split</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/find/ec74579bc7d2c78ebf55c4f209c56e90702f51e0</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones?direction=desc&amp;sort=due_date&amp;state=closed</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones?direction=asc&amp;sort=due_date&amp;state=closed</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones?direction=asc&amp;sort=completeness&amp;state=closed</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones?direction=desc&amp;sort=completeness&amp;state=closed</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones?direction=asc&amp;sort=title&amp;state=closed</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones?direction=desc&amp;sort=title&amp;state=closed</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones?direction=desc&amp;sort=count&amp;state=closed</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/milestones?direction=asc&amp;sort=count&amp;state=closed</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/e540ba82ec95b45df51a085b2e6c5970867c7853</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/8a462db563d93bdd4bf32f305f5343fa640b49b3?branch=8a462db563d93bdd4bf32f305f5343fa640b49b3&amp;diff=unified</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/8a462db563d93bdd4bf32f305f5343fa640b49b3?branch=8a462db563d93bdd4bf32f305f5343fa640b49b3&amp;diff=split</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/3570eed2a70d482c2a9c5b39067e2e860baed301</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.33</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/e540ba82ec95b45df51a085b2e6c5970867c7853?branch=e540ba82ec95b45df51a085b2e6c5970867c7853&amp;diff=unified</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.33</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/e540ba82ec95b45df51a085b2e6c5970867c7853?branch=e540ba82ec95b45df51a085b2e6c5970867c7853&amp;diff=split</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.33</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/ba7df1b16efbe5998bfd4c8d3586f6d3cc97e826</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.26</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/3570eed2a70d482c2a9c5b39067e2e860baed301?branch=3570eed2a70d482c2a9c5b39067e2e860baed301&amp;diff=unified</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.26</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/3570eed2a70d482c2a9c5b39067e2e860baed301?branch=3570eed2a70d482c2a9c5b39067e2e860baed301&amp;diff=split</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.26</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/ba7df1b16efbe5998bfd4c8d3586f6d3cc97e826?branch=ba7df1b16efbe5998bfd4c8d3586f6d3cc97e826&amp;diff=unified</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.21</priority>
-</url>
-<url>
-  <loc>https://github.com/ProjectISP/ISP_tutorial.github.io/commit/ba7df1b16efbe5998bfd4c8d3586f6d3cc97e826?branch=ba7df1b16efbe5998bfd4c8d3586f6d3cc97e826&amp;diff=split</loc>
-  <lastmod>2021-07-09T22:35:52+00:00</lastmod>
-  <priority>0.21</priority>
-</url>
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
+     <loc>None</loc>
+     <lastmod>2021-07-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-07-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-07-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-07-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-07-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-07-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-07-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-07-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-07-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-07-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-07-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-07-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-07-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-07-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-07-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
 </urlset>
