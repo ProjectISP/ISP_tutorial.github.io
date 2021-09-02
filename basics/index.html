@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Start with the basics - ISP Tutorial</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Start with the basics";
+    var mkdocs_page_input_path = "basics.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> ISP Tutorial</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../install/">Installation</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Start with the basics</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#project-structure">Project Structure</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#seismograms-and-metadata">Seismograms and metadata</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#metadata-dataless-and-xml">Metadata (Dataless and *.xml)</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modules</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../el/">Earthquake Location</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../tf/">Time-Frequency Analysis</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../mti/">Seismic Moment Tensor Inversion</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../aa/">Array Analysis</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../rf/">Receiver Functions</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Additional Toolboxes</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../db/">Database</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../rd/">Retrieve Data</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ppsds/">PPSDs</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../synth/">Synthetic Generator</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">About</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../refs/">References</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../license/">License</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release Notes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="" href="../FAQs.md">FAQs</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../Special_Thanks/">The Developer Team of ISP thanks to:</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">ISP Tutorial</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Start with the basics</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="warming-tutorial">Warming tutorial</h1>
+<p>This section will show you the overall structure of the project and a basic idea of how are the data managed by ISP.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The current (ISP 1.0) structure of the project is showed in the plot below. We also show a scheme-description of the project. We include some of the most relevant files, such as OBSs/out.txt (output observations)</p>
+<pre><code class="language-bash">ISP/
+├── install   
+├── isp
+│   ├── DataProcessing
+│   │   ├── NeuralNetwork
+│   │   │   ├── model
+│   │   │   │   ├── red_modelo.json
+│   │   │   │   └── red_pesos.hdf5
+│   │   │   ├── picking_cnn_s_p_waves.py
+│   │   ├── dataless_manager.py
+│   │   ├── metadata_manager.py
+│   │   ├── plot_tools_manager.py
+│   │   ├── seismogram_analysis.py
+│   │   └── wavelet.py
+│   ├── FOCMEC
+│   │   └── bin
+│   │       └── focmec
+│   ├── Gui
+│   │   ├── Frames
+│   │   │   ├── add_parameters.py
+│   │   │   ├── array_analysis_frames.py
+│   │   │   ├── crustal_model_parameters_frame.py
+│   │   │   ├── data_download_tool.py
+│   │   │   ├── earth_model_viewer.py
+│   │   │   ├── earthquake_frame.py
+│   │   │   ├── earthquake_frame_tabs.py
+│   │   │   ├── event_location_frame.py
+│   │   │   ├── help_frame.py
+│   │   │   ├── isola_ISP_frame.py
+│   │   │   ├── main.py
+│   │   │   ├── matplotlib_frame.py
+│   │   │   ├── open_magnitudes_calc.py
+│   │   │   ├── parameters.py
+│   │   │   ├── plot_polarization.py
+│   │   │   ├── ppsds_db_frame.py
+│   │   │   ├── ppsds_frame.py
+│   │   │   ├── qt_components.py
+│   │   │   ├── receiver_functions_frame.py
+│   │   │   ├── settings_dialog.py
+│   │   │   ├── stations_coordinates.py
+│   │   │   ├── stations_info.py
+│   │   │   ├── synthetics_analysis_frame.py
+│   │   │   ├── synthetics_generator_dialog.py
+│   │   │   ├── time_frequency_advance_frame.py
+│   │   │   ├── time_frequency_frames.py
+│   │   │   ├── time_frequency_frames_old.py
+│   │   │   ├── uis_frames.py
+│   │   │   └── vespagram.py
+│   │   ├── Models
+│   │   │   └── sql_alchemy_model.py
+│   │   ├── StyleLib
+│   │   │   └── isp.mplstyle
+│   │   ├── Utils
+│   │   │   ├── matplotlib_util.py
+│   │   │   ├── pyqt_decorators.py
+│   │   │   └── pyqt_utils.py
+│   │   ├── controllers
+│   │   │   └── window_controller.py
+│   │   ├── databases
+│   │   │   └── isp_test.db
+│   ├── Metadata
+│   │   ├── dataless
+│   │   │   └── dataless.dlsv
+│   │   └── xml
+│   │       └── metadata.xml
+│   ├── NLL7
+│   │   ├── bin
+│   │   └── src
+│   ├── PPSDS_Utils
+│   │   └── ppsds_utils.py
+│   ├── Structures
+│   │   ├── obspy_stats_keys.py
+│   │   └── structures.py
+│   ├── Test
+│   ├── Utils
+│   │   ├── class_decorators.py
+│   │   ├── nllOrgErrors.py
+│   │   ├── obspy_utils.py
+│   │   ├── subprocess_utils.py
+│   │   └── time_utils.py
+│   ├── arrayanalysis
+│   │   ├── array_analysis.py
+│   │   └── stations
+│   │       ├── coords.txt
+│   ├── db
+│   │   ├── data_base.py
+│   │   ├── map_class
+│   │   │   ├── clases_mpl_pyqt.py
+│   │   └── models
+│   │       ├── base_model.py
+│   │       └── models.py
+│   ├── earthquakeAnalisysis
+│   │   ├── NLLGrid.py
+│   │   ├── auto_detect
+│   │   │   ├── events
+│   │   │   └── phases
+│   │   ├── ellipsoid.py
+│   │   ├── first_polarity.py
+│   │   ├── focmecobspy.py
+│   │   ├── location_output
+│   │   │   ├── ak135
+│   │   │   ├── all_locations
+│   │   │   ├── first_polarity
+│   │   │   │   ├── focmec.lst
+│   │   │   │   ├── focmec_run
+│   │   │   │   ├── log.txt
+│   │   │   │   ├── mechanism.out
+│   │   │   │   ├── rfocmec_RW
+│   │   │   │   ├── rfocmec_UW
+│   │   │   │   └── test.inp
+│   │   │   ├── loc
+│   │   │   │   ├── last.hyp
+│   │   │   │   ├── last.hyp.scat.xyz
+│   │   │   │   └── location_run_temp.txt
+│   │   │   ├── local_models
+│   │   │   │   ├── modelP
+│   │   │   │   └── modelS
+│   │   │   ├── model
+│   │   │   │   ├── layer.P.mod.buf
+│   │   │   │   ├── layer.P.mod.hdr
+│   │   │   │   ├── layer.S.mod.buf
+│   │   │   │   └── layer.S.mod.hdr
+│   │   │   ├── model3D
+│   │   │   ├── obs
+│   │   │   │   └── output.txt
+│   │   │   ├── run
+│   │   │   │   ├── g2t_template
+│   │   │   │   ├── global_template
+│   │   │   │   ├── run_template
+│   │   │   │   └── v2g_template
+│   │   │   ├── stations
+│   │   │   │   └── stations.txt
+│   │   │   ├── temp
+│   │   │   │   ├── G2T_temp.txt
+│   │   │   │   ├── info.txt
+│   │   │   │   ├── input.txt
+│   │   │   │   ├── run_temp.txt
+│   │   │   │   ├── stations.txt
+│   │   │   │   └── test_grd2time.py
+│   │   │   ├── test_fp
+│   │   │   │   ├── focmec.lst
+│   │   │   │   ├── mechanism.out
+│   │   │   │   └── test.inp
+│   │   │   └── time
+│   │   ├── magnitude_atenuation
+│   │   │   └── atenuation.txt
+│   │   ├── pdf_plot.py
+│   │   ├── picker_manager.py
+│   │   ├── rotate.py
+│   │   ├── run_nll.py
+│   │   └── stations_map.py
+│   ├── examples
+│   │   ├── 3Components
+│   │   ├── CFs
+│   │   ├── Coherence
+│   │   ├── Downloads
+│   │   ├── EGFs
+│   │   ├── Earthquake_location_test
+│   │   ├── Moment_Tensor_example
+│   │   ├── NuclearExplotionILAR_2017
+│   │   ├── PPSDS_example
+│   │   ├── Synthetics
+│   │   ├── receiver_functions_example
+│   │   └── teleseism
+│   ├── mac_bin
+│   ├── maps
+│   ├── mti
+│   │   ├── class_isola_new.py
+│   │   ├── green
+│   │   ├── green_source
+│   │   ├── html
+│   │   ├── input
+│   │   ├── mti_utilities.py
+│   │   ├── output
+│   │   └── read_log.py
+│   ├── receiverfunctions
+│   │   ├── earth_models
+│   │   │   └── iasp91.csv
+│   │   ├── rf_dialogs.py
+│   │   ├── rf_dialogs_utils.py
+│   │   ├── rf_main_window_utils.py
+│   │   └── rf_matplotlibwidget.py
+│   ├── resources
+│   │   ├── designer_uis
+│   │   │   ├── ArrayAnalysisFrame.ui
+│   │   │   ├── CrustalModelParametersFrame.ui
+│   │   │   ├── DataDownload.ui
+│   │   │   ├── EarthModelWidget.ui
+│   │   │   ├── Earthquake3CFrame.ui
+│   │   │   ├── EarthquakeAnalysisFrame.ui
+│   │   │   ├── EarthquakeAnalysisFrame_old.ui
+│   │   │   ├── EarthquakeLocationFrame.ui
+│   │   │   ├── EventInfoDockWidget.ui
+│   │   │   ├── EventLocationFrame.ui
+│   │   │   ├── FilterDockWidget.ui
+│   │   │   ├── MagnitudeFrame.ui
+│   │   │   ├── MainFrame.ui
+│   │   │   ├── MomentTensor.ui
+│   │   │   ├── MomentTensor_old.ui
+│   │   │   ├── PPSD.ui
+│   │   │   ├── PPSDDialogsSettings.ui
+│   │   │   ├── PPSD_DBGeneratorDialog.ui
+│   │   │   ├── PaginationWidget.ui
+│   │   │   ├── PlotPolarizationWidget.ui
+│   │   │   ├── ReceiverFunctionsFrame.ui
+│   │   │   ├── RfAboutDialog.ui
+│   │   │   ├── RfDialogsCrossSection.ui
+│   │   │   ├── RfDialogsCutEqs.ui
+│   │   │   ├── RfDialogsSaveFigure.ui
+│   │   │   ├── RfDialogsShowEarthquake.ui
+│   │   │   ├── SettingsDialog.ui
+│   │   │   ├── SpectrumDockWidget.ui
+│   │   │   ├── StationInfoDockWidget.ui
+│   │   │   ├── StationsCoordinates.ui
+│   │   │   ├── StationsInfo.ui
+│   │   │   ├── SyntheticsAnalisysFrame.ui
+│   │   │   ├── SyntheticsGeneratorDialog.ui
+│   │   │   ├── TimeAnalysisWidget.ui
+│   │   │   ├── TimeFrequencyAddWidget.ui
+│   │   │   ├── TimeFrequencyFrame.ui
+│   │   │   ├── TimeFrequencyFrame_old.ui
+│   │   │   ├── TimeSelectorDockWidget.ui
+│   │   │   ├── VespagramWidget.ui
+│   │   │   ├── additionalParameters.ui
+│   │   │   ├── help.ui
+│   │   │   └── parameters.ui
+│   │   ├── images
+│   │   │   ├── icons
+│   │   ├── resources.py
+│   │   ├── resources.qrc
+│   │   └── resources_rc.py
+│   ├── retrieve_events
+│   │   └── retrive_data_tools.py
+│   └── seismogramInspector
+│       ├── COMPLIANCE.py
+│       ├── CWT_fast.py
+│       ├── MTspectrogram.py
+│       ├── ba_fast.py
+│       ├── entropy.py
+│       ├── plotpm.py
+│       ├── polarity2.py
+│       ├── signal_processing_advanced.py
+│       ├── status.py
+│       └── utilsEntropy.py
+├── isp.sh
+├── mti.tar.gz
+├── requirements.txt
+├── setup.py
+├── start_isp.py
+</code></pre>
+<h2 id="seismograms-and-metadata">Seismograms and metadata</h2>
+<p><img alt="Screenshot" src="../img/seismogram.png" /></p>
+<h3 id="description">Description</h3>
+<p>In ISP we have decided go for minified format, with is one of the most broadly used data storage formats for seismograms. The best description is given at http://ds.iris.edu/ds/nodes/dmc/data/formats/miniseed/ which is simply:</p>
+<p>MiniSEED is the subset of the SEED standard that is used for time series data. Very limited metadata for the time series is included in miniSEED beyond time series identification and simple state-of-health flags. In particular, geographic coordinates, response/scaling information and other information needed to interpret the data values are not included.</p>
+<p>Time series are stored as generally independent, fixed length data records which each contain a small segment of contiguous series values. A reader of miniSEED is required to reconstruct longer, contiguous time series from the data record segments. Common record lengths are 512-byte (for real time streams) and 4096-byte (for archiving), other record lengths are used for special scenarios.</p>
+<p>A “file” or “stream” of miniSEED is simply a concatenation of data records. Depending on the capabilities of the intended reader the data records for multiple channels of data may be multiplexed together.</p>
+<h3 id="examples">Examples</h3>
+<p>The user can find an example of miniseed files containing a broad variety of waveforms at .isp/examples (see Project Structure). Additionally, you can download data and metadata from the tool "Retrieve Data", either from a specific time window or an earthquake from a catalog.</p>
+<h3 id="metadata-dataless-and-xml">Metadata (Dataless and *.xml)</h3>
+<p>ISP uses two kind of metadata files either Dataless or xml (<em>https://docs.obspy.org/tutorial/code_snippets/stationxml_file_from_scratch.html</em>). You can find an example of this files at the folders isp/Metadata/dataless and isp/Metadata/dataless. As you will see, in the this files there is information structured as a dictionary nets/stations/location/component. Personally the best way to make your own metadata file is to manipulate the metadata files of the examples using the java software PDCC from <em>https://ds.iris.edu/ds/nodes/dmc/software/downloads/pdcc/</em>.</p>
+<p><img alt="Screenshot" src="../img/metadata_structure.png" /></p>
+<p><strong>Important</strong>: The idea in ISP is that your Metadata file (one single file) contains all of the information (such as coordinates of your stations, instrument response, sampling frequency and so on ...) of the miniseed files you are going to manage. The reason of this design is that, it is easier to programming something that works independently from the miniseed file to metadata. For example when sorting the minified files from respect to an event. The software internally reads the name of all of your files (in the header) and  then match this info with the metadata file.</p>
+<p><strong>Notes</strong>: It is very easy using python to convert your dataless to xml.
+From: <em>https://docs.obspy.org/_modules/obspy/core/inventory/inventory.html#Inventory.write</em></p>
+<pre><code class="language-bash">from obspy import read_inventory
+inv = read_inventory(&quot;path_to_your_dataless&quot;)
+inv.write(path_or_file_object, format=&quot;stationxml&quot;, validate=True)
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../el/" class="btn btn-neutral float-right" title="Earthquake Location">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../install/" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../install/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../el/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
