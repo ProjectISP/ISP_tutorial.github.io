@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../css/theme.css" />
   <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -25,8 +25,9 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
+  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -40,7 +41,7 @@
         <a href=".." class="icon icon-home"> ISP Tutorial</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -63,7 +64,7 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#description">Description</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a>
+    <li class="toctree-l3"><a class="reference internal" href="#how-to-read-miniseed-files">How to read miniseed files</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#metadata-dataless-and-xml">Metadata (Dataless and *.xml)</a>
     </li>
@@ -138,7 +139,6 @@
   
   <hr/>
 </div>
-
           <div role="main">
             <div class="section">
               
@@ -395,19 +395,30 @@
 ├── requirements.txt
 ├── setup.py
 ├── start_isp.py
+
+
 </code></pre>
+<hr />
 <h2 id="seismograms-and-metadata">Seismograms and metadata</h2>
 <p><img alt="Screenshot" src="../img/seismogram.png" /></p>
+<hr />
 <h3 id="description">Description</h3>
 <p>In ISP we have decided go for minified format, with is one of the most broadly used data storage formats for seismograms. The best description is given at http://ds.iris.edu/ds/nodes/dmc/data/formats/miniseed/ which is simply:</p>
 <p>MiniSEED is the subset of the SEED standard that is used for time series data. Very limited metadata for the time series is included in miniSEED beyond time series identification and simple state-of-health flags. In particular, geographic coordinates, response/scaling information and other information needed to interpret the data values are not included.</p>
 <p>Time series are stored as generally independent, fixed length data records which each contain a small segment of contiguous series values. A reader of miniSEED is required to reconstruct longer, contiguous time series from the data record segments. Common record lengths are 512-byte (for real time streams) and 4096-byte (for archiving), other record lengths are used for special scenarios.</p>
 <p>A “file” or “stream” of miniSEED is simply a concatenation of data records. Depending on the capabilities of the intended reader the data records for multiple channels of data may be multiplexed together.</p>
-<h3 id="examples">Examples</h3>
-<p>The user can find an example of miniseed files containing a broad variety of waveforms at .isp/examples (see Project Structure). Additionally, you can download data and metadata from the tool "Retrieve Data", either from a specific time window or an earthquake from a catalog.</p>
+<hr />
+<h3 id="how-to-read-miniseed-files">How to read miniseed files</h3>
+<p>The user can find example of local miniseed files containing a broad variety of waveforms at .isp/examples (see Project Structure). Additionally, you can download data and metadata from the tool "Retrieve Data", either from a specific time window or an earthquake from a catalog.</p>
+<p>For example, if you are using Earthquake Analysis Module. Follow. The directions of the following screenshot:</p>
+<p>Robust will check that the files to be storage in the database are valid mseedfiles.
+Scan will allow create the database from a full folder tree. This option is very useful when the user has the mseed files distributed as SDS architecture (NET/STATIONS/CHANNELS/FILES).</p>
+<p><img alt="Screenshot" src="../img/first_steps.png" /></p>
+<hr />
 <h3 id="metadata-dataless-and-xml">Metadata (Dataless and *.xml)</h3>
-<p>ISP uses two kind of metadata files either Dataless or xml (<em>https://docs.obspy.org/tutorial/code_snippets/stationxml_file_from_scratch.html</em>). You can find an example of this files at the folders isp/Metadata/dataless and isp/Metadata/dataless. As you will see, in the this files there is information structured as a dictionary nets/stations/location/component. Personally the best way to make your own metadata file is to manipulate the metadata files of the examples using the java software PDCC from <em>https://ds.iris.edu/ds/nodes/dmc/software/downloads/pdcc/</em>.</p>
-<p><img alt="Screenshot" src="../img/metadata_structure.png" /></p>
+<p>ISP uses two kind of metadata files either Dataless or xml. (<em>https://docs.obspy.org/tutorial/code_snippets/stationxml_file_from_scratch.html</em>). 
+You can find an example of this files at the folders isp/Metadata/dataless and isp/Metadata/xml. As you will see, in the this files there is information structured as a dictionary nets/stations/channels. Personally, the best way to make your own metadata file is to manipulate or create the metadata files is using either the java software <a href="https://ds.iris.edu/ds/nodes/dmc/software/downloads/pdcc/">PDCC</a>. However, I fully recommend go to the <a href="https://smp.gempa.de/">API Station Management Portal</a>.
+<img alt="Screenshot" src="../img/metadata_structure.png" /></p>
 <p><strong>Important</strong>: The idea in ISP is that your Metadata file (one single file) contains all of the information (such as coordinates of your stations, instrument response, sampling frequency and so on ...) of the miniseed files you are going to manage. The reason of this design is that, it is easier to programming something that works independently from the miniseed file to metadata. For example when sorting the minified files from respect to an event. The software internally reads the name of all of your files (in the header) and  then match this info with the metadata file.</p>
 <p><strong>Notes</strong>: It is very easy using python to convert your dataless to xml.
 From: <em>https://docs.obspy.org/_modules/obspy/core/inventory/inventory.html#Inventory.write</em></p>
@@ -448,18 +459,17 @@ inv.write(path_or_file_object, format=&quot;stationxml&quot;, validate=True)
   </div>
 
   <div class="rst-versions" role="note" aria-label="versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    
-    
-      <span><a href="../install/" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../el/" style="color: #fcfcfc">Next &raquo;</a></span>
-    
-  </span>
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../install/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../el/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
 </div>
     <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>
