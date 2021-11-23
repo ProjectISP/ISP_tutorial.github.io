@@ -59,6 +59,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#installation-for-windows-users">Installation for Windows users</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#uninstall-isp">Uninstall ISP</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#list-of-requirements">List of Requirements</a>
     </li>
     </ul>
@@ -142,15 +144,20 @@
 <p>First of all clone the repository from <a href="https://github.com/ProjectISP/ISP">ISP master branch</a>. Just open your terminal and navigate whenver you want to place <strong>ISP</strong> and type in the terminal:</p>
 <pre><code>`git clone https://github.com/ProjectISP/ISP.git`
 </code></pre>
-<p>Then, to change to the ongoing version ISP 2.0 type in your terminal    </p>
+<p>Then, go to the folder <em>./ISP</em> and to change to the ongoing version ISP 2.0 type in your terminal   </p>
 <pre><code>`git checkout ISP_2.0_development`
 </code></pre>
-<p>To be updated, </p>
+<p>To be updated, from ./ISP type in your terminal, </p>
 <pre><code>`git pull`
 </code></pre>
-<p>The installation file will install the requirements and will compile the source packages. At the end of the installation the user will be asked for an alias "isp". It is needed to have previously installed <a href="https://www.anaconda.com/">anaconda</a></p>
+<p>The installation file will install the requirements and will compile the source packages. At the end of the installation the user will be asked for an alias "isp". It is needed to have previously installed <a href="https://www.anaconda.com/">anaconda</a>.
+Just in case the alias isp do not open the software, go to ./ISP and type:</p>
+<pre><code>`condo activate isp` or `source activate isp`
+`python start_isp.py`
+</code></pre>
 <h2 id="installation-for-end-users-mac-and-linux">Installation for end users (Mac and Linux)</h2>
 <p>To run the installation go to ./isp/installation and type ./ISP_installer.sh</p>
+<p><strong>Warning:</strong> We have found that in some <strong>Mac computers is difficult to compile the third package NLL</strong>, so for this reason inside the folder ./ISP/isp/mac_bin/bin, you will find NLL fully compiled. Then, you can move this files from ./ISP/isp/mac_bin/bin to ./ISP/isp/NLL7/bin that is the folder where ISP will look for running this program.</p>
 <h2 id="installation-for-developers-mac-and-linux">Installation for developers (Mac and Linux)</h2>
 <p>To run the installation go to ./isp/installation and type ./ISP_installer_search.sh</p>
 <h2 id="installation-for-windows-users">Installation for Windows users</h2>
@@ -170,6 +177,10 @@
     - Add to path "export PATH=~/anaconda3/bin:$PATH" al fichero .bashrc</p>
 <p>4.- Install normally ISP:</p>
 <p>go to ./isp/installation and type ./ISP_installer.sh</p>
+<h2 id="uninstall-isp">Uninstall ISP</h2>
+<p>Firs remove the folder ISP, then type in your terminal:</p>
+<pre><code>`conda remove --name isp --all`
+</code></pre>
 <h2 id="list-of-requirements">List of Requirements</h2>
 <ul>
 <li>sqlalchemy</li>
