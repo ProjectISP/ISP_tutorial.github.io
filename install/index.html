@@ -141,7 +141,7 @@
             <div class="section">
               
                 <h1 id="installation">Installation</h1>
-<p>First of all clone the repository from <a href="https://github.com/ProjectISP/ISP">ISP master branch</a>. Just open your terminal and navigate whenver you want to place <strong>ISP</strong> and type in the terminal:</p>
+<p>First of all, clone the repository from <a href="https://github.com/ProjectISP/ISP">ISP master branch</a>. Just open your terminal and navigate whenever you want to place <strong>ISP</strong> and type in the terminal:</p>
 <pre><code>`git clone https://github.com/ProjectISP/ISP.git`
 </code></pre>
 <p>Then, go to the folder <em>./ISP</em> and to change to the ongoing version ISP 2.0 type in your terminal   </p>
@@ -150,17 +150,25 @@
 <p>To be updated, from ./ISP type in your terminal, </p>
 <pre><code>`git pull`
 </code></pre>
-<p>The installation file will install the requirements and will compile the source packages. At the end of the installation the user will be asked for an alias "isp". It is needed to have previously installed <a href="https://www.anaconda.com/">anaconda</a>.
-Just in case the alias isp do not open the software, go to ./ISP and type:</p>
+<p>The installation file will install the requirements and will compile the source packages. At the end of the installation the user will be asked for an alias "isp". Following the directions <strong>Installation for end users</strong> , it is needed to have previously installed <a href="https://www.anaconda.com/">anaconda</a>.</p>
+<h2 id="installation-for-end-users-mac-and-linux">Installation for end users (Mac and Linux)</h2>
+<p>To run the installation go to ./isp/installation and type ./ISP_installer.sh</p>
+<p>Just in case the alias isp do not open the software, go to ./ISP and type:</p>
 <pre><code>`condo activate isp` or `source activate isp`
 `python start_isp.py`
 </code></pre>
-<h2 id="installation-for-end-users-mac-and-linux">Installation for end users (Mac and Linux)</h2>
-<p>To run the installation go to ./isp/installation and type ./ISP_installer.sh</p>
 <p><strong>Warning:</strong> We have found that in some <strong>Mac computers is difficult to compile the third package NLL</strong>, so for this reason inside the folder ./ISP/isp/mac_bin/bin, you will find NLL fully compiled. Then, you can move this files from ./ISP/isp/mac_bin/bin to ./ISP/isp/NLL7/bin that is the folder where ISP will look for running this program.</p>
 <h2 id="installation-for-developers-mac-and-linux">Installation for developers (Mac and Linux)</h2>
-<p>To run the installation go to ./isp/installation and type ./ISP_installer_search.sh</p>
+<p>We suggest installing the requirements first:</p>
+<pre><code>`python3 -m venv isp source env/bin/activate deactivate python3 -m pip install -r requirements.txt`
+`source isp/bin/activate`
+`python3 -m pip install -r requirements.txt`
+</code></pre>
+<p>Next, from the folder ./ISP, compile the source packages:</p>
+<pre><code>`python setup.py build_ext --inplace`
+</code></pre>
 <h2 id="installation-for-windows-users">Installation for Windows users</h2>
+<p>In the following text, we briefly explain how to install ISP in windows via <strong>WSL</strong> .</p>
 <p>1.- Install WSL (Windows Subsystem for Linux) (instalar version 2) y Ubuntu 20.04:
     - https://docs.microsoft.com/en-us/windows/wsl/install-win10
 2.- Install VcXsrv Windows X Server:
@@ -178,7 +186,7 @@ Just in case the alias isp do not open the software, go to ./ISP and type:</p>
 <p>4.- Install normally ISP:</p>
 <p>go to ./isp/installation and type ./ISP_installer.sh</p>
 <h2 id="uninstall-isp">Uninstall ISP</h2>
-<p>Firs remove the folder ISP, then type in your terminal:</p>
+<p>First remove the folder ISP, then type in your terminal:</p>
 <pre><code>`conda remove --name isp --all`
 </code></pre>
 <h2 id="list-of-requirements">List of Requirements</h2>
@@ -196,14 +204,13 @@ Just in case the alias isp do not open the software, go to ./ISP and type:</p>
 <li>PyQtWebEngine</li>
 <li>mtspec</li>
 <li>nitime</li>
-<li>nvector</li>
 <li>Cartopy</li>
 <li>pillow</li>
 <li>PyWavelets</li>
 <li>dill</li>
-<li>Keras==2.3.1</li>
-<li>Tensorflow==2.0.0</li>
-<li>numba==0.52.0</li>
+<li>nvector</li>
+<li>numba</li>
+<li>Tensorflow&gt;=2.3.0</li>
 </ul>
 <p>Good luck with the process</p>
               

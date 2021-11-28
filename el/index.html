@@ -154,43 +154,40 @@
 <p>From top to bottom in the left side of the window you will see:</p>
 <ul>
 <li>
-<p>Event Info. This small box let enter information about an event, in this way you can plot the theoretical arrivals (ak-135F) with respect your seismograms. Plot arrivals requires that you have correctly loaded your metadata.</p>
+<p><strong>Event Info</strong>: This small box let enter information about an event, in this way you can plot the theoretical arrivals (ak-135F) with respect your seismograms. Plot arrivals requires that you have correctly loaded your metadata.</p>
 </li>
 <li>
-<p>Files. By clicking in this button you will place the path of your files (*miniseed). Click on read files to load in an inner database the path to your files.</p>
+<p><strong>Files Directory</strong>: By clicking in this button you will place the path of your files (<em>miniseed). Click on </em><strong>Read Files</strong> to load in an inner database the path to your files. With this action you will be ready to Process and Plot the seismograms. Remember click on Read Files every time you change the folder. Option scan means, scan the whole tree of folders from the root one, to include all possible mseed files paths in the database. Robust means that is going to check that every file in the selected folder is a valid mseed file. </p>
 </li>
 <li>
-<p>Metadata. By clicking in this button you will place the path to you metadata file. The metadata file must contain the information of all of the stations seismograms you want to analyse (metadata must be a <em>xml or </em>dlsv).</p>
+<p><strong>Metadata File</strong>: By clicking in this button you will place the path to you metadata file. The metadata file must contain the information of all of the stations seismograms you want to analyse (metadata must be a <em>xml or </em>dlsv).</p>
 </li>
 <li>
-<p>Start Time and End Time. The time boxes can be selected checking “Trim Time”. If you choose this option all the seismograms will be cut in accordance with the selected time window. Use the shortcuts "Q" and "E" to set over the plot automatically the trim stat time and endtime.</p>
+<p><strong>Start Time and End Time</strong>: The time boxes can be selected checking “Trim Time”. If you choose this option all the seismograms will be cut in accordance with the selected time window. Use the shortcuts "Q" and "E" to set over the plot automatically the trim stat time and endtime.</p>
 </li>
 <li>
-<p>Stations Info will deploy a table with the fundamental information of the seismograms.</p>
+<p><strong>Stations Info</strong>: will deploy a table with the fundamental information of the seismograms.</p>
 </li>
 <li>
-<p>Phase box. This combo box allow the selection of specific phases for picking it in the seismograms.</p>
+<p><strong>Phase box</strong>: This combo box allow the selection of specific phases for picking it in the seismograms. </p>
 </li>
 <li>
-<p>Waves box. You can choose Body, surface, coda or noise. With this selected you can highlight a time window of the seismogram for further analysis. For example Mw Magnitude that requires a time window of body wave on many seismograms.</p>
+<p><strong>Waves box</strong>: You can choose Body, surface, coda or noise. With this selected you can highlight a time window of the seismogram for further analysis. For example Mw Magnitude that requires a time window of body wave on many seismograms.</p>
 </li>
 <li>
-<p>Net, Station and Channel. You can fill this boxes (also using wildcards such as * or BH?) to select specific files from your files folder (check “select files”).</p>
+<p><strong>Net, Station and Channel</strong>: You can fill this boxes (also using wildcards such as * or BH?) to select specific files from your files folder (check “select files”).</p>
 </li>
 <li>
-<p>Locate. After pick some phases in your seismogram you can locate an earthquake and show a location map. Previously you must have calculated travel-times for your velocity model (Further details in Event Location tab. 2.3)</p>
+<p><strong>Stations Map</strong>: will show you the location of the stations that corresponds to the seismograms of your folder. The seismograms metadata must match with the metadata information.</p>
 </li>
 <li>
-<p>Stations Map will show you the location of the stations that corresponds to the seismograms of your folder. The seismograms metadata must match with the metadata information.</p>
+<p><strong>Rotate</strong>: This option will rotate all your station - 3 components (channels must be named N,E,Z) to the Great Arc Circle taking the reference the data of Event info tab. Check "Use this Ang" to rotate the components a specific angle.</p>
 </li>
 <li>
-<p>Rotate. This option will rotate all your station - 3 components (channels must be named N,E,Z) to the Great Arc Circle taking the reference the data of Event info tab. Check "Use this Ang" to rotate the components a specific angle.</p>
+<p><strong>Cross</strong>: This button will compute the cross-correlation (cc) or the autocorrelation of all processed seismograms with respect the reference “Ref”, the number of the seismogram from top to bottom.</p>
 </li>
 <li>
-<p>Cross. This button will compute the cross-correlation (cc) or the autocorrelation of all processed seismograms with respect the reference “Ref”, the number of the seismogram from top to bottom.</p>
-</li>
-<li>
-<p>Process and Plot. This action will read the seismograms from the selected folder and will carry out the processing from the established “MACRO”. Further details in MACRO section "Macros".</p>
+<p><strong>Process and Plot</strong>: This action will read the seismograms from the database of paths to your seismograms, created from your folder tree (database already built using Read Files) and will carry out the processing from the established “MACRO”. Further details in MACRO section "Macros".</p>
 </li>
 </ul>
 <p><img alt="Screenshot" src="../img/sumatra.png" /></p>
@@ -203,7 +200,7 @@ File: Write Files will write in the folder you select the processed seismograms.
 you can carry out in this module (sta/lta, wavelet detection, spectrogram, entropy…).</p>
 <pre><code>                    Actions
 </code></pre>
-<p>Actions: Picks will open the file with the information of your picks. You can also delete the file from here. Shortcut "Ctr + u"</p>
+<p>Actions: Picks will open the file with the information of your picks. You can also open the file from here. Shortcut "Ctr + u"</p>
 <p>Actions: Macro will deploy a window with all of the processing options. All of the processing options will be applied once you press the button Processing and Plot. Shortcut "Ctr + l"</p>
 <p>Action: Detect event will associate the automatic picks carried out by the wavelet picker ant will declare an event. The events will be shown in the seismograms window.</p>
 <p>Actions: Run Picker will carry out the automatic detection/classification of P- and S- waves from the previously loaded “Neural Network”. You must have three components per stations (named <em>N,</em>E,*Z). BE CAREFUL this operation is computationally demanding.</p>
@@ -228,8 +225,8 @@ All Seismograms: Plot together all seismograms.</p>
 </code></pre>
 <p>Will ship you to the rest of ISP modules (RFs, Array analysis….).</p>
 <h2 id="multimedia-material-pick-event">Multimedia Material (Pick Event)</h2>
-<p>The following video shows a basic analysis of an earthquake
-<!-- blank line --></p>
+<p>The following video shows a basic analysis of an earthquake</p>
+<!-- blank line -->
 <figure class="video_container">
   <video controls="true" allowfullscreen="true" poster="../img/poster_image.png" width="740" height="400">
     <source src="../img/Earthquake_Analysis.mp4" type="video/mp4">
