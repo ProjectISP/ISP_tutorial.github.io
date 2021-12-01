@@ -187,31 +187,31 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="installation">Installation</h1>
-<p>First of all, clone the repository from <a href="https://github.com/ProjectISP/ISP">ISP master branch</a>. Just open your terminal and navigate whenever you want to place <strong>ISP</strong> and type in the terminal:</p>
-<pre><code>`git clone https://github.com/ProjectISP/ISP.git`
+<p>First of all, clone the repository from <a href="https://github.com/ProjectISP/ISP">ISP master branch</a>. Just open your terminal and navigate whenever you want to place <strong>ISP</strong> and type in the terminal</p>
+<pre><code>git clone https://github.com/ProjectISP/ISP.git
 </code></pre>
 <p>Then, go to the folder <em>./ISP</em> and to change to the ongoing version ISP 2.0 type in your terminal   </p>
-<pre><code>`git checkout ISP_2.0_development`
+<pre><code>git checkout ISP_2.0_development
 </code></pre>
 <p>To be updated, from ./ISP type in your terminal, </p>
-<pre><code>`git pull`
+<pre><code>git pull
 </code></pre>
 <p>The installation file will install the requirements and will compile the source packages. At the end of the installation the user will be asked for an alias "isp". Following the directions <strong>Installation for end users</strong> , it is needed to have previously installed <a href="https://www.anaconda.com/">anaconda</a>.</p>
 <h2 id="installation-for-end-users-mac-and-linux">Installation for end users (Mac and Linux)</h2>
 <p>To run the installation go to ./isp/installation and type ./ISP_installer.sh</p>
 <p>Just in case the alias isp do not open the software, go to ./ISP and type:</p>
-<pre><code>`conda activate isp` or `source activate isp`
-`python start_isp.py`
+<pre><code>conda activate isp or source activate isp
+python start_isp.py
 </code></pre>
 <p><strong>Warning:</strong> We have found that in some <strong>Mac computers is difficult to compile the third package NLL</strong>, so for this reason inside the folder ./ISP/isp/mac_bin/bin, you will find NLL fully compiled. Then, you can move this files from ./ISP/isp/mac_bin/bin to ./ISP/isp/NLL7/bin that is the folder where ISP will look for running this program.</p>
 <h2 id="installation-for-developers-mac-and-linux">Installation for developers (Mac and Linux)</h2>
 <p>We suggest installing the requirements first:</p>
-<pre><code>`python3 -m venv isp source env/bin/activate deactivate python3 -m pip install -r requirements.txt`
-`source isp/bin/activate`
-`python3 -m pip install -r requirements.txt`
+<pre><code>python3 -m venv isp
+source isp/bin/activate
+python3 -m pip install -r requirements.txt
 </code></pre>
 <p>Next, from the folder ./ISP, compile the source packages:</p>
-<pre><code>`python setup.py build_ext --inplace`
+<pre><code>python3 setup.py build_ext --inplace
 </code></pre>
 <h2 id="installation-for-windows-users">Installation for Windows users</h2>
 <p>In the following text, we briefly explain how to install ISP in windows via <strong>WSL</strong> .</p>
@@ -227,26 +227,25 @@ However, it could be more easy to you just run:
 Windows Key + R and then in the widget type "C:\Program Files\VcXsrv.exe" :0 -multiwindow -clipboard  -wgl -ac
 </code></pre>
 <p><br>4. Directions to follow inside WSL</p>
-<pre><code>`export DISPLAY_NUMBER="0.0"`
+<pre><code>export DISPLAY_NUMBER="0.0"
 
-`export DISPLAY=$(grep  -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):$DISPLAY_NUMBER`
+export DISPLAY=$(grep  -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):$DISPLAY_NUMBER
 </code></pre>
 <p><br>5. Install <a href="https://linuxize.com/post/how-to-install-anaconda-on-ubuntu-20-04/">Anaconda</a></p>
 <pre><code>Add to path Anconda to the file .bashrc
 
-`"export PATH=~/anaconda3/bin:$PATH"
-
-Then everything is ready to install ISP as in Linux System
+"export PATH=~/anaconda3/bin:$PATH"
 </code></pre>
+<p>Then everything is ready to install ISP as in Linux System</p>
 <p><br>6. Install normally ISP:</p>
 <p>To run the installation go to ./isp/installation and type ./ISP_installer.sh</p>
 <p>Just in case the alias isp do not open the software, go to ./ISP and type:</p>
-<pre><code>`conda activate isp` or `source activate isp`
-`python start_isp.py`
+<pre><code>conda activate isp or source activate isp
+python start_isp.py
 </code></pre>
 <h2 id="uninstall-isp">Uninstall ISP</h2>
 <p>First remove the folder ISP, then type in your terminal:</p>
-<pre><code>`conda remove --name isp --all`
+<pre><code>conda remove --name isp --all
 </code></pre>
 <h2 id="list-of-requirements">List of Requirements</h2>
 <ul>
