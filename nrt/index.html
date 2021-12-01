@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Synthetic Generator - ISP Tutorial</title>
+        <title>Near Real Time Adquisition - ISP Tutorial</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -88,11 +88,11 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">Synthetic Generator</a>
+    <a href="../synth/" class="dropdown-item">Synthetic Generator</a>
 </li>
                                     
 <li>
-    <a href="../nrt/" class="dropdown-item">Near Real Time Adquisition</a>
+    <a href="./" class="dropdown-item active">Near Real Time Adquisition</a>
 </li>
                                 </ul>
                             </li>
@@ -130,12 +130,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../ppsds/" class="nav-link">
+                                <a rel="prev" href="../synth/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../nrt/" class="nav-link">
+                                <a rel="next" href="../refs/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -157,8 +157,12 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#synthetic-generator" class="nav-link">Synthetic Generator</a>
+            <li class="nav-item" data-level="1"><a href="#near-real-time-adquisition" class="nav-link">Near Real Time Adquisition</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#structure" class="nav-link">Structure</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -166,12 +170,38 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="synthetic-generator">Synthetic Generator</h1>
-<p><img alt="Screenshot" src="../img/Lapiz.png" /></p>
-<p>The Synthetic Tool (Fig. 1), you can make queries to download synthetic seismograms using the synthetic generator (go to the toolbar to deploy it). Fig. 2 shows the tool to make the queries. To implement a query just add the location of the stations for the synthetics be generated. Choose a model, units (velocity, displacement or acceleration) the source coordinates and time spam and, very important, the type of source and the focal parameters.</p>
-<p><img alt="Screenshot" src="../img/Generate_Synthetics.png" /></p>
-<p>Once the query is done and the synthetic seismograms are saved in the location path you had selected, you can plot the synthetic seismograms and  the map/focal mechanism for give a first eye to the results.</p>
-<p><img alt="Screenshot" src="../img/Synthetic_Visulization.png" /></p></div>
+<h1 id="near-real-time-adquisition">Near Real Time Adquisition</h1>
+<p>The tool Near Real Time Adquisition is intended to retrieve data from a server.</p>
+<p><img alt="Screenshot" src="../img/nrt.png" /></p>
+<h2 id="structure">Structure</h2>
+<ul>
+<li><strong>Metadata</strong></li>
+</ul>
+<p>Set the metadata file</p>
+<ul>
+<li>**Net/Station/Channel</li>
+</ul>
+<p>Place separated by "," the name of nets stations and channels you want to retrieve. It is convinient to use wildcards such as "BH?" or "*"</p>
+<ul>
+<li><strong>Server Address</strong></li>
+</ul>
+<p>Set the name of the server address you want to point to.</p>
+<ul>
+<li><strong>Max Num Traces</strong></li>
+</ul>
+<p>Number of traces you want to plot</p>
+<ul>
+<li><strong>Time Window</strong></li>
+</ul>
+<p>Duration of the time window in minutes you want to plot the traces</p>
+<ul>
+<li><strong>Save Data</strong></li>
+</ul>
+<p>This action will allow saving the mseed files that are collected in the destionation folder. The mseed will have a maximum of 24 h being the cut at "00:00:00.0000".</p>
+<ul>
+<li><strong>Plot Map</strong></li>
+</ul>
+<p>This action will plot the map of the metadata stations in red plus the statios you are collecting data in green.</p></div>
             </div>
         </div>
 

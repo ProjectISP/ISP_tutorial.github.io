@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Synthetic Generator - ISP Tutorial</title>
+        <title>Ambient Noise Tomography - ISP Tutorial</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -42,7 +42,7 @@
                             <li class="navitem">
                                 <a href="../basics/" class="nav-link">Start with the basics</a>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Modules <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
@@ -67,11 +67,11 @@
 </li>
                                     
 <li>
-    <a href="../ant/" class="dropdown-item">Ambient Noise Tomography</a>
+    <a href="./" class="dropdown-item active">Ambient Noise Tomography</a>
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active">
+                            <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Additional Toolboxes <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
@@ -88,7 +88,7 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">Synthetic Generator</a>
+    <a href="../synth/" class="dropdown-item">Synthetic Generator</a>
 </li>
                                     
 <li>
@@ -130,12 +130,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../ppsds/" class="nav-link">
+                                <a rel="prev" href="../rf/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../nrt/" class="nav-link">
+                                <a rel="next" href="../db/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -157,8 +157,12 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#synthetic-generator" class="nav-link">Synthetic Generator</a>
+            <li class="nav-item" data-level="1"><a href="#ambient-noise-tomography-in-progress" class="nav-link">Ambient Noise Tomography (in progress)</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#egfs" class="nav-link">EGFs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -166,12 +170,30 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="synthetic-generator">Synthetic Generator</h1>
-<p><img alt="Screenshot" src="../img/Lapiz.png" /></p>
-<p>The Synthetic Tool (Fig. 1), you can make queries to download synthetic seismograms using the synthetic generator (go to the toolbar to deploy it). Fig. 2 shows the tool to make the queries. To implement a query just add the location of the stations for the synthetics be generated. Choose a model, units (velocity, displacement or acceleration) the source coordinates and time spam and, very important, the type of source and the focal parameters.</p>
-<p><img alt="Screenshot" src="../img/Generate_Synthetics.png" /></p>
-<p>Once the query is done and the synthetic seismograms are saved in the location path you had selected, you can plot the synthetic seismograms and  the map/focal mechanism for give a first eye to the results.</p>
-<p><img alt="Screenshot" src="../img/Synthetic_Visulization.png" /></p></div>
+<h1 id="ambient-noise-tomography-in-progress">Ambient Noise Tomography (in progress)</h1>
+<p>The module ANT, currently is just designed to retrieve the Empirical Green Functions (EGFs).</p>
+<h2 id="egfs">EGFs</h2>
+<ol>
+<li>
+<p><strong>Setting Parameters</strong> for the pre-processing steps of the EGFs.</p>
+<p><img alt="Screenshot" src="../img/egf_settings.png" /></p>
+</li>
+<li>
+<p><strong>Setting Metadata and Files Path</strong></p>
+</li>
+</ol>
+<p>To set the path to the metadata of your network and the path where you have hosted your seismogram files. The files can be located in any kind of structure, for example in SDS arquitecture (<em>NETWORK/STATION/CHANNEL/FILES</em>) or simply everything in one single folder. Then set the folder where you want the output of the pre-processing and the EGFs.</p>
+<h3 id="run-pre-processing">Run pre-processing</h3>
+<p>Now, click on Run pre-processing. This action will load your settings and will make a database of the available files. Then the process will start to process the data.
+    Finally per every station/channel a file will be saved containing a matrix with the noise data in frequency domain, ready to cross-correlate.</p>
+<h3 id="run-stack">Run Stack</h3>
+<p>This action will load files from the pre-processing step and then for every channel-channel combination will do a cross correlation and stack all the stacks will be saved in the .outpur_directory/stack.</p>
+<!-- blank line -->
+<p><img alt="Screenshot" src="../img/egfs.png" /></p>
+<!-- blank line -->
+
+<h3 id="process-and-plot">Process and Plot</h3>
+<p>In this point the user can set the path to the output files (hdf5 or sac files), read the files and then <em>process and plot</em>. The user can also establish a Macro to process the EGFs, plot a map and sort the EGFs by inter station distance. Notice that autocorrelations will be 0 distance.</p></div>
             </div>
         </div>
 
