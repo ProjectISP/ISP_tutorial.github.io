@@ -198,7 +198,11 @@
 </code></pre>
 <p>The installation file will install the requirements and will compile the source packages. At the end of the installation the user will be asked for an alias "isp". Following the directions <strong>Installation for end users</strong> , it is needed to have previously installed <a href="https://www.anaconda.com/">anaconda</a>.</p>
 <h2 id="installation-for-end-users-mac-and-linux">Installation for end users (Mac and Linux)</h2>
-<p>To run the installation go to ./isp/installation and type ./ISP_installer.sh</p>
+<p>To run the installation go to ./ISP/install and type:</p>
+<pre><code>chmod u+x ISP_installer.sh
+
+./ISP_installer.sh
+</code></pre>
 <p>Just in case the alias isp do not open the software, go to ./ISP and type:</p>
 <pre><code>conda activate isp or source activate isp
 python start_isp.py
