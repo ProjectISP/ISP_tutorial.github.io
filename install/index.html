@@ -209,10 +209,15 @@ python start_isp.py
 </code></pre>
 <p><strong>Warning:</strong> We have found that in some <strong>Mac computers is difficult to compile the third package NLL</strong>, so for this reason inside the folder ./ISP/isp/mac_bin/bin, you will find NLL fully compiled. Then, you can move this files from ./ISP/isp/mac_bin/bin to ./ISP/isp/NLL7/bin that is the folder where ISP will look for running this program.</p>
 <h2 id="installation-for-developers-mac-and-linux">Installation for developers (Mac and Linux)</h2>
-<p>We suggest installing the requirements first:</p>
+<p>First, Install python 3 and some Cartopy dependencies</p>
+<pre><code>sudo apt install python3-pip python3.8-venv
+sudo apt install libproj-dev proj-data proj-bin libgeos-dev
+</code></pre>
+<p>Then, we suggest installing the requirements:</p>
 <pre><code>python3 -m venv isp
 source isp/bin/activate
 python3 -m pip install -r requirements.txt
+pip install --upgrade setuptools
 </code></pre>
 <p>Next, from the folder ./ISP, compile the source packages:</p>
 <pre><code>python3 setup.py build_ext --inplace
