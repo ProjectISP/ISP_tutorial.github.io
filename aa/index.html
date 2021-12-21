@@ -171,6 +171,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#back-projection" class="nav-link">Back Projection</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#multimedia-material-array-analysis" class="nav-link">Multimedia Material (Array Analysis)</a>
               <ul class="nav flex-column">
               </ul>
@@ -211,6 +215,31 @@ Double pick in the upper panels will run the FK in that specific time window (st
 <p>But before, you must select the time window. Go with the mouse to the any upper panel. Pick, hold and drag to the right direction to do the selection.  Now you can open the vespagram window.</p>
 <p>In the vespagram window you can select the parameters (Win length, overlap, and frequency bandwidth of the analysis) and the backazimuth and slowness where you want to compute the vespagram.</p>
 <p><img alt="Screenshot" src="../img/VespagramNuclear.png" /></p>
+<h2 id="back-projection">Back Projection</h2>
+<p>The Back Projection is a relatively new technique (Kruger and Ohrnberger 2005) designed to quickly and effectively imaging rupture process of large earthquakes. Back-projecting seismic data can be done by big seismic arrays.</p>
+<p>In ISP the user can process the seismograms and set the BackProjection parameters. it is shown a screenshot of the tool.</p>
+<p><img alt="Screenshot" src="../img/backprojection.png" /></p>
+<p>First the user set the path to the seismograms, metadata and the output folder.
+Second, the seismograms can be chopped and a macro with some signal processing can be established.
+Then, the user must set the Back Projection parameters:</p>
+<p><strong>Warning</strong>. BackProjection is highly computing demanding, so we do not recomend using too high resolutions (dx = dy &gt; 0.5), too long time window (time window &lt; 800s) and too big grids (maxlat-minlat and maxlon - minlon &lt; 15 degrees)</p>
+<ul>
+<li>
+<p>Grid: set the minimum longitude and latitude and the maximum latitude and longitude as well as dx and dy (resolution in longitude and latitude in degrees) where the Back projection is going to be calculated. Set the depth.</p>
+</li>
+<li>
+<p>Time window is the whole period in which the BackProjection is going to be calculated. A small <strong>sliding window</strong> will be shifted forward in time in <strong>step by step</strong>.</p>
+</li>
+<li>
+<p>Click on generate the Travel Time Grid. This action will create a travel time grid in wich your grid cells have the travel time from every station to every lat and lon cell.</p>
+</li>
+<li>
+<p>Click on Run BackProjection. In every step will be calculated the Backprojcetion aligning the traces using the Multi Channel Cross Correlation technique (VanDecar and Crosson 1990) according to the Travel Time grid and estimating the power by a simple linear stack or using the Zero Lag Cross Correlation Technique (Almendros et al., 1999).</p>
+</li>
+<li>
+<p>Finally, Load the result video and play it.</p>
+</li>
+</ul>
 <h2 id="multimedia-material-array-analysis">Multimedia Material (Array Analysis)</h2>
 <p>The following video shows a basic analysis of a nueclear explotion (Test from Nort Korea test 2017, Alaska Array ILAR)</p>
 <!-- blank line -->
