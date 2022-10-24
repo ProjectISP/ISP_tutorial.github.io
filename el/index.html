@@ -236,26 +236,26 @@
 <p>Additional options from the toolbar are:</p>
 <pre><code>                    File
 </code></pre>
-<p><span style="color:blue">File:</span> <span style="color:red">New location</span> will clean the picks that are saved automatically for be ready to compute new picking/location.
+<p><span style="color:blue">File:</span> <span style="color:#8E44AD">New location</span> will clean the picks that are saved automatically for be ready to compute new picking/location.
 File: Write Files will write in the folder you select the processed seismograms.</p>
-<p><span style="color:blue">File:</span> <span style="color:red">Open Settings</span> will open a window with the specific parameters of the subprocess that 
+<p><span style="color:blue">File:</span> <span style="color:#8E44AD">Open Settings</span> will open a window with the specific parameters of the subprocess that 
 you can carry out in this module (sta/lta, wavelet detection, spectrogram, entropy…).</p>
 <p><img alt="Screenshot" src="../img/pick_event_params.png" /></p>
 <pre><code>                    Actions
 </code></pre>
-<p><span style="color:blue">Actions:</span> <span style="color:red"> Picks</span> will open the file with the information of your picks. You can also open the file from here. Shortcut "Ctr + u"</p>
-<p><span style="color:blue">Actions:</span> <span style="color:red"> Macro</span> will deploy a window with all of the processing options. All of the processing options will be applied once you press the button Processing and Plot. Shortcut "Ctr + l"</p>
-<p><span style="color:blue">Action: </span> <span style="color:red">Detect event</span> will associate the automatic picks carried out by the wavelet picker ant will declare an event. The events will be shown in the seismograms window.</p>
-<p><span style="color:blue">Actions: </span> <span style="color:red">Run Picker</span> will carry out the automatic detection/classification of P- and S- waves from the previously loaded “Neural Network”. You must have three components per stations (named <em>N,</em>E,*Z). BE CAREFUL this operation is computationally demanding.</p>
-<p><span style="color:blue">Actions: </span> <span style="color:red"> Run Autoloc</span> will detect events using a associated picker based on the Continuous Wavelet Transform (go to File Open Settings to set Num Cycles, Fmin and Fmax) moreover you need to set Detection trigger options Threshold to trigger a pick, number of picks that coincide in different seismograms to declare an event and time window over the clustering of pick is going to be used (For example 40 s means that all seismograms around same time window of 40 s is going to be associated to the same event.</p>
+<p><span style="color:blue">Actions:</span> <span style="color:#8E44AD"> Picks</span> will open the file with the information of your picks. You can also open the file from here. Shortcut "Ctr + u"</p>
+<p><span style="color:blue">Actions:</span> <span style="color:#8E44AD"> Macro</span> will deploy a window with all of the processing options. All of the processing options will be applied once you press the button Processing and Plot. Shortcut "Ctr + l"</p>
+<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Detect event</span> will associate the automatic picks carried out by the wavelet picker ant will declare an event. The events will be shown in the seismograms window.</p>
+<p><span style="color:blue">Actions: </span> <span style="color:#8E44AD">Run Picker</span> will carry out the automatic detection/classification of P- and S- waves from the previously loaded “Neural Network”. You must have three components per stations (named <em>N,</em>E,*Z). BE CAREFUL this operation is computationally demanding.</p>
+<p><span style="color:blue">Actions: </span> <span style="color:#8E44AD"> Run Autoloc</span> will detect events using a associated picker based on the Continuous Wavelet Transform (go to File Open Settings to set Num Cycles, Fmin and Fmax) moreover you need to set Detection trigger options Threshold to trigger a pick, number of picks that coincide in different seismograms to declare an event and time window over the clustering of pick is going to be used (For example 40 s means that all seismograms around same time window of 40 s is going to be associated to the same event.</p>
 <p>Once an event is declared it is chopped the seismograms run the autopick (P and S wave) using the Neural Network and run and automatic location. If you want to use a local model to locate be sure that you have the travel times calculated. All locations will be storage in ./isp/earthquakeAnalysis/location_output/all_locations.</p>
-<p><span style="color:blue">Action: </span> <span style="color:red">Clean Selection</span> will remove an specific seismogram time window selection, such as Body wave,  see the combo box selected and will delete from the selections.</p>
-<p><span style="color:blue">Action: </span> <span style="color:red">Remove all selections</span></p>
-<p><span style="color:blue">Action: </span> <span style="color:red">Clean Events Detected</span></p>
-<p><span style="color:blue">Actions: </span> <span style="color:red">Magnitude Calculator</span> will open a window in which you can compute different magnitudes. For open this you must have estimated an event and have selected the time-windows in the seismograms that you want the magnitudes be calculated.</p>
-<p><span style="color:blue">Action: </span> <span style="color:red">Open Earth Model Viewer</span> will open a tool to visualize 3D velocity models. For visualize an Earth Model you need the binary files (<em>buf and  </em>hdr) created in the tab Event location. </p>
-<p><span style="color:blue">Action: </span> <span style="color:red">Data availability</span> will plot the data availability (backlines) for each station/component of the database loaded from your folder tree.</p>
-<p><span style="color:blue">Action: </span> <span style="color:red">Search in Catalog</span> (see first figure) is a widget designed to plot your catalog and select an event to search in your project. The catalog must be a csv file with this header:</p>
+<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Clean Selection</span> will remove an specific seismogram time window selection, such as Body wave,  see the combo box selected and will delete from the selections.</p>
+<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Remove all selections</span></p>
+<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Clean Events Detected</span></p>
+<p><span style="color:blue">Actions: </span> <span style="color:#8E44AD">Magnitude Calculator</span> will open a window in which you can compute different magnitudes. For open this you must have estimated an event and have selected the time-windows in the seismograms that you want the magnitudes be calculated.</p>
+<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Open Earth Model Viewer</span> will open a tool to visualize 3D velocity models. For visualize an Earth Model you need the binary files (<em>buf and  </em>hdr) created in the tab Event location. </p>
+<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Data availability</span> will plot the data availability (backlines) for each station/component of the database loaded from your folder tree.</p>
+<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Search in Catalog</span> (see first figure) is a widget designed to plot your catalog and select an event to search in your project. The catalog must be a csv file with this header:</p>
 <p>Date;Time;Latitude;Longitude;Depth;Magnitude;mag_type</p>
 <p>01/01/2007;02:03:03;34.9608;-4.0459;12.0;2.6;Mw</p>
 <p>You can find an example in isp/examples/catalog/catalog_resume. To facilitate the selection of events, the user can press "t" over the epicenter in the map to hilight it in the table. Finally, Pressing button "Select Event" the information is sent to the trim starttime and endtime and to the Event Box. Ready to reload your project to make the search of the event!</p>
@@ -293,7 +293,7 @@ You can freely rotate using the rotation RT or the LQT your NEZ components an an
 <p>In the Event Location Frame the user can configure the velocity grid 1D/3D model, locate earthquakes and compute Focal Mechanisms.</p>
 <p><img alt="Screenshot" src="../img/Location.png" /></p>
 <p>First it is needed to set a Velocity grid framework (Grid reference and transformation type are mandatory). For now is only available Transformation Simple and Global.</p>
-<p>Next, the Grid dimensions (Grid Size). Case 2D the dimension always must be 2 and the grid reference is referred to the corner SW. Case 3D the grid reference is the center of the Grid.
+<p>Next, the Grid dimensions (Grid Size). Case 2D the dimension always must be 2 and the grid reference is refered to the corner SW. Case 3D the grid reference is the center of the Grid.
 Choose the grid type and the wave and then generate the velocity model binary files by clicking “Generate Velocity Grid”. Please follow the scheme of the next figure to set correctly your grid frame.</p>
 <p><img alt="Screenshot" src="../img/frame.png" /></p>
 <p>Once the binary files are generated you can check the results in the folder:</p>
