@@ -177,20 +177,24 @@
 <h1 id="warming-tutorial">Warming tutorial</h1>
 <p>This section will show you the overall structure of the project and a basic idea of how are the data managed by ISP.</p>
 <h2 id="seismograms-and-metadata">Seismograms and metadata</h2>
-<p><img alt="Screenshot" src="../img/seismogram.png" /></p>
+<p>We start explaining how to start a project inside Earthquake Analysis module (more details inside sections). First of all you need to create a project. A project is basically a "dictionary file" that tells your computer where are your valid data. This strategy makes easier to explore your big data.</p>
+<p>Now, let's create a new project pressing the button "New Project"</p>
+<p><img alt="Screenshot" src="../img/Create_Project.png" /></p>
+<p>You will find this dialog that will guide you to crete the project. Two option:
+Create Project from individual files, you will select individual files that going to be part of your project.
+Create Full Project, you give the path to the folder tree where you have your daily data files. ISP will scan all folders validating the files and will create the project.
+Afterwards, you can save your project (recommended) giving a name and press "Saving Project".
+Becareful, when you start to create a project ISP will capture the search filters, so for example if in the Project Box Channels is selected "BHZ" as in the picture below, the project will created based on this filters- If you do not want any filter set the filter bocxes empty</p>
+<p><img alt="Screenshot" src="../img/Basics_example.png" /></p>
+<p>Filters boxes uses <a href="*https://www.educative.io/answers/how-to-implement-wildcards-in-python*">Python keywords</a>:</p>
+<p>For example, if ypu want search any component in channels "BH."</p>
+<p>Very important, once you have created or loaded your project you can filter the project simply by pressing "R" outside the plot window. This action will apply the data searching applyning the filters and selecting the time window if Trim ox is selected.</p>
 <hr />
 <h3 id="description">Description</h3>
-<p>In ISP we have decided go for minified format, with is one of the most broadly used data storage formats for seismograms. The best description is given at http://ds.iris.edu/ds/nodes/dmc/data/formats/miniseed/ which is simply:</p>
+<p>In ISP we have decided go for miniseed format, with is one of the most broadly used data storage formats for seismograms. The best description is given at http://ds.iris.edu/ds/nodes/dmc/data/formats/miniseed/ which is simply:</p>
 <p>MiniSEED is the subset of the SEED standard that is used for time series data. Very limited metadata for the time series is included in miniSEED beyond time series identification and simple state-of-health flags. In particular, geographic coordinates, response/scaling information and other information needed to interpret the data values are not included.</p>
 <p>Time series are stored as generally independent, fixed length data records which each contain a small segment of contiguous series values. A reader of miniSEED is required to reconstruct longer, contiguous time series from the data record segments. Common record lengths are 512-byte (for real time streams) and 4096-byte (for archiving), other record lengths are used for special scenarios.</p>
 <p>A “file” or “stream” of miniSEED is simply a concatenation of data records. Depending on the capabilities of the intended reader the data records for multiple channels of data may be multiplexed together.</p>
-<hr />
-<h3 id="how-to-read-miniseed-files">How to read miniseed files</h3>
-<p>The user can find example of local miniseed files containing a broad variety of waveforms at .isp/examples (see Project Structure). Additionally, you can download data and metadata from the tool "Retrieve Data", either from a specific time window or an earthquake from a catalog.</p>
-<p>For example, if you are using Earthquake Analysis Module. Follow. The directions of the following screenshot:</p>
-<p>Robust will check that the files to be storage in the database are valid mseedfiles.
-Scan will allow create the database from a full folder tree. This option is very useful when the user has the mseed files distributed as SDS architecture (NET/STATIONS/CHANNELS/FILES).</p>
-<p><img alt="Screenshot" src="../img/first_steps.png" /></p>
 <hr />
 <h3 id="metadata-dataless-and-xml">Metadata (Dataless and *.xml)</h3>
 <p>ISP uses two kind of metadata files either Dataless or xml. (<em>https://docs.obspy.org/tutorial/code_snippets/stationxml_file_from_scratch.html</em>). 
@@ -204,6 +208,7 @@ inv = read_inventory(&quot;path_to_your_dataless&quot;)
 inv.write(path_or_file_object, format=&quot;stationxml&quot;, validate=True)
 </code></pre>
 <h2 id="shortcuts">Shortcuts</h2>
+<p>We show an example of Eartuqake analysis module keyword and mouse shortcuts. Generally there are shortcuts to be used inside plots and ohter shortcuts to be used to run actions. </p>
 <p><img alt="Screenshot" src="../img/keywords_ISP.png" /></p>
 <p><img alt="Screenshot" src="../img/mouse_ISP.png" /></p>
 <p><img alt="Screenshot" src="../img/list_keywords.png" /></p></div>
