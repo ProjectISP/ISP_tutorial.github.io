@@ -192,14 +192,12 @@
 
 <h1 id="earthquake-location">Earthquake Location</h1>
 <p>The module Earthquake analysis allows you to analyse waveforms, polarization analysis of seismograms 3-components, calculate different magnitudes and finally locate an event and estimate the focal mechanism (First Polarity). We will walk through all of the functionality following this scheme:</p>
+<hr />
 <h2 id="pick-event">Pick Event</h2>
 <p>From top to bottom in the left side of the window you will see:</p>
 <ul>
 <li>
 <p><span style="color:blue"><strong>Event Info</strong></span>: This small box let enter information about an event, in this way you can plot the theoretical arrivals (ak-135F) with respect your seismograms. Plot arrivals requires that you have correctly loaded your metadata.</p>
-</li>
-<li>
-<p><span style="color:blue"><strong>Files Directory</strong></span>: By clicking in this button you will place the path of your files (<em>miniseed). Click on </em><strong>Read Files</strong> to load in an inner database the path to your files. With this action you will be ready to Process and Plot the seismograms. Remember click on Read Files every time you change the folder. Option scan means, scan the whole tree of folders from the root one, to include all possible mseed files paths in the database. Robust means that is going to check that every file in the selected folder is a valid mseed file. </p>
 </li>
 <li>
 <p><span style="color:blue"><strong>Metadata File</strong></span>: By clicking in this button you will place the path to you metadata file. The metadata file must contain the information of all of the stations seismograms you want to analyse (metadata must be a <em>xml or </em>dlsv).</p>
@@ -234,14 +232,14 @@
 </ul>
 <p><img alt="Screenshot" src="../img/explore_catalog.png" /></p>
 <p>Additional options from the toolbar are:</p>
-<pre><code>                    File
+<pre><code>                                    File
 </code></pre>
-<p><span style="color:blue">File:</span> <span style="color:#8E44AD">New location</span> will clean the picks that are saved automatically for be ready to compute new picking/location.
-File: Write Files will write in the folder you select the processed seismograms.</p>
+<p><span style="color:blue">File:</span> <span style="color:#8E44AD">New location</span> will clean the picks that are saved automatically for be ready to compute new picking/location.</p>
+<p><span style="color:blue">File:</span> <span style="color:#8E44AD">Write Files</span> will write in the folder you select the processed seismograms.</p>
 <p><span style="color:blue">File:</span> <span style="color:#8E44AD">Open Settings</span> will open a window with the specific parameters of the subprocess that 
 you can carry out in this module (sta/lta, wavelet detection, spectrogram, entropy…).</p>
 <p><img alt="Screenshot" src="../img/pick_event_params.png" /></p>
-<pre><code>                    Actions
+<pre><code>                                    Actions
 </code></pre>
 <p><span style="color:blue">Actions:</span> <span style="color:#8E44AD"> Picks</span> will open the file with the information of your picks. You can also open the file from here. Shortcut "Ctr + u"</p>
 <p><span style="color:blue">Actions:</span> <span style="color:#8E44AD"> Macro</span> will deploy a window with all of the processing options. All of the processing options will be applied once you press the button Processing and Plot. Shortcut "Ctr + l"</p>
@@ -256,21 +254,25 @@ you can carry out in this module (sta/lta, wavelet detection, spectrogram, entro
 <p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Open Earth Model Viewer</span> will open a tool to visualize 3D velocity models. For visualize an Earth Model you need the binary files (<em>buf and  </em>hdr) created in the tab Event location. </p>
 <p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Data availability</span> will plot the data availability (backlines) for each station/component of the database loaded from your folder tree.</p>
 <p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Search in Catalog</span> (see first figure) is a widget designed to plot your catalog and select an event to search in your project. The catalog must be a csv file with this header:</p>
-<p>Date;Time;Latitude;Longitude;Depth;Magnitude;mag_type</p>
-<p>01/01/2007;02:03:03;34.9608;-4.0459;12.0;2.6;Mw</p>
+<pre>
+    <code>
+Date;Time;Latitude;Longitude;Depth;Magnitude;mag_type
+01/01/2007;02:03:03;34.9608;-4.0459;12.0;2.6;Mw
+    </code>
+</pre>
+
 <p>You can find an example in isp/examples/catalog/catalog_resume. To facilitate the selection of events, the user can press "t" over the epicenter in the map to hilight it in the table. Finally, Pressing button "Select Event" the information is sent to the trim starttime and endtime and to the Event Box. Ready to reload your project to make the search of the event!</p>
-<pre><code>                    Compute
+<pre><code>                                    Compute
 </code></pre>
-<p>Compute: STA/LTA from all processed seismograms and will plot the result together. STA/LTA takes the parameters from Parameters Settings.</p>
-<p>Compute: CWT (CF) from all processed seismograms and will plot the result together. CWT takes the parameters from Parameters Settings.</p>
-<p>Compute: Envelope from all processed seismograms and will plot the result together. </p>
-<p>Compute: Spectral Entropy from all processed seismograms and will plot the result together. Spectral entropy is estimated in small time windows see Parameters Settings.
-.
-All Seismograms: Plot together all seismograms.</p>
-<p>Stack: Compute (linear, nth-root or PWS) stack of all processed seismograms. Set your choice in File/Open Settings.</p>
+<p><span style="color:blue">Compute: </span> <span style="color:#8E44AD">STA/LTA </span>from all processed seismograms and will plot the result together. STA/LTA takes the parameters from Parameters Settings.</p>
+<p><span style="color:blue">Compute: </span> <span style="color:#8E44AD">CWT (CF)</span> from all processed seismograms and will plot the result together. CWT takes the parameters from Parameters Settings.</p>
+<p><span style="color:blue">Compute: </span> <span style="color:#8E44AD">Envelope</span> from all processed seismograms and will plot the result together. </p>
+<p><span style="color:blue">Compute: </span> <span style="color:#8E44AD">Spectral Entropy</span> from all processed seismograms and will plot the result together. Spectral entropy is estimated in small time windows see Parameters Settings.</p>
+<p><span style="color:blue">Compute:</span> <span style="color:#8E44AD">All Seismograms</span>: Plot together all seismograms.</p>
+<p><span style="color:blue">Compute:</span> <span style="color:#8E44AD"> Stack </span>run (linear, nth-root or PWS) stack of all processed seismograms. Set your choice in File/Open Settings.</p>
 <pre><code>                    Go
 </code></pre>
-<p>Will ship you to the rest of ISP modules (RFs, Array analysis….).</p>
+<p>Will ship you to the rest of ISP modules (RFs, Array analysis….). We are working in connecting the seismograms processed in Earquake analysis with the other modules.</p>
 <h2 id="multimedia-material-pick-event">Multimedia Material (Pick Event)</h2>
 <p>The following video shows a basic analysis of an earthquake</p>
 <!-- blank line -->
@@ -281,6 +283,7 @@ All Seismograms: Plot together all seismograms.</p>
 </figure>
 <!-- blank line -->
 
+<hr />
 <h2 id="polarisation-analysis">Polarisation Analysis</h2>
 <p>The Polarization Analysis is designed to analyze the three seismograms components from a station.
 You can freely rotate using the rotation RT or the LQT your NEZ components an angle (Rot Angle) with an Incidence angle (Inc Angle).</p>
@@ -289,52 +292,88 @@ You can freely rotate using the rotation RT or the LQT your NEZ components an an
 <p><img alt="Screenshot" src="../img/polarization.png" /></p>
 <p>For a full particle motion analysis, press “Plot Polarization”. This will open another window with a 3D particle motion on the left and the three characteristic views on the right.</p>
 <p><img alt="Screenshot" src="../img/polarization2.png" /></p>
+<hr />
 <h2 id="event-location-and-focal-mechanism-fp">Event Location and Focal Mechanism (FP)</h2>
 <p>In the Event Location Frame the user can configure the velocity grid 1D/3D model, locate earthquakes and compute Focal Mechanisms.</p>
 <p><img alt="Screenshot" src="../img/Location.png" /></p>
+<ul>
+<li><span style="color:blue"><strong>Grid Reference</strong></span>:</li>
+</ul>
 <p>First it is needed to set a Velocity grid framework (Grid reference and transformation type are mandatory). For now is only available Transformation Simple and Global.</p>
-<p>Next, the Grid dimensions (Grid Size). Case 2D the dimension always must be 2 and the grid reference is refered to the corner SW. Case 3D the grid reference is the center of the Grid.
-Choose the grid type and the wave and then generate the velocity model binary files by clicking “Generate Velocity Grid”. Please follow the scheme of the next figure to set correctly your grid frame.</p>
+<ul>
+<li><span style="color:blue"><strong>Grid Size</strong></span>:</li>
+</ul>
+<p>Next, the Grid dimensions (Grid Size). Case 1D the dimension in the <em>x</em> coordinate  always must be 2 and the grid reference is refered to the corner SW. Case 3D the grid reference is the center of the Grid.
+Choose the grid type and the wave and then generate the velocity model binary files by clicking “Generate Velocity Grid”. Please follow the scheme of the next figure to set correctly your 3D grid frame. </p>
+<p>For example, First the user would place the center of the grid in case you want the center of a 1D grid:
+Grid reference 34.0 Latitude, -14.0 Longitude and -1 (1 km in topography). Grid Size x = 2 (always) dx = 1, y = 2000 dy =1 and z = 200 dz = 1. Tha means an aproximate square region of <span style="color:red"><strong>radio</strong></span> 2000x2000x150 km with the reference at (34,-14,-1).</p>
+<p>Second, for the 3D case, the user must set the Grid reference also 37.0 Latitude, -9.0 Longitude and -1 (1 km in topography), but the Grid Size is refered to the distance from the grid reference. So, for example, Grid Size x = 881 dx = 1, y = 661 dy =1 and z = 61 dz = 1. This means a grid centered at 37.0,-9.0,-1.0 with a extension of <span style="color:red"><strong>diameter</strong></span> (881,661,60), see image below.</p>
 <p><img alt="Screenshot" src="../img/frame.png" /></p>
 <p>Once the binary files are generated you can check the results in the folder:</p>
 <p>ISP/earthquakeAnalysis/location_output/model</p>
 <ul>
-<li>Where and how place the velocity models?</li>
+<li><span style="color:blue">Where and how place the velocity 1D model?:</span>
+<span style="color:blue">isp/earthquakeAnalysis/location_output/local_models</span></li>
 </ul>
-<p>2D models (see example)</p>
-<p>LAYER   0.0  6.1 0.0    3.49  0.0  2.7 0.0
+<p>1D models (see example):</p>
+<p>For the <em>P-wave</em> the file must named modelP and for the <em>S-wave</em> "modelS"</p>
+<pre>
+    <code>
+LAYER   0.0  6.1 0.0    3.49  0.0  2.7 0.0
 LAYER  11.0  6.4 0.0    3.66  0.0  2.7 0.0
 LAYER  24.0  6.9 0.0    3.94  0.0  2.7 0.0
-LAYER  31.0  8.0 0.0    4.57  0.0  2.7 0.0</p>
-<p>ISP/earthquakeAnalysis/location_output/local_models</p>
-<p>3D models</p>
-<p>ISP/earthquakeAnalysis/location_output/model3D (see example)</p>
+LAYER  31.0  8.0 0.0    4.57  0.0  2.7 0.0
+LAYER  ....  ... ...    ....  ...  ... ...
+    </code>
+</pre>
+
+<ul>
+<li><span style="color:blue">Where and how place the velocity 3D model?:</span>
+<span style="color:blue">isp/earthquakeAnalysis/location_output/model3D</span></li>
+</ul>
 <p>Every depth layer must be placed in files called, for example</p>
-<p>For the P wave --&gt; layer.P.mod5.mod
-For the S wave --&gt; layer.S.mod5.mod</p>
+<pre>
+    <code>
+For the P wave --> layer.P.mod5.mod
+For the S wave --> layer.S.mod5.mod
+    </code>
+</pre>
+
 <p>Which means that inside this file there is the grid for the layer at depth 5km.</p>
 <p>The layer must be a matrix with the values in the rows from top to bottom S to N and from left to right E to W. That's mean following the next example that the file corresponding to a depth layer 5km "layer.P.mod5.mod" could be like this:</p>
-<p>4.5759 4.5735 4.5707 4.5677
+<pre>
+    <code>
+4.5759 4.5735 4.5707 4.5677
 4.5760 4.5755 4.5766 4.5670
 ...... ...... ...... ......
-4.6800 4.650 4.67300 4.5678</p>
+4.6800 4.650 4.67300 4.5678
+    </code>
+</pre>
+
 <p>This matrix means that, for example corresponds to geographic points (separated in cells of, dx dy of 0.5 x 0.5 degrees: Warning grid cells must be [dx = dy = dz] for a correct interpretation.</p>
-<p>(-10.0,34) (-9.5,34) (-9.0,34) (-8.5,34)
+<pre>
+    <code>
+(-10.0,34) (-9.5,34) (-9.0,34) (-8.5,34)
 (-10.0,34.5) (-9.5,34.5) (-9.0,34.5) (-8.5,34.5)
 ........ ......... ......... .........
-(-10.0,40.0) (-9.5,40.0) (-9.0,40.0) (-8.5,40.0)</p>
-<p>The most important step is to generate the travel-times for all the stations inside the maximum distance the user determine.  Please be sure that you have load previously the metadata (this Is necessary to associate your picks with your station coordinates.</p>
+(-10.0,40.0) (-9.5,40.0) (-9.0,40.0) (-8.5,40.0)
+    </code>
+</pre>
+
+<p>The most important step is to generate the travel-times for all the stations inside the maximum distance the user determine.  Please be sure that you have load previously the metadata (this is necessary to associate your picks with your station coordinates).</p>
 <p>The generated travel-times will save in </p>
 <p>ISP/earthquakeAnalysis/location_output/time, for example with the following name l"ayer.P.EBAD.time.buf"</p>
 <p>Once you have complete the above steps you can locate the earthquake and the focal mechanism. The above operation are just necessary to be implemented  the first time you use a specific Earth model.</p>
 <p>**For global is not necessary generate the velocity grid and travel times.</p>
-<p>To visualize the detailed Probability Density Function, press “Plot PDF” once you have already carried out the location.</p>
+<p>To visualize the detailed Probability Density Function, press “Plot PDF”, once you have already carried out the location.</p>
 <p><img alt="Screenshot" src="../img/PDF.png" /></p>
 <p>Moreover, if you have picked the seismic phases and have been designated the polarity in “Event frame” , you will be able to  obtain the Focal Mechanism (it uses the subprogram FocMec)</p>
+<hr />
 <h2 id="earth-model-viewer">Earth model Viewer</h2>
 <p>The Earth Model Viewer is intended to help to visualize 3D Earth velocity models as Fig 2.8.
 Just select the binary file *.buf (can be generated from the model as described in previous section). Next, select the depth of the layer, the cross sections in longitude and latitude and the press plot.</p>
 <p><img alt="Screenshot" src="../img/Velocity_Viewer.png" /></p>
+<hr />
 <h2 id="magnitudes-estimation">Magnitudes Estimation</h2>
 <p>With the Magnitude Estimation you can calculate:
 Local Magnitude (ML) or Body-wave (mb), Surface-wave (Ms), Moment Magnitude (Mw) and Coda Magnitude.</p>
