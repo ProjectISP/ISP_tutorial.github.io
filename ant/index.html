@@ -163,6 +163,18 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#clock-synchronization" class="nav-link">Clock Synchronization</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#dispersion-curves" class="nav-link">Dispersion Curves</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#dispersion-maps" class="nav-link">Dispersion Maps</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -172,6 +184,7 @@
 
 <h1 id="ambient-noise-tomography-in-progress">Ambient Noise Tomography (in progress)</h1>
 <p>The module ANT, currently is just designed to retrieve the Empirical Green Functions (EGFs).</p>
+<hr />
 <h2 id="egfs">EGFs</h2>
 <ol>
 <li>
@@ -183,17 +196,33 @@
 </li>
 </ol>
 <p>To set the path to the metadata of your network and the path where you have hosted your seismogram files. The files can be located in any kind of structure, for example in SDS arquitecture (<em>NETWORK/STATION/CHANNEL/FILES</em>) or simply everything in one single folder. Then set the folder where you want the output of the pre-processing and the EGFs.</p>
-<h3 id="run-pre-processing">Run pre-processing</h3>
+<ul>
+<li>Run pre-processing</li>
+</ul>
 <p>Now, click on Run pre-processing. This action will load your settings and will make a database of the available files. Then the process will start to process the data.
     Finally per every station/channel a file will be saved containing a matrix with the noise data in frequency domain, ready to cross-correlate.</p>
-<h3 id="run-stack">Run Stack</h3>
+<ul>
+<li>Run Stack</li>
+</ul>
 <p>This action will load files from the pre-processing step and then for every channel-channel combination will do a cross correlation and stack all the stacks will be saved in the .outpur_directory/stack.</p>
 <!-- blank line -->
 <p><img alt="Screenshot" src="../img/egfs.png" /></p>
 <!-- blank line -->
 
-<h3 id="process-and-plot">Process and Plot</h3>
-<p>In this point the user can set the path to the output files (hdf5 or sac files), read the files and then <em>process and plot</em>. The user can also establish a Macro to process the EGFs, plot a map and sort the EGFs by inter station distance. Notice that autocorrelations will be 0 distance.</p></div>
+<ul>
+<li>Process and Plot</li>
+</ul>
+<p>In this point the user can set the path to the output files (hdf5 or sac files), read the files and then <em>process and plot</em>. The user can also establish a Macro to process the EGFs, plot a map and sort the EGFs by inter station distance. Notice that autocorrelations will be 0 distance.</p>
+<hr />
+<h2 id="clock-synchronization">Clock Synchronization</h2>
+<p><img alt="Screenshot" src="../img/Clock_Drift.png" /></p>
+<hr />
+<h2 id="dispersion-curves">Dispersion Curves</h2>
+<p><img alt="Screenshot" src="../img/Project_Disp.png" /></p>
+<p><img alt="Screenshot" src="../img/Dispersion_Curves.png" /></p>
+<hr />
+<h2 id="dispersion-maps">Dispersion Maps</h2>
+<p><img alt="Screenshot" src="../img/dispersion_maps.png" /></p></div>
             </div>
         </div>
 
