@@ -157,9 +157,9 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#ambient-noise-tomography-in-progress" class="nav-link">Ambient Noise Tomography (in progress)</a>
+            <li class="nav-item" data-level="1"><a href="#ambient-noise-tomography" class="nav-link">Ambient Noise Tomography</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#egfs" class="nav-link">EGFs</a>
+            <li class="nav-item" data-level="2"><a href="#egf" class="nav-link">EGF</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -182,37 +182,44 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="ambient-noise-tomography-in-progress">Ambient Noise Tomography (in progress)</h1>
-<p>The module ANT, currently is just designed to retrieve the Empirical Green Functions (EGFs).</p>
+<h1 id="ambient-noise-tomography">Ambient Noise Tomography</h1>
+<p>The module ANT is divided in three main parts. First the toolbox designed to retrive Empirical Green Function, second the toolbos designed to measure phase and group velocity from the dispersion curves of EGs and third the toolbox to generate dispersion maps from the previous measurements.
+In this tutorial is explained how to manage the module.</p>
 <hr />
-<h2 id="egfs">EGFs</h2>
-<ol>
-<li>
-<p><strong>Setting Parameters</strong> for the pre-processing steps of the EGFs.</p>
+<h2 id="egf">EGF</h2>
+<p>1 <span style="color:red">Setting Files Path &amp; Metadata</span></p>
+<p>To set the path to the metadata of your network and the path where you have hosted your seismogram files.</p>
+<p>First, let's create a project. Set the path where you have the data files. They can be located in any kind of structure, for example in SDS arquitecture (<em>NETWORK/STATION/CHANNEL/FILES</em>) or simply everything in one single folder. WARNING!, create the project can take some time, do not desperate!.
+Second, set the path where you have the metadata of all nets/stations/channels yo want to process.</p>
+<p>2 <span style="color:red">Setting Parameters for the pre-processing steps of the EGFs</span></p>
 <p><img alt="Screenshot" src="../img/egf_settings.png" /></p>
-</li>
-<li>
-<p><strong>Setting Metadata and Files Path</strong></p>
-</li>
-</ol>
-<p>To set the path to the metadata of your network and the path where you have hosted your seismogram files. The files can be located in any kind of structure, for example in SDS arquitecture (<em>NETWORK/STATION/CHANNEL/FILES</em>) or simply everything in one single folder. Then set the folder where you want the output of the pre-processing and the EGFs.</p>
-<ul>
-<li>Run pre-processing</li>
-</ul>
+<p>2.1. <span style="color:blue">Processing Box</span></p>
+<p><span style="color:#8E44AD">Processing Time Window</span>: This is the time window in seconds that the daily seismograms files will be splitted to save the matrix of noise (see below for more details).</p>
+<p><span style="color:#8E44AD">Filter Files</span>: Might be you only want to generate a project for a set of stations "sta1,sta2,sta3..." or a set of channels "BHZ,HHZ". If you want everything just let the space empty.</p>
+<p><span style="color:#8E44AD">Remove Instrumet</span>: Set the four corner frequencies (very carefull with nyquist frequency of your data), the water level value and the output units. Even though this operation is computationally demanding, it is fully recommended to deconvolve your instrument to prevent from mixture cross-correlation of data from different instruments.</p>
+<p><span style="color:#8E44AD">Decimate</span>: Set the decimation factor. For example if you have HHZ (100hz), a good decimation factor would be 10 to set the new sampling rate to 10 Hz, which is enough to later measure dispersion.</p>
+<p><span style="color:#8E44AD">Time Normalization</span>: If is selected a running avarage, a moving median avarage filter of time window selected will be applied. If 1 bit is selected (not recommended) amplitudes will be mapped to (+1, -1).</p>
+<p><span style="color:#8E44AD">Spectral Whithening</span>: A moving avarage filter in the amplitude spectrum is applied with a bandwidth selected by the user.</p>
+<p>Then set the folder where you want the output of the pre-processing and the EGFs.</p>
+<p>2.2. <span style="color:blue">Stack Box</span></p>
+<p><span style="color:#8E44AD">Components</span>: Select the components that you want to cross correlate and stack. This operation allows ISP just select specific noise matrix to boost the speed of the stack.</p>
+<p><span style="color:#8E44AD">Stacking Method</span>:Select amoung Phase Wave stack, Linear and nth-root stack. Personally we recommend go for linear if you have several months of data and go for PWS if you have just few . Nth-rooth for testing and comparison with linear. The parameter is the power of the method in PWS or Nrooth (Do not change from 2 :-))</p>
+<p><span style="color:#8E44AD">Maximum Intedistance</span>: Because sometimes we do not want to mix EGFs with very long interdistance with short distance, ISP allows the user to filter the cross correlation and stack computation by maximum interdistance value.</p>
+<p><span style="color:#8E44AD">Check Noise Matrix Output</span>: If the user check <em>Compute daily Stacks</em>, ISP will compute the evolution of the EGFs in partial stacks of 20 days. If <em>Include Autocorrelations and Shifted Cross Correlations</em>, ISP will estimate all pssoble cross-correlations including autocorrelations e.g., ZZ and both cross-correlations (e.g., ZE and EZ). This option is mandatory to be checked if you want go for Transversal components to estimate dispersion curves of Love Waves.</p>
+<p>3 <span style="color:red">Run pre-processing</span></p>
 <p>Now, click on Run pre-processing. This action will load your settings and will make a database of the available files. Then the process will start to process the data.
     Finally per every station/channel a file will be saved containing a matrix with the noise data in frequency domain, ready to cross-correlate.</p>
-<ul>
-<li>Run Stack</li>
-</ul>
+<p>4 <span style="color:red">Run Stack</span></p>
 <p>This action will load files from the pre-processing step and then for every channel-channel combination will do a cross correlation and stack all the stacks will be saved in the .outpur_directory/stack.</p>
 <!-- blank line -->
 <p><img alt="Screenshot" src="../img/egfs.png" /></p>
 <!-- blank line -->
 
-<ul>
-<li>Process and Plot</li>
-</ul>
+<p>5 <span style="color:red">Explore your EGFs</span></p>
 <p>In this point the user can set the path to the output files (hdf5 or sac files), read the files and then <em>process and plot</em>. The user can also establish a Macro to process the EGFs, plot a map and sort the EGFs by inter station distance. Notice that autocorrelations will be 0 distance.</p>
+<p><span style="color:#8E44AD">Set Path</span> Set the path to your stack output directory.</p>
+<p><span style="color:#8E44AD">Read Files</span> create a list ready to process and plot of the available stack EGF in the folder. If Sort is checked, the files will be sorted by inter-station distance or backazimth.</p>
+<p><span style="color:#8E44AD">Process and Plot</span> Process the EGFs of the list according to the macro previously established and then plot.</p>
 <hr />
 <h2 id="clock-synchronization">Clock Synchronization</h2>
 <p><img alt="Screenshot" src="../img/Clock_Drift.png" /></p>
