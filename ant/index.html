@@ -221,7 +221,17 @@ Second, set the path where you have the metadata of all nets/stations/channels y
 <p><span style="color:#8E44AD">Read Files</span> create a list ready to process and plot of the available stack EGF in the folder. If Sort is checked, the files will be sorted by inter-station distance or backazimth.</p>
 <p><span style="color:#8E44AD">Process and Plot</span> Process the EGFs of the list according to the macro previously established and then plot.</p>
 <p>6 <span style="color:red">Explaining the output</span></p>
-<p>When the user compute the preprocess, all information is saved in Noise Matrix per station/channel. The noise matrid is a 3D matrix in whic the first dimension or the rows are consecutive time windows of an split day, the seconddimension or the colums are the day and the third dimension or depth is the complex numers corresponding to the processed spectrum of the noise window. The matrix is saved as pickle with name "NWTSTACHANNEL". The matrix includes a column header with</p>
+<p>When the user compute the preprocess, all information is saved in Noise Matrix per station/channel. The noise matrid is a 3D matrix in whic the first dimension or the rows are consecutive time windows of an split day, the seconddimension or the colums are the day and the third dimension or depth is the complex numers corresponding to the processed spectrum of the noise window. The matrix is saved as pickle with name "NWTSTACHANNEL". The matrix includes a column daily header "[julday1.year1",julday2.year1, .... ] and a numpy arrayy with the spectral information.</p>
+<p>Afterwards, when the user press cross and stack, ISP combines the matrix information ifft(matrix_A*cong(matrix_B)) and then stack.</p>
+<pre>
+    <code>
+output_dir/matrix_files
+outout_dir/stack/
+output_dir/stack_daily/
+output_dir/stack_rotated/
+    </code>
+</pre>
+
 <hr />
 <h2 id="clock-synchronization">Clock Synchronization</h2>
 <p><img alt="Screenshot" src="../img/Clock_Drift.png" /></p>
