@@ -388,24 +388,24 @@ For the S wave --> layer.S.mod5.mod
 <p>Moreover, if you have picked the seismic phases and have been designated the polarity in “Event frame” , you will be able to  obtain the Focal Mechanism (it uses the subprogram FocMec)</p>
 <hr />
 <h2 id="earth-model-viewer">Earth model Viewer</h2>
-<p>The Earth Model Viewer is intended to help to visualize 3D Earth velocity models as Fig 2.8.
+<p>The Earth Model Viewer is intended to help to visualize <span style="color:red">3D Earth velocity models</span> as in the figure below.
 Just select the binary file *.buf (can be generated from the model as described in previous section). Next, select the depth of the layer, the cross sections in longitude and latitude and the press plot.</p>
 <p><img alt="Screenshot" src="../img/Velocity_Viewer.png" /></p>
 <hr />
 <h2 id="magnitudes-estimation">Magnitudes Estimation</h2>
-<p>With the Magnitude Estimation you can calculate:
-Local Magnitude (ML) or Body-wave (mb), Surface-wave (Ms), Moment Magnitude (Mw) and Coda Magnitude.</p>
+<p>With the <a href="*http://www.isc.ac.uk/standards/magnitudes/*">Magnitude Estimation</a> you can calculate):
+Local Magnitude (<span style="color:red">ML</span>) or Body-wave (<span style="color:red">mb</span>), Surface-wave (<span style="color:red">Ms</span>), Moment Magnitude (<span style="color:red">Mw</span>) and Coda Magnitude (<span style="color:red">Mc</span>).</p>
 <p>To estimate the magnitudes you have to select a time window of body, surface or coda on the seismograms. </p>
 <ol>
 <li>Units must be on velocity, so you must remove the response of the instrument to velocity, previously to open the Magnitudes window. For Local magnitude you have to remove the response of Wood-Anderson instrument.</li>
 <li>The hypocenter must be already calculated. The program will read the *.hyp file before open Magnitudes window.</li>
 </ol>
 <p>If you place 0.00 on all parameters of local or coda magnitudes, the program will calculate these magnitude with default parameters as follows:</p>
-<p>Coda Magnitude:</p>
+<p><span style="color:#8E44AD">Coda Magnitude:</span></p>
 <p>Values for California
 a = 2.0; b = 0.0035; c= -0.87</p>
 <p>Mc_value = a<em>np.log10(t_coda)+b</em>dist+c</p>
-<p>Local Magnitude:</p>
+<p><span style="color:#8E44AD">Local Magnitude:</span></p>
 <p>a = 1.11; b =0.00189; c= -2.09</p>
 <p>ML_value = np.log10(max_amplitude)+a<em>np.log10(dist)+b</em>dist+c</p>
 <p>Briefly, Once you have open the Magnitude Window, select the magnitudes you want to compute and run the computation.</p>
