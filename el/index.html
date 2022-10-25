@@ -241,7 +241,16 @@ you can carry out in this module (sta/lta, wavelet detection, spectrogram, entro
 <p><img alt="Screenshot" src="../img/pick_event_params.png" /></p>
 <pre><code>                                    Actions
 </code></pre>
-<p><span style="color:blue">Actions:</span> <span style="color:#8E44AD"> Picks</span> will open the file with the information of your picks. You can also open the file from here. Shortcut "Ctr + u"</p>
+<p><span style="color:blue">Actions:</span> <span style="color:#8E44AD"> Picks Open</span> will open the file with the information of your picks. You can also open the file from here. Shortcut "Ctr + u". 
+Picks are saved in <span style="color:red"><em>isp/earthquakeAnalysis/location_output/obs/output.txt</em></span></p>
+<p><span style="color:blue">Actions:</span> <span style="color:#8E44AD"> Picks Remove</span> will clean the pick file.</p>
+<pre>
+    <code>
+Station_name Instrument Component P_phase_onset P_phase_descriptor First_Motion Date Hour_min Seconds GAU Err Coda_duration Amplitude Period
+PMG ? BHZ ? P ? 20221018 1150 24.693 GAU 0.00E+00 0.0 -3024.00 0.0
+    </code>
+</pre>
+
 <p><span style="color:blue">Actions:</span> <span style="color:#8E44AD"> Macro</span> will deploy a window with all of the processing options. All of the processing options will be applied once you press the button Processing and Plot. Shortcut "Ctr + l"</p>
 <p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Detect event</span> will associate the automatic picks carried out by the wavelet picker ant will declare an event. The events will be shown in the seismograms window.</p>
 <p><span style="color:blue">Actions: </span> <span style="color:#8E44AD">Run Picker</span> will carry out the automatic detection/classification of P- and S- waves from the previously loaded “Neural Network”. You must have three components per stations (named <em>N,</em>E,*Z). BE CAREFUL this operation is computationally demanding.</p>
@@ -270,9 +279,18 @@ Date;Time;Latitude;Longitude;Depth;Magnitude;mag_type
 <p><span style="color:blue">Compute: </span> <span style="color:#8E44AD">Spectral Entropy</span> from all processed seismograms and will plot the result together. Spectral entropy is estimated in small time windows see Parameters Settings.</p>
 <p><span style="color:blue">Compute:</span> <span style="color:#8E44AD">All Seismograms</span>: Plot together all seismograms.</p>
 <p><span style="color:blue">Compute:</span> <span style="color:#8E44AD"> Stack </span>run (linear, nth-root or PWS) stack of all processed seismograms. Set your choice in File/Open Settings.</p>
-<pre><code>                    Go
+<pre><code>                                    Go
 </code></pre>
 <p>Will ship you to the rest of ISP modules (RFs, Array analysis….). We are working in connecting the seismograms processed in Earquake analysis with the other modules.</p>
+<pre><code>                                    Align Traces
+</code></pre>
+<p><span style="color:blue">Align Traces:</span> <span style="color:#8E44AD">From Phase Pick</span> will align the trace with respect the picks of the selected phase in the phase box. For example, this can be very useful to align the first arriaval, let's say P-wave of an event for all traces.</p>
+<p><span style="color:blue">Align Traces:</span> <span style="color:#8E44AD">From Starttime</span> will set the same starttime to all traces. This is useful if you want to compare seismograms from different days.</p>
+<p><span style="color:blue">Align Traces:</span> <span style="color:#8E44AD">Using MCCC</span> Multi Channel Cross Correlation technicque to find the best way to align all traces. This technique is very efficient when the user expect high coherence between waveforms. For example teleseismic events, or events detected in a coherent array.</p>
+<pre><code>                                    Import
+</code></pre>
+<p><span style="color:blue">Import:</span> <span style="color:#8E44AD">Picks from file</span> It will plot the picks from selected file in the corresponding waveforms. The picks from the file that the user select must be in the ISP/NLL format as it is shown above Actions:Picks.</p>
+<hr />
 <h2 id="multimedia-material-pick-event">Multimedia Material (Pick Event)</h2>
 <p>The following video shows a basic analysis of an earthquake</p>
 <!-- blank line -->
