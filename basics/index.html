@@ -159,7 +159,11 @@
             
             <li class="nav-item" data-level="1"><a href="#warming-tutorial" class="nav-link">Warming tutorial</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#seismograms-and-metadata" class="nav-link">Seismograms and metadata</a>
+            <li class="nav-item" data-level="2"><a href="#description" class="nav-link">Description</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#project-seismograms-and-metadata" class="nav-link">Project: Seismograms and metadata</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -176,7 +180,14 @@
 
 <h1 id="warming-tutorial">Warming tutorial</h1>
 <p>This section will show you the overall structure of the project and a basic idea of how are the data managed by ISP.</p>
-<h2 id="seismograms-and-metadata">Seismograms and metadata</h2>
+<hr />
+<h2 id="description">Description</h2>
+<p>In ISP we have decided go for miniseed format, with is one of the most broadly used data storage formats for seismograms. The best description is given at http://ds.iris.edu/ds/nodes/dmc/data/formats/miniseed/ which is simply:</p>
+<p>MiniSEED is the subset of the SEED standard that is used for time series data. Very limited metadata for the time series is included in miniSEED beyond time series identification and simple state-of-health flags. In particular, geographic coordinates, response/scaling information and other information needed to interpret the data values are not included.</p>
+<p>Time series are stored as generally independent, fixed length data records which each contain a small segment of contiguous series values. A reader of miniSEED is required to reconstruct longer, contiguous time series from the data record segments. Common record lengths are 512-byte (for real time streams) and 4096-byte (for archiving), other record lengths are used for special scenarios.</p>
+<p>A “file” or “stream” of miniSEED is simply a concatenation of data records. Depending on the capabilities of the intended reader the data records for multiple channels of data may be multiplexed together.</p>
+<h2 id="project-seismograms-and-metadata">Project: Seismograms and metadata</h2>
+<h3 id="create-a-project-from-seismogram-files">Create a Project from seismogram files</h3>
 <p>We start explaining how to start a project inside Earthquake Analysis module (more details inside sections). First of all you need to create a project. A project is basically a "dictionary file" that tells your computer where are your valid data. This strategy makes easier to explore your big data.</p>
 <p>Now, let's create a new project pressing the button "New Project"</p>
 <p><img alt="Screenshot" src="../img/Create_Project.png" /></p>
@@ -188,13 +199,16 @@ Becareful, when you start to create a project ISP will capture the search filter
 <p><img alt="Screenshot" src="../img/Basics_example.png" /></p>
 <p>Filters boxes uses <a href="*https://en.wikipedia.org/wiki/Regular_expression*">Regex</a> <a href="*https://www.educative.io/answers/how-to-implement-wildcards-in-python*">Python keywords</a>:</p>
 <p>For example, if ypu want search any component in channels "BH." or if you want any station but verical component station ".+" channel BHZ.</p>
-<p>Very important, you can reload your project apllying seatching filters simply by pressing "R" outside the plot window. This action also takes into account if trim is checked to cut the time window. This is very useful to search for specific time windows where you already knows in advance that there is an event there.</p>
-<hr />
-<h3 id="description">Description</h3>
-<p>In ISP we have decided go for miniseed format, with is one of the most broadly used data storage formats for seismograms. The best description is given at http://ds.iris.edu/ds/nodes/dmc/data/formats/miniseed/ which is simply:</p>
-<p>MiniSEED is the subset of the SEED standard that is used for time series data. Very limited metadata for the time series is included in miniSEED beyond time series identification and simple state-of-health flags. In particular, geographic coordinates, response/scaling information and other information needed to interpret the data values are not included.</p>
-<p>Time series are stored as generally independent, fixed length data records which each contain a small segment of contiguous series values. A reader of miniSEED is required to reconstruct longer, contiguous time series from the data record segments. Common record lengths are 512-byte (for real time streams) and 4096-byte (for archiving), other record lengths are used for special scenarios.</p>
-<p>A “file” or “stream” of miniSEED is simply a concatenation of data records. Depending on the capabilities of the intended reader the data records for multiple channels of data may be multiplexed together.</p>
+<p>Very important, you can reload your project aplying searching filters simply by pressing "r" outside the plot window. This action also takes into account if trim is checked to cut the time window. This is very useful to search for specific time windows where you already knows in advance that there is an event there.</p>
+<p>The following video shows how to create a project, make searches by wildcards and how to search by specific time windows.</p>
+<!-- blank line -->
+<figure class="video_container">
+  <video controls="true" allowfullscreen="true" poster="../img/poster_image.png" width="740" height="400">
+    <source src="../img/Project.mp4" type="video/mp4">
+  </video>
+</figure>
+<!-- blank line -->
+
 <hr />
 <h3 id="metadata-dataless-and-xml">Metadata (Dataless and *.xml)</h3>
 <p>ISP uses two kind of metadata files either Dataless or xml. (<em>https://docs.obspy.org/tutorial/code_snippets/stationxml_file_from_scratch.html</em>). 
