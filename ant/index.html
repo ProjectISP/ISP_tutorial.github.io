@@ -192,7 +192,7 @@ In this tutorial is explained how to manage the module.</p>
 <p>To set the path to the metadata of your network and the path where you have hosted your seismogram files.</p>
 <p>First, let's create a project. Set the path where you have the data files. They can be located in any kind of structure, for example in SDS arquitecture (<em>NETWORK/STATION/CHANNEL/FILES</em>) or simply everything in one single folder. WARNING!, create the project can take some time, do not desperate!.
 Second, set the path where you have the metadata of all nets/stations/channels yo want to process.</p>
-<p>2 <span style="color:red">Setting Parameters for the pre-processing steps of the EGFs</span></p>
+<p>2 <span style="color:green">Setting Parameters for the pre-processing steps of the EGFs</span></p>
 <p><img alt="Screenshot" src="../img/egf_settings.png" /></p>
 <p>2.1. <span style="color:blue">Processing Box</span></p>
 <p><span style="color:#8E44AD">Processing Time Window</span>: This is the time window in seconds that the daily seismograms files will be splitted to save the matrix of noise (see below for more details).</p>
@@ -274,6 +274,17 @@ STA1_STA2 keys = {clocks_station_name, Dates, Drift, Ref, R2}
 <p><span style="color:#8E44AD">Remove from Project</span>: a measurement just highlighting a checked file and press this button to remove the wrong measure from your project.</p>
 <hr />
 <h2 id="dispersion-maps">Dispersion Maps</h2>
+<p>In a very simple way you will plot Dispersion Maps.</p>
+<p><span style="color:#8E44AD">Set the path to your project</span>: Remind you that you have available an example at isp/anddisp_maps.pkl.</p>
+<p>Now you must tell ISP where to find the information you want to plot. You can do it as follows:</p>
+<p><span style="color:#8E44AD">Select the wave type</span> Vertical/Rayleigh Wave Hrizontal/Love Wave</p>
+<p><span style="color:#8E44AD">Dispersion type</span> Group/Phase Velocity</p>
+<p>Then, set some parametriztion related to resolution and smoothing</p>
+<p><span style="color:#8E44AD">Dispersion Maps Parameters</span>: Set the minimum and maximum Period in which to want to compute the analysis or just check all periods to compute everything possible inside your project.</p>
+<p><span style="color:#8E44AD">Period Step</span>: It is the period step in which you want to compute every map. Every One second is more than enougth do not be crazy! :-).</p>
+<p><span style="color:#8E44AD">Grid resolution</span>: It is is the estimated spatial resolution that you expect for your maps. It depends on the geometry of your network, the interdistance and the maximum distance between staion pairs.</p>
+<p><span style="color:#8E44AD">Dispersion Maps Smoothing Parameters</span> (see Barmin 2001 to understand the effect of the regularization parameters). Our own advice is if you want high detail go foe a = 600, but if you want high smoothing go for a = 1000. Let b = 10 and gamma = 100.</p>
+<p>We are developing the resolution maps and checkboard test. Just give us a chance</p>
 <p><img alt="Screenshot" src="../img/dispersion_maps.png" /></p></div>
             </div>
         </div>
