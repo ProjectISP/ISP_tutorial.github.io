@@ -187,7 +187,7 @@
 In this tutorial is explained how to manage the module.</p>
 <hr />
 <h2 id="egf">EGF</h2>
-<p>1 <span style="color:red">Setting Files Path &amp; Metadata</span></p>
+<p>1 <span style="color:green">Setting Files Path &amp; Metadata</span></p>
 <p>To set the path to the metadata of your network and the path where you have hosted your seismogram files.</p>
 <p>First, let's create a project. Set the path where you have the data files. They can be located in any kind of structure, for example in SDS arquitecture (<em>NETWORK/STATION/CHANNEL/FILES</em>) or simply everything in one single folder. WARNING!, create the project can take some time, do not desperate!.
 Second, set the path where you have the metadata of all nets/stations/channels yo want to process.</p>
@@ -250,8 +250,27 @@ STA1_STA2 keys = {clocks_station_name, Dates, Drift, Ref, R2}
 <p><img alt="Screenshot" src="../img/Clock_Drift.png" /></p>
 <hr />
 <h2 id="dispersion-curves">Dispersion Curves</h2>
+<p>Once you have generated the EGFs, it is time to measure the dispersion curves (phase and group velocity). We are going to explain how to use this module step by step.</p>
+<p>1 <span style="color:red">Creating a Project</span></p>
+<p>First of all, create a project by clicking in the upper diplaying pannels "Dispersion Curves/Manage Project" then will pop up this widget:</p>
 <p><img alt="Screenshot" src="../img/Project_Disp.png" /></p>
+<p>Ok, now set the path where you want to create the project and give it a name, next <span style="color:#8E44AD">Create New Project</span>. You will find an example of project at ant/disp_maps.pkl, that it is just a dicctionary with the information of the dispersion measurements. Later I will show you that this project is the entry to plot the Dispersion Maps.</p>
+<p>2 <span style="color:red"><strong>Time to measure dispersion</strong></span> </p>
+<p>You can configurate your window as the figure below. Start with general configuration:</p>
+<p><span style="color:blue"><strong>Settings</strong></span>:</p>
+<p><span style="color:#8E44AD">Causal/Acausal</span>: part of the quasi-symmetric EGF. This is the part that will be analyze in the process.</p>
+<p><span style="color:#8E44AD">Rayleigh/Love</span>: wave that will be saved to the project for info. Normally the user should select Raylegh for EGFs retrived from the verical components between pair of stations and Love for the horizontals.</p>
+<p><span style="color:blue"><strong>Process Phase and Group Velocity</strong></span>:</p>
+<p><span style="color:#8E44AD">Files Directory</span>: Place the path where you have the stack files (see point 6 of the previous section).</p>
+<p><span style="color:#8E44AD">Macros</span>: Place the processing steps you with to apply to your EGF.</p>
+<p><span style="color:#8E44AD">Method</span>: For now tested Continuos Wavelet Transform with the Morlet Wavelet and using number of cycles 6 (perfect match between Fourier frequency and wavelet scales).</p>
+<p><span style="color:#8E44AD">Min level</span>: Set the minimum water level you want for your Frequency-Time analysis in Group Velocity</p>
+<p><span style="color:#8E44AD">Phase Match Filter</span>: This filter is applied to measure Group Velocity and basically takes a "Ref Disp Curve" and try to match it with your actual Dispersion curve. if you decide apply it you will notice the effect in both the time domain right pannel and in the Frequency-Time Group velocity pannel.</p>
+<p><span style="color:#8E44AD">Process first Group then Phase velocity</span>: Once It is plot the Time-Frequency plane of Group velocity (central pannel), the you can click (left button) and drag with your mouse to draw a free style line selecting all points that you consider for saving later. Once you close the draw, that point will appear in purple. Now, press process Phase velocity. You will see kind of several parallel curves. Same thing, click and drag to select all point with the same color.</p>
 <p><img alt="Screenshot" src="../img/Dispersion_Curves.png" /></p>
+<p>3 <span style="color:red"><strong>Save your stuff in your Project</strong></span></p>
+<p><span style="color:#8E44AD">Save to Project</span>: the dispersion measurements of Phase and Group Velocity. Once it is saved into the project, ISP wil check the box correspong to the file and print in the terminal.</p>
+<p><span style="color:#8E44AD">Remove from Project</span>: a measurement just hilight a checked file and press this button to remove the wrong measure from your project.</p>
 <hr />
 <h2 id="dispersion-maps">Dispersion Maps</h2>
 <p><img alt="Screenshot" src="../img/dispersion_maps.png" /></p></div>
