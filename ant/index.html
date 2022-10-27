@@ -185,6 +185,7 @@
 <h1 id="ambient-noise-tomography">Ambient Noise Tomography</h1>
 <p>The module ANT is divided in three main parts. First the toolbox designed to retrive Empirical Green Function, second the toolbos designed to measure phase and group velocity from the dispersion curves of EGs and third the toolbox to generate dispersion maps from the previous measurements.
 In this tutorial is explained how to manage the module.</p>
+<p>We recommend rreading Bensen et al., 2007 to understand the point EGF, Rusell et al., 1988 to understanf the Frequency-Time analysis and the Phase Match Filter,  and Lavshin 2001 how to compute the Dispersion Maps.</p>
 <hr />
 <h2 id="egf">EGF</h2>
 <p>1 <span style="color:green">Setting Files Path &amp; Metadata</span></p>
@@ -206,21 +207,21 @@ Second, set the path where you have the metadata of all nets/stations/channels y
 <p><span style="color:#8E44AD">Stacking Method</span>:Select amoung Phase Wave stack, Linear and nth-root stack. Personally we recommend go for linear if you have several months of data and go for PWS if you have just few . Nth-rooth for testing and comparison with linear. The parameter is the power of the method in PWS or Nrooth (Do not change from 2 :-))</p>
 <p><span style="color:#8E44AD">Maximum Intedistance</span>: Because sometimes we do not want to mix EGFs with very long interdistance with short distance, ISP allows the user to filter the cross correlation and stack computation by maximum interdistance value.</p>
 <p><span style="color:#8E44AD">Check Noise Matrix Output</span>: If the user check <em>Compute daily Stacks</em>, ISP will compute the evolution of the EGFs in partial stacks of 20 days. If <em>Include Autocorrelations and Shifted Cross Correlations</em>, ISP will estimate all pssoble cross-correlations including autocorrelations e.g., ZZ and both cross-correlations (e.g., ZE and EZ). This option is mandatory to be checked if you want go for Transversal components to estimate dispersion curves of Love Waves.</p>
-<p>3 <span style="color:red">Run pre-processing</span></p>
+<p>3 <span style="color:green">Run pre-processing</span></p>
 <p>Now, click on Run pre-processing. This action will load your settings and will make a database of the available files. Then the process will start to process the data.
     Finally per every station/channel a file will be saved containing a matrix with the noise data in frequency domain, ready to cross-correlate.</p>
-<p>4 <span style="color:red">Run Stack</span></p>
+<p>4 <span style="color:green">Run Stack</span></p>
 <p>This action will load files from the pre-processing step and then for every channel-channel combination will do a cross correlation and stack all the stacks will be saved in the .outpur_directory/stack.</p>
 <!-- blank line -->
 <p><img alt="Screenshot" src="../img/egfs.png" /></p>
 <!-- blank line -->
 
-<p>5 <span style="color:red">Explore your EGFs</span></p>
+<p>5 <span style="color:green">Explore your EGFs</span></p>
 <p>In this point the user can set the path to the output files (hdf5 or sac files), read the files and then <em>process and plot</em>. The user can also establish a Macro to process the EGFs, plot a map and sort the EGFs by inter station distance. Notice that autocorrelations will be 0 distance.</p>
 <p><span style="color:#8E44AD">Set Path</span> Set the path to your stack output directory.</p>
 <p><span style="color:#8E44AD">Read Files</span> create a list ready to process and plot of the available stack EGF in the folder. If Sort is checked, the files will be sorted by inter-station distance or backazimth.</p>
 <p><span style="color:#8E44AD">Process and Plot</span> Process the EGFs of the list according to the macro previously established and then plot.</p>
-<p>6 <span style="color:red">Explaining the output</span></p>
+<p>6 <span style="color:green">Explaining the output</span></p>
 <p>When the user compute the preprocess, all information is saved in Noise Matrix per station/channel. The noise matrid is a 3D matrix in whic the first dimension or the rows are consecutive time windows of an split day, the seconddimension or the colums are the day and the third dimension or depth is the complex numers corresponding to the processed spectrum of the noise window. The matrix is saved as pickle with name "NWTSTACHANNEL". The matrix includes a column daily header "[julday1.year1",julday2.year1, .... ] and a numpy arrayy with the spectral information.</p>
 <p>Afterwards, when the user press cross and stack, ISP combines the matrix information ifft(matrix_A*cong(matrix_B)) and then stack. </p>
 <p>Stack files shoul be named as follows "NET.STA1_STA2.CHN1CHN2". The stack files have format hdf5, basically a mseed with extra header info (e.g., inter-distance or inter-azimuth).</p>
@@ -251,11 +252,11 @@ STA1_STA2 keys = {clocks_station_name, Dates, Drift, Ref, R2}
 <hr />
 <h2 id="dispersion-curves">Dispersion Curves</h2>
 <p>Once you have generated the EGFs, it is time to measure the dispersion curves (phase and group velocity). We are going to explain how to use this module step by step.</p>
-<p>1 <span style="color:red">Creating a Project</span></p>
+<p>1 <span style="color:green">Creating a Project</span></p>
 <p>First of all, create a project by clicking in the upper diplaying pannels "Dispersion Curves/Manage Project" then will pop up this widget:</p>
 <p><img alt="Screenshot" src="../img/Project_Disp.png" /></p>
 <p>Ok, now set the path where you want to create the project and give it a name, next <span style="color:#8E44AD">Create New Project</span>. You will find an example of project at ant/disp_maps.pkl, that it is just a dicctionary with the information of the dispersion measurements. Later I will show you that this project is the entry to plot the Dispersion Maps.</p>
-<p>2 <span style="color:red"><strong>Time to measure dispersion</strong></span> </p>
+<p>2 <span style="color:green"><strong>Time to measure dispersion</strong></span> </p>
 <p>You can configurate your window as the figure below. Start with general configuration:</p>
 <p><span style="color:blue"><strong>Settings</strong></span>:</p>
 <p><span style="color:#8E44AD">Causal/Acausal</span>: part of the quasi-symmetric EGF. This is the part that will be analyze in the process.</p>
@@ -268,9 +269,9 @@ STA1_STA2 keys = {clocks_station_name, Dates, Drift, Ref, R2}
 <p><span style="color:#8E44AD">Phase Match Filter</span>: This filter is applied to measure Group Velocity and basically takes a "Ref Disp Curve" and try to match it with your actual Dispersion curve. if you decide apply it you will notice the effect in both the time domain right pannel and in the Frequency-Time Group velocity pannel.</p>
 <p><span style="color:#8E44AD">Process first Group then Phase velocity</span>: Once It is plot the Time-Frequency plane of Group velocity (central pannel), the you can click (left button) and drag with your mouse to draw a free style line selecting all points that you consider for saving later. Once you close the draw, that point will appear in purple. Now, press process Phase velocity. You will see kind of several parallel curves. Same thing, click and drag to select all point with the same color.</p>
 <p><img alt="Screenshot" src="../img/Dispersion_Curves.png" /></p>
-<p>3 <span style="color:red"><strong>Save your stuff in your Project</strong></span></p>
+<p>3 <span style="color:green"><strong>Save your stuff in your Project</strong></span></p>
 <p><span style="color:#8E44AD">Save to Project</span>: the dispersion measurements of Phase and Group Velocity. Once it is saved into the project, ISP wil check the box correspong to the file and print in the terminal.</p>
-<p><span style="color:#8E44AD">Remove from Project</span>: a measurement just hilight a checked file and press this button to remove the wrong measure from your project.</p>
+<p><span style="color:#8E44AD">Remove from Project</span>: a measurement just highlighting a checked file and press this button to remove the wrong measure from your project.</p>
 <hr />
 <h2 id="dispersion-maps">Dispersion Maps</h2>
 <p><img alt="Screenshot" src="../img/dispersion_maps.png" /></p></div>
