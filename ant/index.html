@@ -222,7 +222,9 @@ Second, set the path where you have the metadata of all nets/stations/channels y
 <p><span style="color:#8E44AD">Process and Plot</span> Process the EGFs of the list according to the macro previously established and then plot.</p>
 <p>6 <span style="color:red">Explaining the output</span></p>
 <p>When the user compute the preprocess, all information is saved in Noise Matrix per station/channel. The noise matrid is a 3D matrix in whic the first dimension or the rows are consecutive time windows of an split day, the seconddimension or the colums are the day and the third dimension or depth is the complex numers corresponding to the processed spectrum of the noise window. The matrix is saved as pickle with name "NWTSTACHANNEL". The matrix includes a column daily header "[julday1.year1",julday2.year1, .... ] and a numpy arrayy with the spectral information.</p>
-<p>Afterwards, when the user press cross and stack, ISP combines the matrix information ifft(matrix_A*cong(matrix_B)) and then stack.</p>
+<p>Afterwards, when the user press cross and stack, ISP combines the matrix information ifft(matrix_A*cong(matrix_B)) and then stack. </p>
+<p>Stack files shoul be named as follows "NET.STA1_STA2.CHN1CHN2". The stack files have format hdf5, basically a mseed with extra header info (e.g., inter-distance or inter-azimuth).</p>
+<p>Stack_daily files are partial stacks with this aspect "NET.STA1_STA2.CHN1CHN2_daily", They are part of the output and basically are partial stacks of noise windows of 20 days shifted by default 10 days (50%). This is very useful to both, monitorize the evolution of noise and to synchonize Ocean Bottom Seismometers.</p>
 <pre>
     <code>
 output_dir/matrix_files
@@ -234,6 +236,17 @@ output_dir/stack_rotated/
 
 <hr />
 <h2 id="clock-synchronization">Clock Synchronization</h2>
+<p>Clock Synchonization is very easy using ISP. Just select the station pair you want to synchronize <span style="color:#8E44AD">Search file</span> and th process (take the parameters from the macro) and plot <span style="color:#8E44AD">Plot Daily Correlations</span>. This action will be show the evolution of noise in partial stacks of 20 days. Now you can chop the signal pressing "q" for starttime and "e" and then check the trim box. </p>
+<p>Now select how do you want to fit your data, normaly a straight line but you can choose a plynom of degree up to 6. Press <span style="color:#8E44AD">sync</span>
+Finally click and drag with the mouse and draw a free line over the points to be selected. Finally press enter. The output will be saved as a <span style="color:#8E44AD">pickle dictionary</span>:</p>
+<pre>
+    <code>
+isp/ant/clock_dir/STA1_STA2
+where
+STA1_STA2 keys = {clocks_station_name, Dates, Drift, Ref, R2}
+    </code>
+</pre>
+
 <p><img alt="Screenshot" src="../img/Clock_Drift.png" /></p>
 <hr />
 <h2 id="dispersion-curves">Dispersion Curves</h2>
