@@ -163,10 +163,6 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#multimedia-material-pick-event" class="nav-link">Multimedia Material (Pick Event)</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
             <li class="nav-item" data-level="2"><a href="#polarisation-analysis" class="nav-link">Polarisation Analysis</a>
               <ul class="nav flex-column">
               </ul>
@@ -175,11 +171,19 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#focmec" class="nav-link">FocMec</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#earth-model-viewer" class="nav-link">Earth model Viewer</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#magnitudes-estimation" class="nav-link">Magnitudes Estimation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#multimedia-material" class="nav-link">Multimedia Material</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -291,17 +295,6 @@ Date;Time;Latitude;Longitude;Depth;Magnitude;mag_type
 </code></pre>
 <p><span style="color:blue">Import:</span> <span style="color:#8E44AD">Picks from file</span> It will plot the picks from selected file in the corresponding waveforms. The picks from the file that the user select must be in the ISP/NLL format as it is shown above Actions:Picks.</p>
 <hr />
-<h2 id="multimedia-material-pick-event">Multimedia Material (Pick Event)</h2>
-<p>The following video shows a basic analysis of an earthquake</p>
-<!-- blank line -->
-<figure class="video_container">
-  <video controls="true" allowfullscreen="true" poster="../img/poster_image.png" width="740" height="400">
-    <source src="../img/Earthquake_Analysis.mp4" type="video/mp4">
-  </video>
-</figure>
-<!-- blank line -->
-
-<hr />
 <h2 id="polarisation-analysis">Polarisation Analysis</h2>
 <p>The Polarization Analysis is designed to analyze the three seismograms components from a station.
 You can freely rotate using the rotation RT or the LQT your NEZ components an angle (Rot Angle) with an Incidence angle (Inc Angle).</p>
@@ -382,10 +375,38 @@ For the S wave --> layer.S.mod5.mod
 <p>The generated travel-times will save in </p>
 <p>ISP/earthquakeAnalysis/location_output/time, for example with the following name l"ayer.P.EBAD.time.buf"</p>
 <p>Once you have complete the above steps you can locate the earthquake and the focal mechanism. The above operation are just necessary to be implemented  the first time you use a specific Earth model.</p>
-<p>**For global is not necessary generate the velocity grid and travel times.</p>
+<p><strong>For global is not necessary generate the velocity grid and travel times</strong>.</p>
 <p>To visualize the detailed Probability Density Function, press “Plot PDF”, once you have already carried out the location.</p>
 <p><img alt="Screenshot" src="../img/PDF.png" /></p>
 <p>Moreover, if you have picked the seismic phases and have been designated the polarity in “Event frame” , you will be able to  obtain the Focal Mechanism (it uses the subprogram FocMec)</p>
+<hr />
+<h2 id="focmec">FocMec</h2>
+<p>The run script that manage FocMec behind ISP is in the file ./isp/EartuqakeAnalysis/location_output/first_polarity/focmec_run
+We beg you pardon, the parametrization is still not implemented in a GUI. So, you can play directly with this parameters modifying the focmec_run</p>
+<pre>
+    <code>
+mechanism.out
+No comments
+\* Comment is previous line: Input file for focmec is next
+test.inp
+y     Use emergent arrivals?  [y]
+    correct file  [y]
+y   relative weighting..[y]
+0.0     allowed P polarity erors..[0]
+100 exit after this many acceptable solutions...[100]
+    minimum B trend  [0]
+    B increment  [5]
+    maximum B trend  [355]
+    min B plunge..[0]
+    increment  [5]
+    maximum..[90]
+    minimum Angle..[0]
+    increment  [5]
+    maximum  [175]
+    </code>
+</pre>
+
+<p>Indeed what is most important is to play with the value "allowed P polarity erors", by default set to 0.0.</p>
 <hr />
 <h2 id="earth-model-viewer">Earth model Viewer</h2>
 <p>The Earth Model Viewer is intended to help to visualize <span style="color:red">3D Earth velocity models</span> as in the figure below.
@@ -410,7 +431,31 @@ a = 2.0; b = 0.0035; c= -0.87</p>
 <p>ML_value = np.log10(max_amplitude)+a<em>np.log10(dist)+b</em>dist+c</p>
 <p>Briefly, Once you have open the Magnitude Window, select the magnitudes you want to compute and run the computation.</p>
 <p>In the upper panel it is shown the spectrum of the body waves and the fit to calculate the moment magnitude. In the bottom panel is shown the histograms of all magnitudes (the result of the magnitudes for all seismograms for all kind of magnitudes) and on the left an additional plot used to visualize the dispersion of the results.</p>
-<p><img alt="Screenshot" src="../img/Magnitudes.png" /></p></div>
+<p><img alt="Screenshot" src="../img/Magnitudes.png" /></p>
+<hr />
+<h2 id="multimedia-material">Multimedia Material</h2>
+<h3 id="seismogram-analysis">Seismogram Analysis</h3>
+<p>Sorry this video needs to be updated, however 90% of the stuff still have the same behaviour.
+The following video shows a basic analysis of an earthquake</p>
+<!-- blank line -->
+<figure class="video_container">
+  <video controls="true" allowfullscreen="true" poster="../img/poster_image.png" width="740" height="400">
+    <source src="../img/Earthquake_Analysis.mp4" type="video/mp4">
+  </video>
+</figure>
+<!-- blank line -->
+
+<h3 id="picking-and-locate">Picking and Locate</h3>
+<p>The following video shows a user loading a project, then picking phases plus polarity, next generating for the first time the velocity grid and the travel-times and finally locating the regional earthquake and estimating the focal mechanism using First Polarity Motion. Please go to Start with the <strong>Basics --&gt; Shorcuts --&gt; Mouse</strong>.</p>
+<!-- blank line -->
+<figure class="video_container">
+  <video controls="true" allowfullscreen="true" poster="../img/poster_image.png" width="740" height="400">
+    <source src="../img/Picking_and_Loc.mp4" type="video/mp4">
+  </video>
+</figure>
+<!-- blank line -->
+
+<hr /></div>
             </div>
         </div>
 
