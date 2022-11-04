@@ -170,19 +170,24 @@
 <p><img alt="Screenshot" src="../img/manage.png" /></p>
 <p>Retrieve Data framework is an interface to facilitate download specific events to time-series or select a period and download data from different stations.</p>
 <p><img alt="Screenshot" src="../img/download_event.png" /></p>
-<p>Step1: </p>
-<p>Select a FDSN web service and click load. This action will load the inventory.</p>
-<p>Step2:</p>
-<p>You can plot the inventory stations and can be add to the posterior request with double-click on the map or manually added. Also you can remove it with right button double-click.</p>
-<p>From this point you can follow different actions,
-Download Time Series: Just set Starttime and Endtime and click on the button. This will download the mini seeds of the stations/channels requested for that period.</p>
-<p>Download Metadata: This action will download the stations.xml of the stations/channels requested.</p>
-<p>Step3:</p>
-<p>If we want to download earthquake seismograms from a period of time for specific stations/channels.</p>
-<p>Step1:</p>
-<p>Download catalog (see figure) and select the rows of the earthquake you are interested. Next, fill the gaps for  net, stations and channels. You can plot the stations and use double-click action to select the stations.</p>
-<p>Step 2:</p>
-<p>Fill the cut time-window (s) before and after the first arrival and click on Download event data. </p>
+<hr />
+<p><span style="color:#8E44AD"><strong>Step 1, FDSN connection</strong></span>: </p>
+<p>Select a FDSN web service and click <span style="color:red"><strong>Load</strong></span>. This action will load the inventory. 
+<strong>Warning</strong>, some FDSNs service have access to more than one network, so if you want to speed up the process please select anetwork (see figure is preselected network IU.</p>
+<p><span style="color:#8E44AD"><strong>Step 2, Download Catalog</strong></span>:</p>
+<p>Once the FDSN connection is done, fill the fileds in Catalog box and then click <span style="color:red"><strong>Download catalog</strong></span>. Warning, please if you are too ambicious (e.g., a catalog of many years) the procees can be endless :-).
+The events will be plot according to the magnitude and scale bar depth (km).</p>
+<p>Select an event pressing "t" near an epicenter (this is to graphycally help the user select events). You will see the event selected iluminated in grey in the events table. Now click on the iluminated row to be definetly selected (now the sleected row will be shown in blue). You can select more than one vent to be downloaded at once!!!</p>
+<p><span style="color:#8E44AD"><strong>Step 3, Selection Process</strong></span>:</p>
+<p><span style="color:blue">Plot Stations</span>: This action will plot the stations inside the inventory from your FDSN connection (step 1).</p>
+<p><span style="color:blue">Station Selction</span>: Doucle-click near the red triangles to automatically include names inside Network/Stations box. Press "c" near the psotion of the station you want to remove from the selection (might be you want to deselect some stations). Manually just station names separated by commas e.g. ARNO,SFS (see figure). </p>
+<p><span style="color:blue">Select Components</span>: Examples: BH? or simply BHZ (accept wildcards) or BHN,BHE,BHZ.</p>
+<p><span style="color:#8E44AD"><strong>Step 4, Download Data</strong></span>:</p>
+<p>From this point you can follow different actions,</p>
+<p><span style="color:blue">Download Time Series</span>: Just set Starttime and Endtime and click on the button. This will download the mseeds of the stations/channels requested for that period.</p>
+<p><span style="color:blue">Download Metadata</span>: This action will download the stations.xml of the stations/channels requested. This file is the metadata that is used by ISP in the rest of the modules.</p>
+<p><span style="color:blue">Download event data</span>: This action will download the events selected data of the list of Newtork/Stations/Channels with a time window lenght Time before - otime- Time after. Warning: Be sure you have clicked in the events table just in the events you want to donwload data.</p>
+<p>Finally ISP will request a folder where you want to download the data. A feedback with downloading process will be shown.</p>
 <p>The available FDSN web services are:</p>
 <ul>
 <li>BGR         http://eida.bgr.de</li>
@@ -210,7 +215,8 @@ Download Time Series: Just set Starttime and Endtime and click on the button. Th
 <li>USGS        http://earthquake.usgs.gov</li>
 <li>USP         http://sismo.iag.usp.br</li>
 </ul>
-<p>There is also the possibility to connect to your own server to download the inventory and the data.</p></div>
+<p>There is also the possibility to connect to your own Earthworm server to download the inventory and the data. Just fill the check box and the IP/Port.</p>
+<p>We are working in the connection between SeisComp3 Database and ISP. We will soon deliver this part of the project (currently is being tested).</p></div>
             </div>
         </div>
 
