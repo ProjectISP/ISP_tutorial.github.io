@@ -179,9 +179,13 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="moment-tensor-inversion">Moment Tensor Inversion</h1>
+<p>The functionality of this module is based on the Bayes-ISOLA code (Vackář et al., 2017), a tool for automated CMT inversion in a Bayesian framework. This module a function to calculate an optional data covariance matrix from pre-event noise that yields an automatic weighting function for the receiver components according to their noise levels. This also serves as an automated frequency filter that suppresses noisy frequency ranges. During the inversion, a grid search is performed over time and space, combined with an analytical (least squares) moment tensor inversion at each grid point, which accelerates the inversion process. The more time-consuming tasks like the Green’s function computation and the grid search are parallelized for efficiency. The results provided by the module contain the best-fit solution, as well as the full posterior probability density function (PPDF), which allows the user to plot the marginal probability density functions (PDFs) for any of the CMT parameters.</p>
+<hr />
 <h2 id="create-earth-velocity-model">Create Earth velocity model</h2>
-<p>To start you need to load a Earth model. Go to Build à Earth Model and open the Earth Model Form, the fill it and save it.</p>
+<p>To start you need to load a Earth model. Go to Build a 1D Earth Model and open the Earth Model Form, the fill it and save it.</p>
+<p>Alternatively, Yo can find examples of regional models in <strong>./isp/mti/input/iberia.dat</strong> and <strong>./isp/mti/input/AK135.txt</strong>.</p>
 <p><img alt="Screenshot" src="../img/model_MTI.png" /></p>
+<hr />
 <h2 id="bayesian-inversion">Bayesian Inversion</h2>
 <p>The user needs to fill the following fields to go on with the inversion:</p>
 <p>Metadata &gt;&gt; Path to the file where you have the metadata. This is necessary to extract the stations coordinates and the instrument information to do the deconvolution (this is not totally necessary, the user can manage the seismograms already in velocity units).</p>
