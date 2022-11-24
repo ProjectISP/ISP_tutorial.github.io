@@ -163,6 +163,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#connexions" class="nav-link">Connexions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#polarisation-analysis" class="nav-link">Polarisation Analysis</a>
               <ul class="nav flex-column">
               </ul>
@@ -283,6 +287,7 @@ Date;Time;Latitude;Longitude;Depth;Magnitude;mag_type
 <p><span style="color:blue">Compute: </span> <span style="color:#8E44AD">Spectral Entropy</span> from all processed seismograms and will plot the result together. Spectral entropy is estimated in small time windows see Parameters Settings.</p>
 <p><span style="color:blue">Compute:</span> <span style="color:#8E44AD">All Seismograms</span>: Plot together all seismograms.</p>
 <p><span style="color:blue">Compute:</span> <span style="color:#8E44AD"> Stack </span>run (linear, nth-root or PWS) stack of all processed seismograms. Set your choice in File/Open Settings.</p>
+<p><span style="color:blue">Compute:</span> <span style="color:#8E44AD"> Plot Record Section </span> will plot the waveforms according to distance and will also plot the travel times. This action is available just when you have process and plot your waveforms and sorted by distance. Be careful, you need a correct metadata file loaded and also the event info box corretly filled. This action could take some time.</p>
 <pre><code>                                    Go
 </code></pre>
 <p>Will ship you to the rest of ISP modules (RFs, Array analysis….). We are working in connecting the seismograms processed in Earquake analysis with the other modules.</p>
@@ -294,6 +299,10 @@ Date;Time;Latitude;Longitude;Depth;Magnitude;mag_type
 <pre><code>                                    Import
 </code></pre>
 <p><span style="color:blue">Import:</span> <span style="color:#8E44AD">Picks from file</span> It will plot the picks from selected file in the corresponding waveforms. The picks from the file that the user select must be in the ISP/NLL format as it is shown above Actions:Picks.</p>
+<h2 id="connexions">Connexions</h2>
+<pre><code>                                    Connexions
+</code></pre>
+<p>You will see that in the Upper part of Pick event the icon of the different ISP modules. If you click on it, the module will be open. If you click on TF module icon will open and will analyse the waveform you selected pressing letter "m". Go to <a href="https://projectisp.github.io/ISP_tutorial.github.io/tf/#connect-with-earthquake-analysis"><span style="color:red"><strong>Connect with Earthquake Analysis</strong></span></a>, for a fully explanation an example.</p>
 <hr />
 <h2 id="polarisation-analysis">Polarisation Analysis</h2>
 <p>The Polarization Analysis is designed to analyze the three seismograms components from a station.
@@ -342,6 +351,7 @@ LAYER  ....  ... ...    ....  ...  ... ...
 <li><span style="color:blue">Where and how place the velocity 3D model?:</span>
 <span style="color:blue">isp/earthquakeAnalysis/location_output/model3D</span></li>
 </ul>
+<p>We have created a repository with an example of <a href="https://github.com/rcabdia/ProjectISP_3Dmodels"><span style="color:red"><strong>3D model</strong></span></a></p>
 <p>Every depth layer must be placed in files called, for example</p>
 <pre>
     <code>
@@ -372,8 +382,8 @@ For the S wave --> layer.S.mod5.mod
 </pre>
 
 <p>The most important step is to generate the travel-times for all the stations inside the maximum distance the user determine.  Please be sure that you have load previously the metadata (this is necessary to associate your picks with your station coordinates).</p>
-<p>The generated travel-times will save in </p>
-<p>ISP/earthquakeAnalysis/location_output/time, for example with the following name l"ayer.P.EBAD.time.buf"</p>
+<p>The generated <span style="color:red"><strong>travel-times</strong></span> will save in </p>
+<p><span style="color:blue"><strong>ISP/earthquakeAnalysis/location_output/time</strong></span>, for example with the following name "layer.P.EBAD.time.buf"</p>
 <p>Once you have complete the above steps you can locate the earthquake and the focal mechanism. The above operation are just necessary to be implemented  the first time you use a specific Earth model.</p>
 <p><strong>For global is not necessary generate the velocity grid and travel times</strong>.</p>
 <p>To visualize the detailed Probability Density Function, press “Plot PDF”, once you have already carried out the location.</p>
@@ -381,8 +391,8 @@ For the S wave --> layer.S.mod5.mod
 <p>Moreover, if you have picked the seismic phases and have been designated the polarity in “Event frame” , you will be able to  obtain the Focal Mechanism (it uses the subprogram FocMec)</p>
 <hr />
 <h2 id="focmec">FocMec</h2>
-<p>The run script that manage FocMec behind ISP is in the file ./isp/EartuqakeAnalysis/location_output/first_polarity/focmec_run
-We beg you pardon, the parametrization is still not implemented in a GUI. So, you can play directly with this parameters modifying the focmec_run</p>
+<p>The run script that manage FocMec behind ISP is in the file <span style="color:blue"><strong>./isp/EartuqakeAnalysis/location_output/first_polarity/focmec_run</strong></span>.
+We beg you pardon, the parametrization is still not implemented in the ISPGUI. So, you can play directly with this parameters modifying the focmec_run. I personally play just with allowed P polarit errors, migh be set between 1 to 5, and test pressing run Foc mec in the GUI</p>
 <pre>
     <code>
 mechanism.out
