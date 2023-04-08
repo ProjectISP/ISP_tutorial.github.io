@@ -167,6 +167,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#installation-for-developers-mac-and-linux-pip-environment" class="nav-link">Installation for developers (Mac and Linux, pip environment)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#installation-for-windows-users" class="nav-link">Installation for Windows users</a>
               <ul class="nav flex-column">
               </ul>
@@ -196,19 +200,35 @@
 <p>To be updated, from ./ISP type in your terminal, </p>
 <pre><code>git pull
 </code></pre>
-<p>The installation file will install the requirements and will compile the source packages. At the end of the installation the user will be asked for an alias "isp". Following the directions <strong>Installation for end users</strong> , it is needed to have previously installed <a href="https://www.anaconda.com/">anaconda</a>.</p>
+<p>The installation file will install the requirements and will compile the source packages (advanced). At the end of the installation the user will be asked for an alias "isp". Following the directions <strong>Installation for end users</strong> , it is needed to have previously installed <a href="https://www.anaconda.com/">anaconda</a>.</p>
 <h2 id="installation-for-end-users-mac-and-linux">Installation for end users (Mac and Linux)</h2>
 <p>To run the installation go to ./ISP/install and type:</p>
 <pre><code>chmod u+x ISP_installer.sh
 
 ./ISP_installer.sh
 </code></pre>
+<p>You will be ask for the type of installation, in this case your answer must be, conventional</p>
+<pre><code>Which type of installation would you prefer, conventional or advanced ? conventional
+</code></pre>
 <p>Just in case the alias isp do not open the software, go to ./ISP and type:</p>
 <pre><code>conda activate isp or source activate isp
 python start_isp.py
 </code></pre>
-<p><strong>Warning:</strong> We have found that in some <strong>Mac computers is difficult to compile the third package NLL</strong>, so for this reason inside the folder ./ISP/isp/mac_bin/bin, you will find NLL fully compiled. Then, you can move this files from ./ISP/isp/mac_bin/bin to ./ISP/isp/NLL7/bin that is the folder where ISP will look for running this program.</p>
 <h2 id="installation-for-developers-mac-and-linux">Installation for developers (Mac and Linux)</h2>
+<p>Before run this type of installation be sure you have installed and in your PATH system variables <a href="https://cmake.org/install/">cmake</a> &amp; <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler.html#gs.u6wzcf">Intel Fortran Stand Alone version</a> with useful directions for <a href="https://gist.github.com/SomajitDey/aeb6eb4c8083185e06800e1ece4be1bd">Ubuntu users</a>
+To run the installation go to ./ISP/install and type:</p>
+<pre><code>chmod u+x ISP_installer.sh
+
+./ISP_installer.sh
+</code></pre>
+<p>You will be ask for the type of installation, in this case your answer must be, advanced</p>
+<pre><code>Which type of installation would you prefer, conventional or advanced ? advanced
+</code></pre>
+<p>Just in case the alias isp do not open the software, go to ./ISP and type:</p>
+<pre><code>conda activate isp or source activate isp
+python start_isp.py
+</code></pre>
+<h2 id="installation-for-developers-mac-and-linux-pip-environment">Installation for developers (Mac and Linux, pip environment)</h2>
 <p>First, Install python 3 and some Cartopy dependencies</p>
 <pre><code>sudo apt install python3-pip python3.8-venv
 sudo apt install libproj-dev proj-data proj-bin libgeos-dev
@@ -223,35 +243,7 @@ pip install --upgrade setuptools
 <pre><code>python3 setup.py build_ext --inplace
 </code></pre>
 <h2 id="installation-for-windows-users">Installation for Windows users</h2>
-<p>In the following text, we briefly explain how to install ISP in windows via <strong>WSL</strong> .</p>
-<p><br>1. Install <strong>WSL</strong> <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Windows Subsystem for Linux version 2</a> and Ubuntu 20.04</p>
-<p><br>2. Install <a href="https://sourceforge.net/p/vcxsrv/wiki/Using%20VcXsrv%20Windows%20X%20Server/">Windows X Server</a></p>
-<p><br>3. Initialize Windows X Server</p>
-<pre><code>Create a direct access that execute the following instructions
-
-"C:\Program Files\VcXsrv.exe" :0 -multiwindow -clipboard  -wgl -ac
-
-However, it could be more easy to you just run:
-
-Windows Key + R and then in the widget type "C:\Program Files\VcXsrv.exe" :0 -multiwindow -clipboard  -wgl -ac
-</code></pre>
-<p><br>4. Directions to follow inside WSL</p>
-<pre><code>export DISPLAY_NUMBER="0.0"
-
-export DISPLAY=$(grep  -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):$DISPLAY_NUMBER
-</code></pre>
-<p><br>5. Install <a href="https://linuxize.com/post/how-to-install-anaconda-on-ubuntu-20-04/">Anaconda</a></p>
-<pre><code>Add to path Anconda to the file .bashrc
-
-"export PATH=~/anaconda3/bin:$PATH"
-</code></pre>
-<p>Then everything is ready to install ISP as in Linux System</p>
-<p><br>6. Install normally ISP:</p>
-<p>To run the installation go to ./isp/installation and type ./ISP_installer.sh</p>
-<p>Just in case the alias isp do not open the software, go to ./ISP and type:</p>
-<pre><code>conda activate isp or source activate isp
-python start_isp.py
-</code></pre>
+<p>In the following text, we briefly explain how to install ISP in windows via <strong>WSL</strong>. Please, download the directions <a href="https://github.com/ProjectISP/ISP/files/10859958/Running_WSL_GUI_.Apps_and_install_ISP_on_W10_v2.pdf"><strong>here</strong></a></p>
 <h2 id="uninstall-isp">Uninstall ISP</h2>
 <p>First remove the folder ISP, then type in your terminal:</p>
 <pre><code>conda remove --name isp --all
