@@ -12,12 +12,9 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link href="css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/color-brewer.min.css">
-
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/color-brewer.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body class="homepage">
@@ -159,15 +156,15 @@
             
             <li class="nav-item" data-level="1"><a href="#welcome-to-integrated-seismic-program-isp-documentation" class="nav-link">Welcome to Integrated Seismic Program (ISP) Documentation</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#index-modules" class="nav-link">Index: Modules</a>
+            <li class="nav-item" data-level="2"><a href="#news-18-mar-2024" class="nav-link">News 18-Mar-2024</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#index-toolboxes" class="nav-link">Index: ToolBoxes</a>
+            <li class="nav-item" data-level="2"><a href="#software-structure" class="nav-link">Software Structure</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#news-2023-06-08" class="nav-link">News 2023-06-08</a>
+            <li class="nav-item" data-level="2"><a href="#something-about-isp" class="nav-link">Something about ISP</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -181,12 +178,20 @@
 <h1 id="welcome-to-integrated-seismic-program-isp-documentation">Welcome to Integrated Seismic Program (ISP) Documentation</h1>
 <p><img alt="Screenshot" src="img/logo.png" /></p>
 <p>Integrated Seismic Program is an amenable toolbox that joins functionality and standard algorithms commonly used in seismology. The complete software is separated in several modules and each module is designed to overcome a specific task.</p>
-<p>In this tutorial will show how you can master ISP</p>
+<p>Cabieces et al. Integrated Seismic Program (ISP): A New Python GUI‐Based Software for Earthquake Seismology and Seismic Signal Processing. Seismological Research Letters 2022;; 93 (3): 1895–1908. doi: https://doi.org/10.1785/0220210205</p>
 <p><strong>GitHub</strong> <a href="https://github.com/ProjectISP/ISP/tree/ISP_2.0_development">ISP github</a>.</p>
 <p><strong>Follow us</strong> in: <a href="https://twitter.com/ProgramSeismic">twitter</a>.</p>
 <p><a href="https://pubs.geoscienceworld.org/ssa/srl/article-abstract/93/3/1895/612376/Integrated-Seismic-Program-ISP-A-New-Python-GUI?redirectedFrom=fulltext"><strong>Reference Paper</strong></a>:</p>
-<p>Roberto Cabieces, Andrés Olivar‐Castaño, Thiago C. Junqueira, Jesús Relinque, Luis Fernandez‐Prieto, Jiří Vackár, Boris Rösler, Jaime Barco, Antonio Pazos, Luz García‐Martínez; Integrated Seismic Program (ISP): A New Python GUI‐Based Software for Earthquake Seismology and Seismic Signal Processing. Seismological Research Letters 2022;; 93 (3): 1895–1908. doi: https://doi.org/10.1785/0220210205</p>
-<h2 id="index-modules">Index: Modules</h2>
+<h2 id="news-18-mar-2024">News 18-Mar-2024</h2>
+<p><a href="https://projectisp.github.io/surfquaketutorial.github.io/">surfQuake</a>
+A new software to streamline the workflow of estimating seismic source parameters:</p>
+<ul>
+<li><span style="color:red"><em>Release Date: 18-April-2024</em></span></li>
+<li><a href="https://meetingorganizer.copernicus.org/EGU24/EGU24-2816.html"><span style="color:black"><em>EGU-24 presentation</em></span></a>
+<a href="https://projectisp.github.io/surfquaketutorial.github.io/"><img alt="Screenshot" src="img/logo_surf.png" /></a></li>
+</ul>
+<h2 id="software-structure">Software Structure</h2>
+<h3 id="index-modules">Index: Modules</h3>
 <ul>
 <li><a href="https://projectisp.github.io/ISP_tutorial.github.io/el/"><span style="color:#8E44AD">Earthquake Seismology </span></a></li>
 <li><a href="https://projectisp.github.io/ISP_tutorial.github.io/tf/"><span style="color:#8E44AD">Time-Frequency Analysis</span></a></li>
@@ -195,7 +200,7 @@
 <li><a href="https://projectisp.github.io/ISP_tutorial.github.io/rf/"><span style="color:#8E44AD">Receiver Functions </span></a></li>
 <li><a href="https://projectisp.github.io/ISP_tutorial.github.io/ant/"><span style="color:#8E44AD">Ambient Noise Tomography </span></a></li>
 </ul>
-<h2 id="index-toolboxes">Index: ToolBoxes</h2>
+<h3 id="index-toolboxes">Index: ToolBoxes</h3>
 <ul>
 <li><a href="https://projectisp.github.io/ISP_tutorial.github.io/db/"><span style="color:#8E44AD">Database </span></a></li>
 <li><a href="https://projectisp.github.io/ISP_tutorial.github.io/rd/"><span style="color:#8E44AD">Retrieve Data (FDSN) </span></a></li>
@@ -203,7 +208,7 @@
 <li><a href="https://projectisp.github.io/ISP_tutorial.github.io/synth/"><span style="color:#8E44AD">Synthetic Generator </span></a></li>
 <li><a href="https://projectisp.github.io/ISP_tutorial.github.io/nrt/"><span style="color:#8E44AD">Near-Real Time Adquisition </span></a></li>
 </ul>
-<h2 id="news-2023-06-08">News 2023-06-08</h2>
+<h2 id="something-about-isp">Something about ISP</h2>
 <p>We have added a widget to help users to <strong>automatically</strong> estimate Moment Magnitude, Local Magnitude and additional source features, following <a href="https://github.com/SeismicSource/sourcespec"><span style="color:red">SourceSpec </span></a>.</p>
 <p><img alt="Screenshot" src="img/automag.png" /></p>
 <p>We have created a repository with an example of <a href="https://github.com/rcabdia/ProjectISP_3Dmodels"><span style="color:red"><strong>3D model</strong></span></a></p>
@@ -231,12 +236,14 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <script>
             var base_url = ".",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js" defer></script>
-        <script src="search/main.js" defer></script>
+        <script src="js/base.js"></script>
+        <script src="search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -303,6 +310,6 @@
 </html>
 
 <!--
-MkDocs version : 1.4.3
-Build Date UTC : 2023-07-08 22:05:04.013983+00:00
+MkDocs version : 1.5.3
+Build Date UTC : 2024-03-18 10:17:51.920858+00:00
 -->
