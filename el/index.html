@@ -238,8 +238,74 @@
 <li>
 <p><span style="color:blue"><strong>Process and Plot</strong></span>: This action will read the seismograms from the database of paths to your seismograms, created from your folder tree (database already built using Read Files) and will carry out the processing from the established “MACRO”. Further details in MACRO section "Macros".</p>
 </li>
+<li>
+<p><span style="color:blue"><strong>Particle Motion</strong></span>: This action will plor the particle motion from your vertical and N,E or R,T components. This actions works when you have this three waveforms on screen and are trimed. The sam actioon can be also done in the module Polarization Analysis.</p>
+</li>
+<li>
+<p><span style="color:blue"><strong>Run Script</strong></span>: This is on of the most important actions. Basically it runs a python script that you can have storage at ISP/isp/script/your_script.py</p>
+</li>
 </ul>
-<p><img alt="Screenshot" src="../img/explore_catalog.png" /></p>
+<p>The structure of this folder is as follows:</p>
+<p>scripts/
+    <strong>init</strong>.py
+    your_script1.py
+    your_script2.py
+    .....</p>
+<p>inside <strong>init</strong>.py</p>
+<pre>
+    <code>
+from .your_script1 import run_process
+    </code>
+</pre>
+
+<p>Here you can set which script you want to edit by changing ".your_script1" </p>
+<p>Inside your_script1.py you will find an example ready to run by clicking Run Script button. In this example, the action will take the waveform 1 and waveform 2 from the stream ObsPy object and will add their data. Then, the wavform will be plot in a separate window.</p>
+<pre>
+    <code>
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+script.py
+"""
+
+from obspy import Stream, UTCDateTime
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Qt5Agg')
+
+def run_process(st: Stream, starttime: UTCDateTime, endtime: UTCDateTime, hypo_lat: float, hypo_lon: float,
+                hypo_depth_km: float, hypo_origin_time: UTCDateTime):
+
+    # example of how to design your running script
+
+    try:
+
+        data = st[0].data + st[1].data
+
+        fig, ax1 = plt.subplots(1, 1, layout='constrained')
+        ax1.plot(st[0].times(), data)
+        ax1.set_xlabel('Time (s)')
+        ax1.set_ylabel('Trace1 + Trace')
+        ax1.grid(True)
+        plt.show()
+
+    except Exception as e:
+        # Handle any exception and print the error message
+        print("An error occurred:", str(e))
+
+    </code>
+</pre>
+
+<p>Important details:</p>
+<ul>
+<li>
+<p>The only constrain is that the method must be always named run_process and must have the the same inputs of the example.</p>
+</li>
+<li>
+<p>All inputs are taken from the main Earthquake Location GUI and can be used or not.</p>
+</li>
+</ul>
 <p>Additional options from the toolbar are:</p>
 <pre><code>                                    File
 </code></pre>
@@ -271,7 +337,8 @@ PMG ? BHZ ? P ? 20221018 1150 24.693 GAU 0.00E+00 0.0 -3024.00 0.0
 <p><span style="color:blue">Actions: </span> <span style="color:#8E44AD">Magnitude Calculator</span> will open a window in which you can compute different magnitudes. For open this you must have estimated an event and have selected the time-windows in the seismograms that you want the magnitudes be calculated.</p>
 <p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Open Earth Model Viewer</span> will open a tool to visualize 3D velocity models. For visualize an Earth Model you need the binary files (<em>buf and  </em>hdr) created in the tab Event location. </p>
 <p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Data availability</span> will plot the data availability (backlines) for each station/component of the database loaded from your folder tree.</p>
-<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Search in Catalog</span> (see first figure) is a widget designed to plot your catalog and select an event to search in your project. The catalog must be a csv file with this header:</p>
+<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Search in Catalog</span> (see the figure below) is a widget designed to plot your catalog and select an event to search in your project. The catalog can be either a csv file with this header:</p>
+<p><img alt="Screenshot" src="../img/explore_catalog.png" /></p>
 <pre>
     <code>
 Date;Time;Latitude;Longitude;Depth;Magnitude;mag_type
@@ -279,7 +346,9 @@ Date;Time;Latitude;Longitude;Depth;Magnitude;mag_type
     </code>
 </pre>
 
-<p>You can find an example in isp/examples/catalog/catalog_resume. To facilitate the selection of events, the user can press "t" over the epicenter in the map to hilight it in the table. Finally, Pressing button "Select Event" the information is sent to the trim starttime and endtime and to the Event Box. Ready to reload your project to make the search of the event!</p>
+<p>or a <em>catalog</em> with an specific <a href="https://docs.obspy.org/packages/autogen/obspy.core.event.read_events.html">file formats</a> such as <em>QUAKEML</em>, <em>SC3ML</em>, <em>CMTSOLUTION</em> and so on. </p>
+<p>To facilitate the selection of events, the user can press "t" over the epicenter in the map to hilight it in the table. Finally, Pressing button "Select Event" the information is sent to the trim starttime and endtime and to the Event Box. Ready to filter your project to make the search of the event and show your waveforms!</p>
+<p>You can find an example in isp/examples/catalog. </p>
 <pre><code>                                    Compute
 </code></pre>
 <p><span style="color:blue">Compute: </span> <span style="color:#8E44AD">STA/LTA </span>from all processed seismograms and will plot the result together. STA/LTA takes the parameters from Parameters Settings.</p>
