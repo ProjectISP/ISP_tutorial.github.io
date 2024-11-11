@@ -156,6 +156,14 @@
             
             <li class="nav-item" data-level="1"><a href="#probability-power-spectral-dentitiy-ppsd" class="nav-link">Probability Power Spectral Dentitiy (PPSD)</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#background" class="nav-link">Background</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#how-to-use-this-ppsd-toolbox" class="nav-link">How to use this PPSD toolbox</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -165,10 +173,51 @@
 
 <h1 id="probability-power-spectral-dentitiy-ppsd">Probability Power Spectral Dentitiy (PPSD)</h1>
 <p><img alt="Screenshot" src="../img/ppsd.png" /></p>
+<h2 id="background">Background</h2>
 <p>One the most common tools to evaluate the station performance of seismic data acquisition (Mcnamara and Buland, 2004) is to estimate the Probability Density Functions (PDFs). Once the PDFs are calculated, the seismic noise levels can be compared with the standard low and high noise levels, NLNM and NHNM (Peterson, 1993), or can be calculated cumulative spectrograms to observe seasonal variations.</p>
 <p>The ISP submodule “PPSD” allows to build a database to storage the PDFs of the stations/components desired from PPSDs, with an specific frame work for this task. Moreover the original databased can be upgraded with more data. Once the PDFs  are computed, they can be visualized into another framework that offers multiple visualization options. The Fig. 1 shows the visualization framework with the PDFs of three components from three different station and the Fig 2 &amp; 3 the diurnal and seasonal variation, respectively. The PDFs are also compared with earthquake power desnsity spectrums (Clinton and Heaton, 2002).</p>
+<h2 id="how-to-use-this-ppsd-toolbox">How to use this PPSD toolbox</h2>
+<p>The first step is to generate a database where all PDFs will be saved for later use. For this porpuse the user have available the following dialog.</p>
 <p><img alt="Screenshot" src="../img/PPSDS_DB.png" /></p>
+<ul>
+<li>
+<p><span style="color:blue"><strong>Set how you want to name your new database</strong></span>: and set the path where you have your folder tree, populated by seismograms and sel the metadata directory path.</p>
+</li>
+<li>
+<p><span style="color:blue"><strong>Set the spectral parameters</strong></span>:</p>
+</li>
+</ul>
+<p>Length – Length of data segments passed to psd in seconds. A lenght of 3600 s (1 hour) is recommended to balance the frequency resolution with the nu,ber of segments.</p>
+<p>Overlap of segments passed to psd. Overlap may take values between 0 and 100 and is given as % of the length of one segment, e.g. ppsd_length=3600 and overlap=50 % result in an overlap of 1800s of the segments.</p>
+<p>Smoothing width in octaves. Determines over what period/frequency range the psd is smoothed around every central period/frequency. Given in fractions of octaves (default of 1 means the psd is averaged over a full octave at each central frequency).</p>
+<p>Period step octaves. Step length on frequency axis in fraction of octaves (default of 0.125 means one smoothed psd value on the frequency axis is measured every 1/8 of an octave).</p>
+<ul>
+<li><span style="color:blue"><strong>Select filter</strong></span>: per network, stations and channels. For example</li>
+</ul>
+<p>Nets --&gt; WM,ES</p>
+<p>Stations --&gt; SFS,EPON</p>
+<p>Channels --&gt; HHZ,HHE,HHN</p>
+<p>If you keep empty spaces at the filter boxes the process will run over all sismograms at the folder tree specified above.</p>
+<ul>
+<li>
+<p><span style="color:blue"><strong>Click on Process</strong></span>: At this step ISP will procss all seismograms and will create a database od PDFs. This process can take for a while specially if your folder tree has many seismogram files. Be patient, a progress bar will let you know.</p>
+</li>
+<li>
+<p><span style="color:blue"><strong>Save the Database</strong></span>: Save the PDFs database for later use. VERY RECOMENDABLE</p>
+</li>
+<li>
+<p><span style="color:blue"><strong>Ready to Go</strong></span>: This action will send all information (PDFs and station information) to the PPSSD main frame. A table with all available network/station/channel will be fill.</p>
+</li>
+</ul>
 <p><img alt="Screenshot" src="../img/PPSDs.png" /></p>
+<ul>
+<li>
+<p><span style="color:blue"><strong>Select some raws from the table</strong></span>: set the nu,ber of stations per page that you want to visualize and select the PDF or Variation (be careful with the time window you select, if you hesitate choose something crazy from year 1975- year 2060). </p>
+</li>
+<li>
+<p><span style="color:blue"><strong>Finally click on plote</strong></span>: You can select the page at the bottom right part of the plot. <em>Warning</em>, if the colorpallette appears overlapped, just click another time at plot.</p>
+</li>
+</ul>
 <p><img alt="Screenshot" src="../img/Diurnal_variation.png" /></p>
 <p><img alt="Screenshot" src="../img/Seasonal.png" /></p></div>
             </div>
