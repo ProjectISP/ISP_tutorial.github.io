@@ -179,7 +179,7 @@
 <p>This section will show you the overall structure of the project and a basic idea of how are the data managed by ISP.</p>
 <hr />
 <h2 id="description">Description</h2>
-<p>In ISP we have decided go for miniseed format, with is one of the most broadly used data storage formats for seismograms. The best description is given at http://ds.iris.edu/ds/nodes/dmc/data/formats/miniseed/ which is simply:</p>
+<p>In ISP we have decided go for miniseed format, with is one of the most broadly used data storage formats for seismograms. The best description is given at <a href="http://ds.iris.edu/ds/nodes/dmc/data/formats/miniseed/">mseed</a> which is simply:</p>
 <p>MiniSEED is the subset of the SEED standard that is used for time series data. Very limited metadata for the time series is included in miniSEED beyond time series identification and simple state-of-health flags. In particular, geographic coordinates, response/scaling information and other information needed to interpret the data values are not included.</p>
 <p>Time series are stored as generally independent, fixed length data records which each contain a small segment of contiguous series values. A reader of miniSEED is required to reconstruct longer, contiguous time series from the data record segments. Common record lengths are 512-byte (for real time streams) and 4096-byte (for archiving), other record lengths are used for special scenarios.</p>
 <p>A “file” or “stream” of miniSEED is simply a concatenation of data records. Depending on the capabilities of the intended reader the data records for multiple channels of data may be multiplexed together.</p>
@@ -194,7 +194,7 @@ Create Full Project, you give the path to the folder tree where you have your da
 Afterwards, you can save your project (recommended) giving a name and press "Saving Project".
 Becareful, when you start to create a project ISP will capture the search filters, so for example if in the Project Box Channels is selected "BHZ" as in the picture below, the project will created based on this filters- If you do not want any filter set the filter bocxes empty</p>
 <p><img alt="Screenshot" src="../img/Basics_example.png" /></p>
-<p>Filters boxes uses <a href="*https://en.wikipedia.org/wiki/Regular_expression*">Regex</a> <a href="*https://www.educative.io/answers/how-to-implement-wildcards-in-python*">Python keywords</a>:</p>
+<p>Filters boxes uses <a href="https://en.wikipedia.org/wiki/Regular_expression">Regex</a> and <a href="https://www.educative.io/answers/how-to-implement-wildcards-in-python">Python keywords</a>:</p>
 <p>For example, if ypu want search any component in channels "BH." or if you want any station but verical component station ".+" channel BHZ.</p>
 <p>Very important, you can reload your project aplying searching filters simply by pressing "r" outside the plot window. This action also takes into account if trim is checked to cut the time window. This is very useful to search for specific time windows where you already knows in advance that there is an event there.</p>
 <p>The following video shows how to create a project, make searches by wildcards and how to search by specific time windows.</p>
