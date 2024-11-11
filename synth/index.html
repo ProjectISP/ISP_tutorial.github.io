@@ -165,9 +165,28 @@
 
 <h1 id="synthetic-generator">Synthetic Generator</h1>
 <p><img alt="Screenshot" src="../img/Lapiz.png" /></p>
-<p>The Synthetic Tool (Fig. 1), you can make queries to download synthetic seismograms using the synthetic generator (go to the toolbar to deploy it). Fig. 2 shows the tool to make the queries. To implement a query just add the location of the stations for the synthetics be generated. Choose a model, units (velocity, displacement or acceleration) the source coordinates and time spam and, very important, the type of source and the focal parameters.</p>
+<p>The synthetic toolbox is a toolbox designed to request synthetic seismograms from IRIS Synthetics Engine (Syngine).</p>
+<p>To make a query just add the location of the stations for the synthetics be generated. In this step the user has two options.</p>
 <p><img alt="Screenshot" src="../img/Generate_Synthetics.png" /></p>
-<p>Once the query is done and the synthetic seismograms are saved in the location path you had selected, you can plot the synthetic seismograms and  the map/focal mechanism for give a first eye to the results.</p>
+<ul>
+<li>Add coordinates plus station name and network manually</li>
+<li>Load a coordinates files with the following structure</li>
+</ul>
+<pre>
+    <code>
+Latitude;Longitude;Network;Station
+35.8;-3.0;WM;ARNO
+36.9;-4.0;XX;OBS01
+37.2;-5.0;WM;SFS
+    </code>
+</pre>
+
+<ul>
+<li>Design a line with a number of stations from a specific geografic reference point. Just fill the following dialog:</li>
+</ul>
+<p><img alt="Screenshot" src="../img/LineStations.png" /></p>
+<p>Then choose a model, units (velocity, displacement or acceleration) the source coordinates and time spam and, very important, the type of source and focal parameters. Click at apply button and then the query will be send. Finally ISP will ask for a folder where will be save the seismograms in mseed format, the information related with the query in a file.json and the coordinates of the stations.</p>
+<p>Finally, you can rapidly visualize the seismograms just following the example below. you will find the data at ISP/isp/example/Synthetic_mti to replicate the example.</p>
 <p><img alt="Screenshot" src="../img/Synthetic_Visulization.png" /></p></div>
             </div>
         </div>
