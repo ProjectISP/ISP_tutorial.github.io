@@ -194,17 +194,19 @@
 <p>The Frequency-Wavenumber (FK) is basically a method to compute the beamforming in the frequency domain (Capon, 1969).</p>
 <p>To compute the FK you need follow this steps;</p>
 <ul>
-<li>Files: Path where you have the seismograms</li>
-<li>Dataless: path where you have the metadata (<em>.dlsv or </em>.xml)</li>
-<li>Set temporal window of the analysis and check the box Trim</li>
-<li>Plot the seismograms</li>
+<li>Open Earthquake Analysis, then load a metadata (stations coordinates and instrument info). Clicking at Metadata File.</li>
+</ul>
+<p>Then create a project or load a project, clicking at New Project / Load project. Next, process and plot your waveforms. Finally trim the event (check the box Trim Time) and click on the array analysis button on the top <img alt="Screenshot" src="../img/array_simbol.png" /></p>
+<p>The figure below represents the seismograms: isp/examples/NuclearExplotionILAR_2017 and metadata at: isp/Metadata/dataless_LASA/dataless.dlsv</p>
+<p><img alt="Screenshot" src="../img/conexion_array.png" /></p>
+<ul>
 <li>Fill the parameters (Slowness Max, Time Window, overlap……)</li>
 <li>Choose methods</li>
 <li>Press Run F-K</li>
 </ul>
 <p>Now, you will watch in the upper panels the Rel Power, Absolute Power, Back-Azimuth and Slowness results of your analysis. </p>
 <p>Two more actions:
-Double pick in the upper panels will run the FK in that specific time window (starting in the point). Then, the slowness map and the stack corresponding to the delays of the maximum power in the slowness vector will show up.</p>
+Double pick at any of the upper panels will run the FK in that specific time window (starting in the point). Then, the slowness map and the stack corresponding to the delays of the maximum power in the slowness vector will show up.</p>
 <p>The pick with the slowness vector corresponding to the phase you selected are automatically saved in the file “isp/arrayanalysis/dataframe.csv” and you can open the file just pressing “ctrl+o”</p>
 <p><img alt="Screenshot" src="../img/FKNuclear.png" /></p>
 <h2 id="vespagram">Vespagram</h2>
