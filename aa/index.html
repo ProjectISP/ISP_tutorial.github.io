@@ -187,7 +187,19 @@
 <h2 id="array-response-function-arf">Array Response Function (ARF)</h2>
 <p>The Array Response Function (ARF) (Ruigrok et al., 2017) helps to evaluate the resolution of the array in a specific bandwidth.</p>
 <p>First you need to create a coordinates files and then load it. To create the coordinate file go to
-“Files &gt;&gt;&gt; Stations Coordinates” and fill the table with lat (o), lon (o) and depth (km).</p>
+“Files &gt;&gt;&gt; Stations Coordinates” and fill the table with lat (o), lon (o) and depth (km). See this example:</p>
+<pre>
+    <code>
+Name      Lon         Lat     Depth
+IL02  -146.864304  64.784698   261
+IL03  -146.851196  64.771400   440
+IL04  -146.876099  64.757004   528
+IL05  -146.922897  64.773102   389
+IL06  -146.904007  64.779198   262
+    </code>
+</pre>
+
+<p>This example of ccordinates files is available at: isp/arrayanalysis/stations/coordsLasa.txt</p>
 <p>Then you can compute the ARF and plot the map with the array stations.</p>
 <p><img alt="Screenshot" src="../img/ARF.png" /></p>
 <h2 id="frequency-wavenumber-analysis">Frequency-Wavenumber Analysis</h2>
@@ -206,13 +218,23 @@
 </ul>
 <p>Now, you will watch in the upper panels the Rel Power, Absolute Power, Back-Azimuth and Slowness results of your analysis. </p>
 <p>Two more actions:
-Double pick at any of the upper panels will run the FK in that specific time window (starting in the point). Then, the slowness map and the stack corresponding to the delays of the maximum power in the slowness vector will show up.</p>
-<p>The pick with the slowness vector corresponding to the phase you selected are automatically saved in the file “isp/arrayanalysis/dataframe.csv” and you can open the file just pressing “ctrl+o”</p>
+Double pick at any of the upper panels will run the FK in that specific time window (starting in the point). Then, the slowness map will show up. if you check Shift, the stack and the shifted traces according to the maximum slowness vector will be process and plot. Additionally you canselect the stacking method. The stack trace can be saved as miniseed, go to file save seismogram stack.</p>
+<p>The pick with the slowness vector corresponding to the phase you selected are automatically saved in the file “isp/arrayanalysis/array_picks.txt” and you can open the file just pressing “ctrl+o”.</p>
+<ul>
+<li>Fk Analysis </li>
+</ul>
 <p><img alt="Screenshot" src="../img/FKNuclear.png" /></p>
+<ul>
+<li>Traces Stack</li>
+</ul>
+<p><img alt="Screenshot" src="../img/stack_array.png" /></p>
 <h2 id="vespagram">Vespagram</h2>
 <p>The vespagram is a visualization of the FK results for an specific backazimuth or slowness. So, once you have done the FK analysis, you can compute the vespagram (Rost and Thomas, 2002).</p>
-<p>But before, you must select the time window. Go with the mouse to the any upper panel. Pick, hold and drag to the right direction to do the selection.  Now you can open the vespagram window.</p>
+<p>But before, you must select the time window. Go with the mouse to the any upper panel. Pick, hold and drag to the right direction to do the selection. The span time will be hilighted and then you can open the vespagram window.</p>
 <p>In the vespagram window you can select the parameters (Win length, overlap, and frequency bandwidth of the analysis) and the backazimuth and slowness where you want to compute the vespagram.</p>
+<ul>
+<li>Vespagram</li>
+</ul>
 <p><img alt="Screenshot" src="../img/VespagramNuclear.png" /></p>
 <h2 id="back-projection">Back Projection</h2>
 <p>The Back Projection is a relatively new technique (Kruger and Ohrnberger 2005) designed to quickly and effectively imaging rupture process of large earthquakes. Back-projecting seismic data can be done by big seismic arrays.</p>
