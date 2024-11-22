@@ -154,13 +154,25 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#moment-tensor-inversion" class="nav-link">Moment Tensor Inversion</a>
+            <li class="nav-item" data-level="1"><a href="#moment-tensor-inversion-mti" class="nav-link">Moment Tensor Inversion (MTI).</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#methodology" class="nav-link">Methodology</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#connect-earthquake-analysis-to-mti-module" class="nav-link">Connect Earthquake Analysis to MTI module.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#create-earth-velocity-model" class="nav-link">Create Earth velocity model</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#bayesian-inversion" class="nav-link">Bayesian Inversion</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#plotting-your-results" class="nav-link">Plotting Your results</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -175,45 +187,114 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="moment-tensor-inversion">Moment Tensor Inversion</h1>
-<p>The functionality of this module is based on the Bayes-ISOLA code (Vackář et al., 2017), a tool for automated CMT inversion in a Bayesian framework. This module a function to calculate an optional data covariance matrix from pre-event noise that yields an automatic weighting function for the receiver components according to their noise levels. This also serves as an automated frequency filter that suppresses noisy frequency ranges. During the inversion, a grid search is performed over time and space, combined with an analytical (least squares) moment tensor inversion at each grid point, which accelerates the inversion process. The more time-consuming tasks like the Green’s function computation and the grid search are parallelized for efficiency. The results provided by the module contain the best-fit solution, as well as the full posterior probability density function (PPDF), which allows the user to plot the marginal probability density functions (PDFs) for any of the CMT parameters.</p>
+<h1 id="moment-tensor-inversion-mti">Moment Tensor Inversion (MTI).</h1>
+<h2 id="methodology">Methodology</h2>
+<p>The functionality of this module is based on the Bayes-ISOLA code <a href="https://academic.oup.com/gji/article/210/2/693/3747443">Vackář et al., 2017</a>, a tool for automated CMT inversion in a Bayesian framework. A nice improvement that boost the robusness of the MTI is to use an optional data covariance matrix from pre-event noise that yields an automatic weighting function for the receiver components according to their noise levels. This also serves as an automated frequency filter that suppresses noisy frequency ranges. </p>
+<p>During the inversion, a grid search is performed over time and space, combined with an analytical (least squares) moment tensor inversion at each grid point, which accelerates the inversion process. The more time-consuming tasks like the Green’s function computation and the grid search are parallelized for efficiency. The results provided by the module contain the best-fit solution, as well as the full posterior probability density function (PPDF), which allows the user to plot the marginal probability density functions (PDFs) for any of the CMT parameters.</p>
 <hr />
+<h2 id="connect-earthquake-analysis-to-mti-module">Connect Earthquake Analysis to MTI module.</h2>
+<p>The first step to estimate the Focal Mechanism using the MTI module is to send your waveforms in velocity usints to the MTI module. To be familiarize with this process, you have an example inside </p>
+<pre>
+    <code>
+Waveforms, macro and event info --> /isp/example/Moment_Tensor_example
+Metadata --> /isp/Metadata/xml/metadata.xml
+    </code>
+</pre>
+
+<ul>
+<li><span style="color:#8E44AD">Create a new project</span> pointing to the files of the example</li>
+<li><span style="color:#8E44AD">Load the metadata</span></li>
+<li><span style="color:#8E44AD">Load Macro</span></li>
+<li><span style="color:#8E44AD">Process and plot</span> your waveforms</li>
+<li><span style="color:#8E44AD">Cut the waveforms</span> (remember with Q starttime and E endtime over the plot and check the box Trim Time), then Process and plot your waveforms another time.</li>
+</ul>
+<p>See the figures related with this example</p>
+<p>Click on Macro and Load the file <strong>macro_mti.pkl</strong> from the example:
+<img alt="Screenshot" src="../img/macro_mti.png" /></p>
+<p>Click on Process and Plot:
+<img alt="Screenshot" src="../img/connect_mti.png" /></p>
+<p>Now everything is ready!!!, We need to send all of this information (Waveforms plus metadata to MTI module).
+Now, <span style="color:red">click on the picture (up left button)</span> <img alt="Screenshot" src="../img/mti_simbol.png" /></p>
+<p>This action will connect your waveforms with the MTI module. It will open a dialog asking how to set your earthquake hypocenter source parameters (lat, lon, depth and mag).</p>
+<p><img alt="Screenshot" src="../img/mti_dialog.png" /></p>
+<p>You can either choose:</p>
+<ul>
+<li><span style="color:#8E44AD">Manually</span>. After open MTI module, you will have to fill Moment Tensor Parameters box by yourself.</li>
+<li><span style="color:#8E44AD">Load Last Location</span>, This action will load the information from your last (last.hyp file) eartuquake location from the default output location folder and will automatically fill the Moment Tensor.</li>
+<li><span style="color:#8E44AD">load other</span>, This action will let you choose a "file.hyp" file and will automatically fill the Moment Tensor.</li>
+</ul>
+<p>Ok, now we are almost ready, next is configurate your eath velocity model</p>
 <h2 id="create-earth-velocity-model">Create Earth velocity model</h2>
 <p>To start you need to load a Earth model. Go to Build a 1D Earth Model and open the Earth Model Form, the fill it and save it.</p>
 <p>Alternatively, Yo can find examples of regional models in <strong>./isp/mti/input/iberia.dat</strong> and <strong>./isp/mti/input/AK135.txt</strong>.</p>
 <p><img alt="Screenshot" src="../img/model_MTI.png" /></p>
 <hr />
 <h2 id="bayesian-inversion">Bayesian Inversion</h2>
-<p>The user needs to fill the following fields to go on with the inversion:</p>
-<p>Metadata &gt;&gt; Path to the file where you have the metadata. This is necessary to extract the stations coordinates and the instrument information to do the deconvolution (this is not totally necessary, the user can manage the seismograms already in velocity units).</p>
 <ul>
 <li>
-<p>Files &gt;&gt; path to the seismogram files</p>
+<p><span style="color:#8E44AD">Output Files</span> &gt;&gt; path to the seismogram files</p>
 </li>
 <li>
-<p>Earth Model &gt;&gt;&gt; Path to the Earth model file (see previous section for see how to make this file with ISP, the user can also do it manually).</p>
+<p><span style="color:#8E44AD">Earth Model</span> &gt;&gt; Path to the Earth model file (see previous section for see how to make this file with ISP, the user can also do it manually).</p>
 </li>
 <li>
-<p>Time Window &gt;&gt;&gt; Set the window in which the seismograms will be used  (StartTime, EndTime and CHECK trim).</p>
-</li>
-<li>
-<p>Macro &gt;&gt; You can set a Macro to make basic processing over the seismograms</p>
+<p><span style="color:#8E44AD">Open Stations/Channels info</span>. This action will allow you select which station/component will be used in the inversion (this is a mandatory action.</p>
 </li>
 </ul>
-<p>Now Follow this steps,</p>
-<p>Process and plot Seismograms
-Open Stations info.
-This action will allow you select which station/component will be used in the inversion</p>
-<p>Plot stations Map (First, fill Latitude Longitude and depth) This is optional
-- Fill the info:
-- Hipocenter location and Uncertainity (m)
-- Origin Time and Uncertainity
-- Magnitude
-- Frequency range for the inversion (see Fig 2 for example)
-- Distance filter. Avoid statations out of the distance filter (Distance from epicenter to station)
-- Option Deviatoric, Circle, Shape, Covariance (please because it uses previous noise window for inversion, select long enough prevent window (i.e., 10 min)) and use precalculated Green functions</p>
-<p><em>Pre-calculated Green Functions is useful because, once you have run an inversion then you may filter the inversion selecting different components or distances</em></p>
-<p><img alt="Screenshot" src="../img/Moment_Tensor.png" /></p>
+<p>Now fill the <span style="color:blue">Moment Tensor Information Box</span>;</p>
+<ol>
+<li>
+<p><strong>Hipocenter Location and Uncertainty (m)</strong><br />
+   Include the estimated hypocenter location along with its associated uncertainty in meters.</p>
+</li>
+<li>
+<p><strong>Origin Time and Uncertainty</strong><br />
+   Specify the calculated origin time of the event and its corresponding uncertainty.</p>
+</li>
+<li>
+<p><strong>Magnitude</strong><br />
+   Provide the event's magnitude as determined from the analysis.</p>
+</li>
+<li>
+<p><strong>Frequency Range for Inversion</strong><br />
+   Indicate the frequency range used during the inversion process. Refer to the example shown in the figure below for clarity.</p>
+</li>
+<li>
+<p><strong>Distance Filter</strong><br />
+   Exclude stations that fall outside the defined distance filter. This filter is based on the distance from the epicenter to each station.</p>
+</li>
+<li>
+<p><strong>Options for Running the Inversion</strong><br />
+   Depending on your analysis, you can choose from the following options:</p>
+<pre><code>- Deviatoric  
+ Configure the inversion to focus on deviatoric components.
+
+- Source Circular Shape  
+ Enforce a circular source shape for the inversion process.
+
+- Covariance 
+ Use covariance for the inversion.  
+ *Note:* Covariance utilizes a previously calculated noise window. 
+ Ensure that this window is sufficiently long (e.g., at least 15 minutes).
+
+- Precalculated Green Functions  
+ Utilize precalculated Green functions to streamline the inversion process.  
+ *Tip:* Run an initial inversion with this option disabled to generate the necessary Green functions.  
+ Once generated, you can refine the inversion by selecting different components, distance filters, or frequency bandwidths.
+</code></pre>
+</li>
+</ol>
+<p><img alt="Screenshot" src="../img/Moment_Tensor_New.png" /></p>
+<h2 id="plotting-your-results">Plotting Your results</h2>
+<p>In order to plot your results,</p>
+<ul>
+<li>
+<p><span style="color:#8E44AD">Click at Plot at last solution</span> -- It will print a log file with the result of the inversion, and the beachball of the focal methanism plus the fit of the synthetci seismograms in time and frecuwency domain. Double click on the images to zoom in.</p>
+</li>
+<li>
+<p><span style="color:#8E44AD">Click at Open full report</span>. It will be open the report with the full output images on your webbrowser navigator.</p>
+</li>
+</ul>
 <h2 id="multimedia-material-mti">Multimedia Material (MTI)</h2>
 <!-- blank line -->
 <figure class="video_container">
