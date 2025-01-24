@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>License - ISP Tutorial</title>
+        <title>Gallery & Progress - ISP Tutorial</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -98,7 +98,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -106,7 +106,7 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">License</a>
+    <a href="../license/" class="dropdown-item">License</a>
 </li>
                                     
 <li>
@@ -123,7 +123,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="../progress/" class="nav-link">Gallery & Progress</a>
+                                <a href="./" class="nav-link active" aria-current="page">Gallery & Progress</a>
                             </li>
                         </ul>
 
@@ -134,12 +134,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../refs/" class="nav-link">
+                                <a rel="prev" href="../Special_Thanks/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../release_notes/" class="nav-link">
+                                <a rel="next" class="nav-link disabled">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -160,12 +160,53 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="2"><a href="#news-22-nov-2024" class="nav-link">News 22-Nov-2024</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#news-1-nov-2024" class="nav-link">News 1-Nov-2024</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<p>ISP is licensed under the GNU Lesser General Public License (LGPL) v3.0.</p></div>
+<h2 id="news-22-nov-2024">News 22-Nov-2024</h2>
+<p>We have upgraded modules Moment Tensor Inversion and Array Analysis. Now they are perfectly connected with Earthquake analysis and are much more flexible and intuitive.</p>
+<h2 id="news-1-nov-2024">News 1-Nov-2024</h2>
+<ul>
+<li>We have renew the <a href="https://projectisp.github.io/ISP_tutorial.github.io/synth/"><span style="color:#8E44AD">Synthetic Toolbox</span></a>.</li>
+</ul>
+<p><img alt="Screenshot" src="../img/Synthetic_Visulization.png" /></p>
+<ul>
+<li>
+<p>We have included an option to run your own Python script from a seismogram processed with ISP. You can see how to use this option at <a href="https://projectisp.github.io/ISP_tutorial.github.io/el/"><span style="color:#8E44AD">Earthquake Seismology - Run Script </span></a>.</p>
+</li>
+<li>
+<p>Now you can read ObsPy catalogs using ISP <a href="https://projectisp.github.io/ISP_tutorial.github.io/el/"><span style="color:#8E44AD">Earthquake Seismology - Search in Catalog </span></a>.</p>
+</li>
+</ul>
+<p>The ISP team has recently developed:</p>
+<ul>
+<li><span style="color:red">Earthquake Analysis module Upgraded</span></li>
+</ul>
+<p>In this upgrade you can create your project from your individual files or from your sds structure. We have also included a fast way to search your waveforms from a catalog (./isp/examples/catalog/). </p>
+<p>Now it is created a connection Earthquake Analysis to TF Analysis to allow the user a rapid deep signal processing investigation.</p>
+<p>Moreover, it is included a very nice way of sort tyour waveforms by distance and showing the theoretical Travel-Times.</p>
+<p><img alt="Screenshot" src="../img/plot_record_section.png" /></p>
+<p><img alt="Screenshot" src="../img/TFconnection.png" /></p>
+<p><img alt="Screenshot" src="../img/catalog.png" /></p>
+<ul>
+<li><span style="color:red">Seismic Ambient Noise Tomography</span> </li>
+</ul>
+<p>For now, It is available the Empirical Green Functions retrieval of vertical and Horizontal components, synchronize clocks using EGFs ,a tool to measure Group and Phase velocity from dispersion curves and create dispersion maps.</p>
+<p>An example with the results of Cabieces et al., 2022 "Upper lithospheric structure of northeastern Venezuela from joint inversion of surface wave dispersion and receiver functions" can be found in ./isp/ant</p>
+<p><img alt="Screenshot" src="../img/dispersion_maps.png" /></p>
+<p>We have implemented the conexion between Erthquake Location and <a href="https://projectisp.github.io/ISP_tutorial.github.io/tf/#connect-with-earthquake-analysis"><span style="color:red"><strong>Time-Frequency Anlysis</strong></span></a></p></div>
             </div>
         </div>
 

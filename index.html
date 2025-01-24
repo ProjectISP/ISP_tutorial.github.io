@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +10,13 @@
         <link rel="shortcut icon" href="img/favicon.ico">
         <title>ISP Tutorial</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/fontawesome.min.css" rel="stylesheet">
+        <link href="css/brands.min.css" rel="stylesheet">
+        <link href="css/solid.min.css" rel="stylesheet">
+        <link href="css/v4-font-face.min.css" rel="stylesheet">
         <link href="css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/color-brewer.min.css">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/color-brewer.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
@@ -22,7 +26,7 @@
             <div class="container">
                 <a class="navbar-brand" href=".">ISP Tutorial</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -30,17 +34,17 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="navitem active">
-                                <a href="." class="nav-link">Home</a>
+                            <li class="nav-item">
+                                <a href="." class="nav-link active" aria-current="page">Home</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="install/" class="nav-link">Installation</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="basics/" class="nav-link">Start with the basics</a>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Modules <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Modules</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -68,8 +72,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Additional Toolboxes <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Additional Toolboxes</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -93,8 +97,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -118,11 +122,14 @@
 </li>
                                 </ul>
                             </li>
+                            <li class="nav-item">
+                                <a href="progress/" class="nav-link">Gallery & Progress</a>
+                            </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -143,36 +150,28 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#welcome-to-integrated-seismic-program-isp-documentation" class="nav-link">Welcome to Integrated Seismic Program (ISP) Documentation</a>
+            <li class="nav-item" data-bs-level="1"><a href="#welcome-to-integrated-seismic-program-isp-documentation" class="nav-link">Welcome to Integrated Seismic Program (ISP) Documentation</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#news-22-nov-2024" class="nav-link">News 22-Nov-2024</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#news-1-nov-2024" class="nav-link">News 1-Nov-2024</a>
+            <li class="nav-item" data-bs-level="2"><a href="#surfquake" class="nav-link">surfQuake</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#complementary-software" class="nav-link">Complementary Software</a>
+            <li class="nav-item" data-bs-level="2"><a href="#software-structure" class="nav-link">Software Structure</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#software-structure" class="nav-link">Software Structure</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#something-about-isp" class="nav-link">Something about ISP</a>
+            <li class="nav-item" data-bs-level="2"><a href="#data-examples-repository" class="nav-link">Data examples repository</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -190,29 +189,13 @@
 <p><strong>GitHub</strong> <a href="https://github.com/ProjectISP/ISP/tree/ISP_2.0_development">ISP github</a>.</p>
 <p><strong>Follow us</strong> in: <a href="https://twitter.com/ProgramSeismic">twitter</a>.</p>
 <p><a href="https://pubs.geoscienceworld.org/ssa/srl/article-abstract/93/3/1895/612376/Integrated-Seismic-Program-ISP-A-New-Python-GUI?redirectedFrom=fulltext"><strong>Reference Paper</strong></a>.</p>
-<h2 id="news-22-nov-2024">News 22-Nov-2024</h2>
-<p>We have upgraded modules Moment Tensor Inversion and Array Analysis. Now they are perfectly connected with Earthquake analysis and are much more flexible and intuitive.</p>
-<h2 id="news-1-nov-2024">News 1-Nov-2024</h2>
-<ul>
-<li>We have renew the <a href="https://projectisp.github.io/ISP_tutorial.github.io/synth/"><span style="color:#8E44AD">Synthetic Toolbox</span></a>.</li>
-</ul>
-<p><img alt="Screenshot" src="img/Synthetic_Visulization.png" /></p>
-<ul>
-<li>
-<p>We have included an option to run your own Python script from a seismogram processed with ISP. You can see how to use this option at <a href="https://projectisp.github.io/ISP_tutorial.github.io/el/"><span style="color:#8E44AD">Earthquake Seismology - Run Script </span></a>.</p>
-</li>
-<li>
-<p>Now you can read ObsPy catalogs using ISP <a href="https://projectisp.github.io/ISP_tutorial.github.io/el/"><span style="color:#8E44AD">Earthquake Seismology - Search in Catalog </span></a>.</p>
-</li>
-</ul>
-<h2 id="complementary-software">Complementary Software</h2>
-<p><a href="https://projectisp.github.io/surfquaketutorial.github.io/">surfQuake</a>
-A new software to streamline the workflow of estimating seismic source parameters:</p>
+<h2 id="surfquake">surfQuake</h2>
+<p><a href="https://projectisp.github.io/surfquaketutorial.github.io/">surfQuake</a> core has been totally join to ISP, now either the library and the command line interface are installed all together! This new software is designed to streamline the workflow of estimating seismic source parameters:</p>
 <ul>
 <li><span style="color:red"><em>Release Date: 18-April-2024</em></span></li>
-<li><a href="https://meetingorganizer.copernicus.org/EGU24/EGU24-2816.html"><span style="color:black"><em>EGU-24 presentation</em></span></a>
-<a href="https://projectisp.github.io/surfquaketutorial.github.io/"><img alt="Screenshot" src="img/logo_surf.png" /></a></li>
+<li><a href="https://meetingorganizer.copernicus.org/EGU24/EGU24-2816.html"><span style="color:black"><em>EGU-24 presentation</em></span></a></li>
 </ul>
+<p><a href="https://projectisp.github.io/surfquaketutorial.github.io/"><img alt="Screenshot" src="img/logo_surf.png" /></a></p>
 <h2 id="software-structure">Software Structure</h2>
 <h3 id="index-modules">Index: Modules</h3>
 <ul>
@@ -231,27 +214,8 @@ A new software to streamline the workflow of estimating seismic source parameter
 <li><a href="https://projectisp.github.io/ISP_tutorial.github.io/synth/"><span style="color:#8E44AD">Synthetic Generator </span></a></li>
 <li><a href="https://projectisp.github.io/ISP_tutorial.github.io/nrt/"><span style="color:#8E44AD">Near-Real Time Adquisition </span></a></li>
 </ul>
-<h2 id="something-about-isp">Something about ISP</h2>
-<p>We have added a widget to help users to <strong>automatically</strong> estimate Moment Magnitude, Local Magnitude and additional source features, following <a href="https://github.com/SeismicSource/sourcespec"><span style="color:red">SourceSpec </span></a>.</p>
-<p><img alt="Screenshot" src="img/automag.png" /></p>
-<p>We have created a repository with an example of <a href="https://github.com/rcabdia/ProjectISP_3Dmodels"><span style="color:red"><strong>3D model</strong></span></a></p>
-<p>We have implemented the conexion between Erthquake Location and <a href="https://projectisp.github.io/ISP_tutorial.github.io/tf/#connect-with-earthquake-analysis"><span style="color:red"><strong>Time-Frequency Anlysis</strong></span></a></p>
-<p>The ISP team has recently developed:</p>
-<ul>
-<li><span style="color:red">Earthquake Analysis module Upgraded</span></li>
-</ul>
-<p>In this upgrade you can create your project from your individual files or from your sds structure. We have also included a fast way to search your waveforms from a catalog (./isp/examples/catalog/). </p>
-<p>Now it is created a connection Earthquake Analysis to TF Analysis to allow the user a rapid deep signal processing investigation.</p>
-<p>Moreover, it is included a very nice way of sort tyour waveforms by distance and showing the theoretical Travel-Times.</p>
-<p><img alt="Screenshot" src="img/plot_record_section.png" /></p>
-<p><img alt="Screenshot" src="img/TFconnection.png" /></p>
-<p><img alt="Screenshot" src="img/catalog.png" /></p>
-<ul>
-<li><span style="color:red">Seismic Ambient Noise Tomography</span> </li>
-</ul>
-<p>For now, It is available the Empirical Green Functions retrieval of vertical and Horizontal components, synchronize clocks using EGFs ,a tool to measure Group and Phase velocity from dispersion curves and create dispersion maps.</p>
-<p>An example with the results of Cabieces et al., 2022 "Upper lithospheric structure of northeastern Venezuela from joint inversion of surface wave dispersion and receiver functions" can be found in ./isp/ant</p>
-<p><img alt="Screenshot" src="img/dispersion_maps.png" /></p></div>
+<h2 id="data-examples-repository">Data examples repository</h2>
+<p>We have created a repository with an example of <a href="https://github.com/rcabdia/ProjectISP_3Dmodels"><span style="color:red"><strong>3D model</strong></span></a></p></div>
             </div>
         </div>
 
@@ -259,8 +223,7 @@ A new software to streamline the workflow of estimating seismic source parameter
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="js/jquery-3.6.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = ".",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
@@ -273,7 +236,7 @@ A new software to streamline the workflow of estimating seismic source parameter
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -293,7 +256,7 @@ A new software to streamline the workflow of estimating seismic source parameter
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">
@@ -333,6 +296,6 @@ A new software to streamline the workflow of estimating seismic source parameter
 </html>
 
 <!--
-MkDocs version : 1.5.3
-Build Date UTC : 2024-11-22 09:36:01.005157+00:00
+MkDocs version : 1.6.1
+Build Date UTC : 2025-01-24 18:18:40.713983+00:00
 -->
