@@ -404,7 +404,7 @@ Choose the grid type and the wave and then generate the velocity model binary fi
 <p>For example, First the user would place the center of the grid in case you want the center of a 1D grid:
 Grid reference 34.0 Latitude, -14.0 Longitude and -1 (1 km in topography). Grid Size x = 2 (always) dx = 1, y = 2000 dy =1 and z = 200 dz = 1. Tha means an aproximate square region of <span style="color:red"><strong>radio</strong></span> 2000x2000x150 km with the reference at (34,-14,-1).</p>
 <p>Second, for the 3D case, the user must set the Grid reference also 37.0 Latitude, -9.0 Longitude and -1 (1 km in topography), but the Grid Size is refered to the distance from the grid reference. So, for example, Grid Size x = 881 dx = 1, y = 661 dy =1 and z = 61 dz = 1. This means a grid centered at 37.0,-9.0,-1.0 with a extension of <span style="color:red"><strong>diameter</strong></span> (881,661,60), see image below.</p>
-<p><img alt="Screenshot" src="../img/frame.png" /></p>
+<p><img alt="Screenshot" src="../img/grid_definition.png" /></p>
 <p>Once the binary files are generated you can check the results in the folder:</p>
 <p>ISP/earthquakeAnalysis/location_output/model</p>
 <ul>
@@ -498,10 +498,19 @@ y   relative weighting..[y]
 <hr />
 <h2 id="spectral-analysis-source-parameters">Spectral Analysis - Source Parameters</h2>
 <h3 id="moment-magnitude">Moment Magnitude</h3>
-<p><img alt="Screenshot" src="../img/automag.png" /></p>
-<p>Further Magnitudes:</p>
+<p>This module is based on <a href="https://sourcespec.readthedocs.io/en/stable/">SourceSpec v1.7</a> and it uses the location storaged in the folder Loc Folder (hyp files) to estimate the event source parameters (seismic moment, corner frequency, radiated energy, source size, static stress drop, apparent stress).</p>
+<p>The configuration file that ISP points to is placed at:</p>
+<p>ISP/isp/source_spec_parse/config/source_spec.conf</p>
+<p>The user can modify the configuration as well as the GUI (below) entry points from ISP.</p>
+<pre>
+    <code>
+![Screenshot](img/automag.png)
+    </code>
+</pre>
+
+<p>Complementary Magnitudes (work in progress):</p>
 <p>With the <a href="http://www.isc.ac.uk/standards/magnitudes/">Magnitude Estimation</a> you can calculate):
-Local Magnitude (<span style="color:red">ML</span>) or Body-wave (<span style="color:red">mb</span>), Surface-wave (<span style="color:red">Ms</span>), Moment Magnitude (<span style="color:red">Mw</span>) and Coda Magnitude (<span style="color:red">Mc</span>).</p>
+Body-wave (<span style="color:red">mb</span>), Surface-wave (<span style="color:red">Ms</span>) and Coda Magnitude (<span style="color:red">Mc</span>).</p>
 <h2 id="phase-picking-and-associator">Phase Picking and Associator</h2>
 <h3 id="neural-network-for-picking-and-first-polarity">Neural Network for picking and First Polarity</h3>
 <p><img alt="Screenshot" src="../img/picking2.png" />
