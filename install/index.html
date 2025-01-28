@@ -97,9 +97,6 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
-                                <a href="../progress/" class="nav-link">Gallery & Progress</a>
-                            </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
                                 <ul class="dropdown-menu">
@@ -124,6 +121,9 @@
     <a href="../Special_Thanks/" class="dropdown-item">The Developer Team of ISP thanks to:</a>
 </li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../progress/" class="nav-link">Gallery & Progress</a>
                             </li>
                         </ul>
 
@@ -171,11 +171,19 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#installation-for-developers-mac-and-linux-pip-environment" class="nav-link">Installation for developers (Mac and Linux, pip environment)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#installation-for-windows-users" class="nav-link">Installation for Windows users</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#uninstall-isp" class="nav-link">Uninstall ISP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#list-of-requirements" class="nav-link">List of Requirements</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -194,7 +202,6 @@
 <pre><code>git pull
 </code></pre>
 <p>The installation file will install the requirements and will compile the source packages (advanced). At the end of the installation the user will be asked for an alias "isp". Following the directions <strong>Installation for end users</strong> , it is needed to have previously installed <a href="https://www.anaconda.com/">anaconda</a>.</p>
-<p>Additionally, <a href="https://support.apple.com/en-us/102527#:~:text=Rosetta%20is%20not%20an%20app,it%20like%20you%20normally%20would."><span style="color:#5DADE2"><em>Rosetta</em></span></a> allows Mac machines with Apple chips to run applications meant for Mac systems with Intel processors. If this is your case, please install Rosseta before proceed with ISP intallation.</p>
 <h2 id="installation-for-end-users-mac-and-linux">Installation for end users (Mac and Linux)</h2>
 <p>To run the installation go to ./ISP/install and type:</p>
 <pre><code>chmod u+x ISP_installer.sh
@@ -207,7 +214,7 @@
 <p>Now the installation process is finished. Open a terminal and type:</p>
 <pre><code>&gt;&gt;isp
 </code></pre>
-<p>Just in case the alias isp do not open the software (because the alias has not been written in your shell), go to ./ISP and type:</p>
+<p>Just in case the alias isp do not open the software, go to ./ISP and type:</p>
 <pre><code>conda activate isp or source activate isp
 python start_isp.py
 </code></pre>
@@ -225,13 +232,50 @@ To run the installation go to ./ISP/install and type:</p>
 <pre><code>conda activate isp or source activate isp
 python start_isp.py
 </code></pre>
+<h2 id="installation-for-developers-mac-and-linux-pip-environment">Installation for developers (Mac and Linux, pip environment)</h2>
+<p>First, Install python 3 and some Cartopy dependencies</p>
+<pre><code>sudo apt install python3-pip python3.8-venv
+sudo apt install libproj-dev proj-data proj-bin libgeos-dev
+</code></pre>
+<p>Then, we suggest installing the requirements:</p>
+<pre><code>python3 -m venv isp
+source isp/bin/activate
+python3 -m pip install -r requirements.txt
+pip install --upgrade setuptools
+</code></pre>
+<p>Next, from the folder ./ISP, compile the source packages:</p>
+<pre><code>python3 setup.py build_ext --inplace
+</code></pre>
 <h2 id="installation-for-windows-users">Installation for Windows users</h2>
 <p>In the following text, we briefly explain how to install ISP in windows via <strong>WSL</strong>. Please, download the directions <a href="https://github.com/ProjectISP/ISP/files/10859958/Running_WSL_GUI_.Apps_and_install_ISP_on_W10_v2.pdf"><strong>here</strong></a></p>
 <h2 id="uninstall-isp">Uninstall ISP</h2>
 <p>First remove the folder ISP, then type in your terminal:</p>
 <pre><code>conda remove --name isp --all
 </code></pre>
-<p>Good luck with the process, and report any issue to the <a href="https://github.com/ProjectISP/ISP/tree/ISP_2.0_development">ISP github repository</a></p></div>
+<h2 id="list-of-requirements">List of Requirements</h2>
+<ul>
+<li>sqlalchemy</li>
+<li>owslib</li>
+<li>Cython</li>
+<li>deprecated</li>
+<li>matplotlib</li>
+<li>numpy</li>
+<li>scipy &gt;= 1.4.1</li>
+<li>obspy</li>
+<li>pandas</li>
+<li>PyQt5</li>
+<li>PyQtWebEngine</li>
+<li>mtspec</li>
+<li>nitime</li>
+<li>Cartopy</li>
+<li>pillow</li>
+<li>PyWavelets</li>
+<li>dill</li>
+<li>nvector</li>
+<li>numba</li>
+<li>Tensorflow&gt;=2.3.0</li>
+</ul>
+<p>Good luck with the process</p></div>
             </div>
         </div>
 

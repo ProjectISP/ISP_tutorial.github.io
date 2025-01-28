@@ -97,9 +97,6 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
-                                <a href="../progress/" class="nav-link">Gallery & Progress</a>
-                            </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
                                 <ul class="dropdown-menu">
@@ -124,6 +121,9 @@
     <a href="../Special_Thanks/" class="dropdown-item">The Developer Team of ISP thanks to:</a>
 </li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../progress/" class="nav-link">Gallery & Progress</a>
                             </li>
                         </ul>
 
@@ -163,7 +163,11 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#earthquake-location" class="nav-link">Earthquake Location</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#event-analysis" class="nav-link">Event Analysis</a>
+            <li class="nav-item" data-bs-level="2"><a href="#pick-event" class="nav-link">Pick Event</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#connexions" class="nav-link">Connexions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -171,19 +175,23 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#event-location" class="nav-link">Event Location</a>
+            <li class="nav-item" data-bs-level="2"><a href="#event-location-and-focal-mechanism-fp" class="nav-link">Event Location and Focal Mechanism (FP)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#focal-mechanism-first-polarity" class="nav-link">Focal Mechanism (First Polarity)</a>
+            <li class="nav-item" data-bs-level="2"><a href="#focmec" class="nav-link">FocMec</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#spectral-analysis-source-parameters" class="nav-link">Spectral Analysis - Source Parameters</a>
+            <li class="nav-item" data-bs-level="2"><a href="#earth-model-viewer" class="nav-link">Earth model Viewer</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#phase-picking-and-associator" class="nav-link">Phase Picking and Associator</a>
+            <li class="nav-item" data-bs-level="2"><a href="#magnitudes-estimation" class="nav-link">Magnitudes Estimation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#automatic-magnitude-estimation" class="nav-link">Automatic Magnitude Estimation</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -199,13 +207,13 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="earthquake-location">Earthquake Location</h1>
-<p>The module Earthquake analysis allows you to analyse waveforms, polarization analysis of seismograms 3-components, calculate earthquake source parameters, locate an event and estimate the focal mechanisms (First Polarity). We will walk through all of the functionality following this scheme:</p>
+<p>The module Earthquake analysis allows you to analyse waveforms, polarization analysis of seismograms 3-components, calculate different magnitudes and finally locate an event and estimate the focal mechanism (First Polarity). We will walk through all of the functionality following this scheme:</p>
 <hr />
-<h2 id="event-analysis">Event Analysis</h2>
+<h2 id="pick-event">Pick Event</h2>
 <p>From top to bottom in the left side of the window you will see:</p>
 <ul>
 <li>
-<p><span style="color:blue"><strong>Event Info</strong></span>: This small box let enter information about an event, in this way you can plot the theoretical arrivals (ak-135F) with respect your seismograms, clicking the button Plot Arrivals. Plot arrivals requires that you have correctly loaded your metadata. You can also Plot the record section, seismograms sorted according to the distance and ploting the theretical arrivals. Inside File &gt; Open Settings, you can select wich phases you want to plot. In case you want select all arrivals, type "ALL" in the Settings box.</p>
+<p><span style="color:blue"><strong>Event Info</strong></span>: This small box let enter information about an event, in this way you can plot the theoretical arrivals (ak-135F) with respect your seismograms. Plot arrivals requires that you have correctly loaded your metadata.</p>
 </li>
 <li>
 <p><span style="color:blue"><strong>Metadata File</strong></span>: By clicking in this button you will place the path to you metadata file. The metadata file must contain the information of all of the stations seismograms you want to analyse (metadata must be a <em>xml or </em>dlsv).</p>
@@ -220,7 +228,7 @@
 <p><span style="color:blue"><strong>Phase box</strong></span>: This combo box allow the selection of specific phases for picking it in the seismograms. </p>
 </li>
 <li>
-<p><span style="color:blue"><strong>Waves box</strong></span>: You can choose Body, surface, coda or noise. With this selected you can highlight a time window of the seismogram for further analysis. The selection are saved inside a dictionary that can be directly used running your own script. See run script to see details.</p>
+<p><span style="color:blue"><strong>Waves box</strong></span>: You can choose Body, surface, coda or noise. With this selected you can highlight a time window of the seismogram for further analysis. For example Mw Magnitude that requires a time window of body wave on many seismograms.</p>
 </li>
 <li>
 <p><span style="color:blue"><strong>Net, Station and Channel</strong></span>: You can fill this boxes (also using wildcards such as * or BH?) to select specific files from your files folder (check “select files”).</p>
@@ -241,27 +249,24 @@
 <p><span style="color:blue"><strong>Particle Motion</strong></span>: This action will plor the particle motion from your vertical and N,E or R,T components. This actions works when you have this three waveforms on screen and are trimed. The sam actioon can be also done in the module Polarization Analysis.</p>
 </li>
 <li>
-<p><span style="color:blue"><strong>Run Script</strong></span>: This is on of the most important actions. Basically it runs a python script that you can have storaged at ISP/isp/scripts/your_scriptX.py. The name of the script is up to you however, you might edit the <strong>init</strong>.py. For example imagine you want to run from ISP your_script1.py. </p>
+<p><span style="color:blue"><strong>Run Script</strong></span>: This is on of the most important actions. Basically it runs a python script that you can have storage at ISP/isp/script/your_script.py</p>
 </li>
 </ul>
-<p>First step edit the ISP/isp/scripts/<strong>init</strong>.py:</p>
+<p>The structure of this folder is as follows:</p>
+<p>scripts/
+    <strong>init</strong>.py
+    your_script1.py
+    your_script2.py
+    .....</p>
+<p>inside <strong>init</strong>.py</p>
 <pre>
     <code>
 from .your_script1 import run_process
     </code>
 </pre>
 
-<p>Second step the fill the folder with the script you want to run:</p>
-<p>The structure of this folder ISP/isp/scripts is as follows:</p>
-<pre>
-    <code>
-    __init__.py
-    your_script1.py
-    </code>
-</pre>
-
 <p>Here you can set which script you want to edit by changing ".your_script1" </p>
-<p>Inside ISP/isp/scripts/script.py you will find an example ready to run by clicking Run Script button. In this example, the action will take the waveform 1 and waveform 2 from the stream ObsPy object and will add their data. Then, the wavform will be plot in a separate window. Of course this two traces must have the same numer of samples!.</p>
+<p>Inside your_script1.py you will find an example ready to run by clicking Run Script button. In this example, the action will take the waveform 1 and waveform 2 from the stream ObsPy object and will add their data. Then, the wavform will be plot in a separate window.</p>
 <pre>
     <code>
 #!/usr/bin/env python
@@ -276,19 +281,10 @@ import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('Qt5Agg')
 
-def run_process(st: Stream, chop: dict, starttime: UTCDateTime, endtime: UTCDateTime, hypo_lat: float,
-                hypo_lon: float, hypo_depth_km: float, hypo_origin_time: UTCDateTime):
+def run_process(st: Stream, starttime: UTCDateTime, endtime: UTCDateTime, hypo_lat: float, hypo_lon: float,
+                hypo_depth_km: float, hypo_origin_time: UTCDateTime):
 
-    """
-    example of how to design your running script
-    chop = {'Body waves': {}, 'Surf Waves': {}, 'Coda': {}, 'Noise': {}}: dict
-    id = {id: [metadata, t, s, xmin_index, xmax_index, t_start_utc, t_end_utc]}
-    metadata = [dic_metadata['net'], dic_metadata['station'], dic_metadata['location'], dic_metadata['channel'],
-            dic_metadata['starttime'], dic_metadata['endtime'], dic_metadata['sampling_rate'],
-            dic_metadata['npts']]
-
-    # example of chop_full_dict_input = {'Body waves':{"WM.SFS..HHZ": [[WM, SFS,,HHZ,...], time_amplitudes, amplitudes,...
-    """
+    # example of how to design your running script
 
     try:
 
@@ -320,16 +316,15 @@ def run_process(st: Stream, chop: dict, starttime: UTCDateTime, endtime: UTCDate
 <p>Additional options from the toolbar are:</p>
 <pre><code>                                    File
 </code></pre>
-<p><span style="color:blue">File:</span> <span style="color:#8E44AD">Project</span> will open the box to assist you in managing a project (load or create a new project).</p>
 <p><span style="color:blue">File:</span> <span style="color:#8E44AD">New location</span> will clean the picks that are saved automatically for be ready to compute new picking/location.</p>
-<p><span style="color:blue">File:</span> <span style="color:#8E44AD">Write Files</span> will write in the folder you select the processed seismograms. The seismograms will be saved in mseed format. Moreove, you can write mseed files containing the Charachteristic Functions such as STA/LTA, Cross Correlations or the stack.</p>
+<p><span style="color:blue">File:</span> <span style="color:#8E44AD">Write Files</span> will write in the folder you select the processed seismograms.</p>
 <p><span style="color:blue">File:</span> <span style="color:#8E44AD">Open Settings</span> will open a window with the specific parameters of the subprocess that 
-you can carry out in this module (sta/lta, wavelet detection, entropy, plor record section phases).</p>
+you can carry out in this module (sta/lta, wavelet detection, spectrogram, entropy…).</p>
 <p><img alt="Screenshot" src="../img/pick_event_params.png" /></p>
 <pre><code>                                    Actions
 </code></pre>
-<p><span style="color:blue">Actions:</span> <span style="color:#8E44AD"> Open Picks</span> will open the file with the information of your picks. You can also open the file from here. Shortcut "Ctr + u". 
-Picks are saved in <span style="color:red"><em>ISP/isp/earthquakeAnalysis/location_output/obs/output.txt</em></span></p>
+<p><span style="color:blue">Actions:</span> <span style="color:#8E44AD"> Picks Open</span> will open the file with the information of your picks. You can also open the file from here. Shortcut "Ctr + u". 
+Picks are saved in <span style="color:red"><em>isp/earthquakeAnalysis/location_output/obs/output.txt</em></span></p>
 <p><span style="color:blue">Actions:</span> <span style="color:#8E44AD"> Picks Remove</span> will clean the pick file.</p>
 <pre>
     <code>
@@ -338,9 +333,17 @@ PMG ? BHZ ? P ? 20221018 1150 24.693 GAU 0.00E+00 0.0 -3024.00 0.0
     </code>
 </pre>
 
-<p><span style="color:blue">Actions:</span> <span style="color:#8E44AD"> Macro</span> will deploy a window with all of the processing options. All of the processing options will be applied once you press the button Processing and Plot.</p>
-<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Clean Events Detected</span> will clean the events associated in the coincidence trigger or events associator. This events are obtained after picking in Auto pick / associate.</p>
-<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Data availability</span> will plot the data availability (backlines) for each station/component of your project.</p>
+<p><span style="color:blue">Actions:</span> <span style="color:#8E44AD"> Macro</span> will deploy a window with all of the processing options. All of the processing options will be applied once you press the button Processing and Plot. Shortcut "Ctr + l"</p>
+<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Detect event</span> will associate the automatic picks carried out by the wavelet picker ant will declare an event. The events will be shown in the seismograms window.</p>
+<p><span style="color:blue">Actions: </span> <span style="color:#8E44AD">Run Picker</span> will carry out the automatic detection/classification of P- and S- waves from the previously loaded “Neural Network”. You must have three components per stations (named <em>N,</em>E,*Z). BE CAREFUL this operation is computationally demanding.</p>
+<p><span style="color:blue">Actions: </span> <span style="color:#8E44AD"> Run Autoloc</span> will detect events using a associated picker based on the Continuous Wavelet Transform (go to File Open Settings to set Num Cycles, Fmin and Fmax) moreover you need to set Detection trigger options Threshold to trigger a pick, number of picks that coincide in different seismograms to declare an event and time window over the clustering of pick is going to be used (For example 40 s means that all seismograms around same time window of 40 s is going to be associated to the same event.</p>
+<p>Once an event is declared it is chopped the seismograms run the autopick (P and S wave) using the Neural Network and run and automatic location. If you want to use a local model to locate be sure that you have the travel times calculated. All locations will be storage in ./isp/earthquakeAnalysis/location_output/all_locations.</p>
+<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Clean Selection</span> will remove an specific seismogram time window selection, such as Body wave,  see the combo box selected and will delete from the selections.</p>
+<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Remove all selections</span></p>
+<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Clean Events Detected</span></p>
+<p><span style="color:blue">Actions: </span> <span style="color:#8E44AD">Magnitude Calculator</span> will open a window in which you can compute different magnitudes. For open this you must have estimated an event and have selected the time-windows in the seismograms that you want the magnitudes be calculated.</p>
+<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Open Earth Model Viewer</span> will open a tool to visualize 3D velocity models. For visualize an Earth Model you need the binary files (<em>buf and  </em>hdr) created in the tab Event location. </p>
+<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Data availability</span> will plot the data availability (backlines) for each station/component of the database loaded from your folder tree.</p>
 <p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Search in Catalog</span> (see the figure below) is a widget designed to plot your catalog and select an event to search in your project. The catalog can be either a csv file with this header:</p>
 <p><img alt="Screenshot" src="../img/explore_catalog.png" /></p>
 <pre>
@@ -364,20 +367,19 @@ Date;Time;Latitude;Longitude;Depth;Magnitude;mag_type
 <p><span style="color:blue">Compute:</span> <span style="color:#8E44AD"> Plot Record Section </span> will plot the waveforms according to distance and will also plot the travel times. This action is available just when you have process and plot your waveforms and sorted by distance. Be careful, you need a correct metadata file loaded and also the event info box corretly filled. This action could take some time.</p>
 <pre><code>                                    Go
 </code></pre>
-<p>Will ship you to the rest of ISP modules (Array analysis, Moment Tensor Inversion, Time-Frequency and RFs mudules). By clicking on one of this module you will send the information of the seismograms and metadata to the other modules. Please see Array analysis and Moment Tensor for further details and examples. </p>
-<p>For xample, If you press letter "m" over a seismogram, then you can click on the TF module picture to analyse the selected waveform in the tf plane. Go to <a href="https://projectisp.github.io/ISP_tutorial.github.io/tf/#connect-with-earthquake-analysis"><span style="color:red"><strong>Connect with Earthquake Analysis</strong></span></a>, for a fully explanation an example.</p>
+<p>Will ship you to the rest of ISP modules (RFs, Array analysis….). We are working in connecting the seismograms processed in Earquake analysis with the other modules.</p>
 <pre><code>                                    Align Traces
 </code></pre>
 <p><span style="color:blue">Align Traces:</span> <span style="color:#8E44AD">From Phase Pick</span> will align the trace with respect the picks of the selected phase in the phase box. For example, this can be very useful to align the first arriaval, let's say P-wave of an event for all traces.</p>
 <p><span style="color:blue">Align Traces:</span> <span style="color:#8E44AD">From Starttime</span> will set the same starttime to all traces. This is useful if you want to compare seismograms from different days.</p>
 <p><span style="color:blue">Align Traces:</span> <span style="color:#8E44AD">Using MCCC</span> Multi Channel Cross Correlation technicque to find the best way to align all traces. This technique is very efficient when the user expect high coherence between waveforms. For example teleseismic events, or events detected in a coherent array.</p>
-<pre><code>                                    Selections
-</code></pre>
-<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Clean Selection</span> will remove an specific seismogram time window selection, such as Body wave,  see the combo box selected and will delete from the selections.</p>
-<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Remove all selections</span></p>
 <pre><code>                                    Import
 </code></pre>
 <p><span style="color:blue">Import:</span> <span style="color:#8E44AD">Picks from file</span> It will plot the picks from selected file in the corresponding waveforms. The picks from the file that the user select must be in the ISP/NLL format as it is shown above Actions:Picks.</p>
+<h2 id="connexions">Connexions</h2>
+<pre><code>                                    Connexions
+</code></pre>
+<p>You will see that in the Upper part of Pick event the icon of the different ISP modules. If you click on it, the module will be open. If you click on TF module icon will open and will analyse the waveform you selected pressing letter "m". Go to <a href="https://projectisp.github.io/ISP_tutorial.github.io/tf/#connect-with-earthquake-analysis"><span style="color:red"><strong>Connect with Earthquake Analysis</strong></span></a>, for a fully explanation an example.</p>
 <hr />
 <h2 id="polarisation-analysis">Polarisation Analysis</h2>
 <p>The Polarization Analysis is designed to analyze the three seismograms components from a station.
@@ -388,10 +390,9 @@ You can freely rotate using the rotation RT or the LQT your NEZ components an an
 <p>For a full particle motion analysis, press “Plot Polarization”. This will open another window with a 3D particle motion on the left and the three characteristic views on the right.</p>
 <p><img alt="Screenshot" src="../img/polarization2.png" /></p>
 <hr />
-<h2 id="event-location">Event Location</h2>
+<h2 id="event-location-and-focal-mechanism-fp">Event Location and Focal Mechanism (FP)</h2>
 <p>In the Event Location Frame the user can configure the velocity grid 1D/3D model, locate earthquakes and compute Focal Mechanisms.</p>
-<p><img alt="Screenshot" src="../img/location_config.png" /></p>
-<p><img alt="Screenshot" src="../img/event_location.png" /></p>
+<p><img alt="Screenshot" src="../img/Location.png" /></p>
 <ul>
 <li><span style="color:blue"><strong>Grid Reference</strong></span>:</li>
 </ul>
@@ -404,7 +405,7 @@ Choose the grid type and the wave and then generate the velocity model binary fi
 <p>For example, First the user would place the center of the grid in case you want the center of a 1D grid:
 Grid reference 34.0 Latitude, -14.0 Longitude and -1 (1 km in topography). Grid Size x = 2 (always) dx = 1, y = 2000 dy =1 and z = 200 dz = 1. Tha means an aproximate square region of <span style="color:red"><strong>radio</strong></span> 2000x2000x150 km with the reference at (34,-14,-1).</p>
 <p>Second, for the 3D case, the user must set the Grid reference also 37.0 Latitude, -9.0 Longitude and -1 (1 km in topography), but the Grid Size is refered to the distance from the grid reference. So, for example, Grid Size x = 881 dx = 1, y = 661 dy =1 and z = 61 dz = 1. This means a grid centered at 37.0,-9.0,-1.0 with a extension of <span style="color:red"><strong>diameter</strong></span> (881,661,60), see image below.</p>
-<p><img alt="Screenshot" src="../img/grid_definition.png" /></p>
+<p><img alt="Screenshot" src="../img/frame.png" /></p>
 <p>Once the binary files are generated you can check the results in the folder:</p>
 <p>ISP/earthquakeAnalysis/location_output/model</p>
 <ul>
@@ -463,14 +464,12 @@ For the S wave --> layer.S.mod5.mod
 <p>Once you have complete the above steps you can locate the earthquake and the focal mechanism. The above operation are just necessary to be implemented  the first time you use a specific Earth model.</p>
 <p><strong>For global is not necessary generate the velocity grid and travel times</strong>.</p>
 <p>To visualize the detailed Probability Density Function, press “Plot PDF”, once you have already carried out the location.</p>
-<p>The Earth Model Viewer is intended to help to visualize <span style="color:red">3D Earth velocity models</span> as in the figure below.
-Just select the binary file *.buf (can be generated from the model as described in previous section). Next, select the depth of the layer, the cross sections in longitude and latitude and the press plot.</p>
-<p><img alt="Screenshot" src="../img/Velocity_Viewer.png" /></p>
+<p><img alt="Screenshot" src="../img/PDF.png" /></p>
 <p>Moreover, if you have picked the seismic phases and have been designated the polarity in “Event frame” , you will be able to  obtain the Focal Mechanism (it uses the subprogram FocMec)</p>
 <hr />
-<h2 id="focal-mechanism-first-polarity">Focal Mechanism (First Polarity)</h2>
-<p>The run script that manage FocMec behind ISP is in the file <span style="color:blue"><strong>./isp/EartuqakeAnalysis/location_output/first_polarity/focmec_run</strong></span>.</p>
-<p><img alt="Screenshot" src="../img/focmec.png" /></p>
+<h2 id="focmec">FocMec</h2>
+<p>The run script that manage FocMec behind ISP is in the file <span style="color:blue"><strong>./isp/EartuqakeAnalysis/location_output/first_polarity/focmec_run</strong></span>.
+We beg you pardon, the parametrization is still not implemented in the ISPGUI. So, you can play directly with this parameters modifying the focmec_run. I personally play just with allowed P polarit errors, migh be set between 1 to 5, and test pressing run Foc mec in the GUI</p>
 <pre>
     <code>
 mechanism.out
@@ -496,25 +495,32 @@ y   relative weighting..[y]
 
 <p>Indeed what is most important is to play with the value "allowed P polarity erors", by default set to 0.0.</p>
 <hr />
-<h2 id="spectral-analysis-source-parameters">Spectral Analysis - Source Parameters</h2>
-<h3 id="moment-magnitude">Moment Magnitude</h3>
-<p>This module is based on <a href="https://sourcespec.readthedocs.io/en/stable/">SourceSpec v1.7</a> and it uses the location storaged in the folder Loc Folder (hyp files) to estimate the event source parameters (seismic moment, corner frequency, radiated energy, source size, static stress drop, apparent stress).</p>
-<p>The configuration file that ISP points to is placed at:</p>
-<p>ISP/isp/source_spec_parse/config/source_spec.conf</p>
-<p>The user can modify the configuration as well as the GUI (below) entry points from ISP.</p>
-<pre>
-    <code>
-![Screenshot](img/automag.png)
-    </code>
-</pre>
-
-<p>Complementary Magnitudes (work in progress):</p>
+<h2 id="earth-model-viewer">Earth model Viewer</h2>
+<p>The Earth Model Viewer is intended to help to visualize <span style="color:red">3D Earth velocity models</span> as in the figure below.
+Just select the binary file *.buf (can be generated from the model as described in previous section). Next, select the depth of the layer, the cross sections in longitude and latitude and the press plot.</p>
+<p><img alt="Screenshot" src="../img/Velocity_Viewer.png" /></p>
+<hr />
+<h2 id="magnitudes-estimation">Magnitudes Estimation</h2>
 <p>With the <a href="http://www.isc.ac.uk/standards/magnitudes/">Magnitude Estimation</a> you can calculate):
-Body-wave (<span style="color:red">mb</span>), Surface-wave (<span style="color:red">Ms</span>) and Coda Magnitude (<span style="color:red">Mc</span>).</p>
-<h2 id="phase-picking-and-associator">Phase Picking and Associator</h2>
-<h3 id="neural-network-for-picking-and-first-polarity">Neural Network for picking and First Polarity</h3>
-<p><img alt="Screenshot" src="../img/picking2.png" />
-<img alt="Screenshot" src="../img/picking1.png" /></p>
+Local Magnitude (<span style="color:red">ML</span>) or Body-wave (<span style="color:red">mb</span>), Surface-wave (<span style="color:red">Ms</span>), Moment Magnitude (<span style="color:red">Mw</span>) and Coda Magnitude (<span style="color:red">Mc</span>).</p>
+<p>To estimate the magnitudes you have to select a time window of body, surface or coda on the seismograms. </p>
+<ol>
+<li>Units must be on velocity, so you must remove the response of the instrument to velocity, previously to open the Magnitudes window. For Local magnitude you have to remove the response of Wood-Anderson instrument.</li>
+<li>The hypocenter must be already calculated. The program will read the *.hyp file before open Magnitudes window.</li>
+</ol>
+<p>If you place 0.00 on all parameters of local or coda magnitudes, the program will calculate these magnitude with default parameters as follows:</p>
+<p><span style="color:#8E44AD">Coda Magnitude:</span></p>
+<p>Values for California
+a = 2.0; b = 0.0035; c= -0.87</p>
+<p>Mc_value = a<em>np.log10(t_coda)+b</em>dist+c</p>
+<p><span style="color:#8E44AD">Local Magnitude:</span></p>
+<p>a = 1.11; b =0.00189; c= -2.09</p>
+<p>ML_value = np.log10(max_amplitude)+a<em>np.log10(dist)+b</em>dist+c</p>
+<p>Briefly, Once you have open the Magnitude Window, select the magnitudes you want to compute and run the computation.</p>
+<p>In the upper panel it is shown the spectrum of the body waves and the fit to calculate the moment magnitude. In the bottom panel is shown the histograms of all magnitudes (the result of the magnitudes for all seismograms for all kind of magnitudes) and on the left an additional plot used to visualize the dispersion of the results.</p>
+<p><img alt="Screenshot" src="../img/Magnitudes.png" /></p>
+<h2 id="automatic-magnitude-estimation">Automatic Magnitude Estimation</h2>
+<p><img alt="Screenshot" src="../img/automag.png" /></p>
 <hr />
 <h2 id="multimedia-material">Multimedia Material</h2>
 <h3 id="seismogram-analysis">Seismogram Analysis</h3>
