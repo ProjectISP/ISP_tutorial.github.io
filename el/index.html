@@ -143,9 +143,6 @@
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="https://github.com/ProjectISP/ISP/tree/master/edit/master/docs/el.md" class="nav-link"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -178,7 +175,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#focal-mechanism-first-polarity" class="nav-link">Focal Mechanism (First Polarity)</a>
+            <li class="nav-item" data-bs-level="2"><a href="#focal-mechanism-first-polarity" class="nav-link">Focal Mechanism - First Polarity</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -344,7 +341,8 @@ PMG ? BHZ ? P ? 20221018 1150 24.693 GAU 0.00E+00 0.0 -3024.00 0.0
 <p><span style="color:blue">Actions:</span> <span style="color:#8E44AD"> Macro</span> will deploy a window with all of the processing options. All of the processing options will be applied once you press the button Processing and Plot.</p>
 <p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Clean Events Detected</span> will clean the events associated in the coincidence trigger or events associator. This events are obtained after picking in Auto pick / associate.</p>
 <p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Data availability</span> will plot the data availability (backlines) for each station/component of your project.</p>
-<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Search in Catalog</span> (see the figure below) is a widget designed to plot your catalog and select an event to search in your project. The catalog can be either a csv file with this header:</p>
+<p><span style="color:blue">Action: </span> <span style="color:#8E44AD">Search in Catalog</span> (see the figure below) is a widget designed to plot your catalog and select an event to search in your project. The catalog can be either a csv file with this header (example below) or a <em>catalog</em> with an specific <a href="https://docs.obspy.org/packages/autogen/obspy.core.event.read_events.html">file formats</a> such as <em>QUAKEML</em>, <em>SC3ML</em>, <em>CMTSOLUTION</em> and so on. </p>
+<p>To facilitate the selection of events, the user can press "t" over the epicenter in the map to hilight it in the table. Finally, Pressing button "Select Event" the information is sent to the trim starttime and endtime and to the Event Box. Ready to filter your project to make the search of the event and show your waveforms! You can find an example in isp/examples/catalog. See the <a href="https://projectisp.github.io/ISP_tutorial.github.io/el/#multimedia-material"><strong>video</strong></a></p>
 <p><img alt="Screenshot" src="../img/explore_catalog.png" /></p>
 <pre>
     <code>
@@ -353,9 +351,6 @@ Date;Time;Latitude;Longitude;Depth;Magnitude;mag_type
     </code>
 </pre>
 
-<p>or a <em>catalog</em> with an specific <a href="https://docs.obspy.org/packages/autogen/obspy.core.event.read_events.html">file formats</a> such as <em>QUAKEML</em>, <em>SC3ML</em>, <em>CMTSOLUTION</em> and so on. </p>
-<p>To facilitate the selection of events, the user can press "t" over the epicenter in the map to hilight it in the table. Finally, Pressing button "Select Event" the information is sent to the trim starttime and endtime and to the Event Box. Ready to filter your project to make the search of the event and show your waveforms!</p>
-<p>You can find an example in isp/examples/catalog. </p>
 <pre><code>                                    Compute
 </code></pre>
 <p><span style="color:blue">Compute: </span> <span style="color:#8E44AD">STA/LTA </span>from all processed seismograms and will plot the result together. STA/LTA takes the parameters from Parameters Settings.</p>
@@ -471,7 +466,7 @@ Just select the binary file *.buf (can be generated from the model as described 
 <p><img alt="Screenshot" src="../img/Velocity_Viewer.png" /></p>
 <p>Moreover, if you have picked the seismic phases and have been designated the polarity in “Event frame” , you will be able to  obtain the Focal Mechanism (it uses the subprogram FocMec)</p>
 <hr />
-<h2 id="focal-mechanism-first-polarity">Focal Mechanism (First Polarity)</h2>
+<h2 id="focal-mechanism-first-polarity">Focal Mechanism - First Polarity</h2>
 <p>The run script that manage FocMec behind ISP is in the file <span style="color:blue"><strong>./isp/EartuqakeAnalysis/location_output/first_polarity/focmec_run</strong></span>.</p>
 <p><img alt="Screenshot" src="../img/focmec.png" /></p>
 <pre>
@@ -523,12 +518,24 @@ Body-wave (<span style="color:red">mb</span>), Surface-wave (<span style="color:
 <hr />
 <h2 id="multimedia-material">Multimedia Material</h2>
 <h3 id="seismogram-analysis">Seismogram Analysis</h3>
-<p>Sorry this video needs to be updated, however 90% of the stuff still have the same behaviour.
-The following video shows a basic analysis of an earthquake</p>
+<p>Updated</p>
+<p>The following video shows summarize how to manage the basic waveform processing</p>
 <!-- blank line -->
 <figure class="video_container">
   <video controls="true" allowfullscreen="true" poster="../img/poster_image.png" width="740" height="400">
     <source src="../img/basic_processing.mp4" type="video/mp4">
+  </video>
+</figure>
+<!-- blank line -->
+
+<h3 id="explore-your-catalog">Explore your Catalog</h3>
+<p>Updated</p>
+<p>The following video shows a user loading a project, then explores the project using the fast decimation. In the second parte, the user opens a catalog, selects and event and send the information to the main window. Finally filters the project by time and process and plot to see the event wavefroms. 
+Please go to Start with the <strong>Basics --&gt; Shorcuts --&gt; Mouse</strong>.</p>
+<!-- blank line -->
+<figure class="video_container">
+  <video controls="true" allowfullscreen="true" poster="../img/poster_image.png" width="740" height="400">
+    <source src="../img/explore_catalog.mp4" type="video/mp4">
   </video>
 </figure>
 <!-- blank line -->
