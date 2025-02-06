@@ -163,6 +163,18 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#database" class="nav-link">Database</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#visual-options" class="nav-link">Visual Options</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#populate-your-db" class="nav-link">Populate your DB</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#make-a-query" class="nav-link">Make a Query</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -172,11 +184,23 @@
 
 <h1 id="database">Database</h1>
 <p><img alt="Screenshot" src="../img/Compas.png" /></p>
-<p>The Database sub-module is designed to incorporate all the results you can obtain from Earthquake location and Moment Tensor Inversion. It is possible to make queries to the data base, for example searching earthquake locations by a geographic frame or in a specific time spam. Moreover you can plot the results of your query in a map. With double click in a row of the table you can add a Focal mechanism detailed to the map and with right click just over one row of the table you can remove events.</p>
-<p>In the toolbar you will find two options, the first one “Read hyp folder load” will generate a database from all *.hyp that you had placed in the folder. The other option “Read last location” will load (last.hyp, from earthquake analysis), (log.txt, from Moment Tensor Inversion), (mechanism.out, from Earthquake analysis) and (magnitudes.out, from Earthquake analysis) and will fed the database with all of the information extracted.</p>
-<p>Fig. 1 shows  a Data Base example. To plot fashion maps you can add a WMS and the layer you want to plot. I suggest go to this web site to find nice WMS/layers:</p>
-<p><img alt="Screenshot" src="../img/Data_base.png" /></p>
-<p>MAP_SERVICE_URL = 'https://gis.ngdc.noaa.gov/arcgis/services/</p></div>
+<p>The Database sub-module is designed to incorporate all the results you can obtain from Earthquake location and Moment Tensor Inversion. It is possible to make queries to the data base, for example searching earthquake locations by a geographic frame or in a specific time spam. Moreover you can plot the results of your query in a map.</p>
+<p><img alt="Screenshot" src="../img/db_events.png" />
+<img alt="Screenshot" src="../img/db_statistics.png" /></p>
+<h2 id="visual-options"><span style="color:darkcyan;"><strong>Visual Options</strong></span></h2>
+<p>Double Clik near an epicenter in the map and it will be hilighted the corresponding row in the table.</p>
+<p>Double Click in a epicenter in the table and (if here is MTI information) it will be plot the beachball in the map</p>
+<p>Click with right button in a table row and select highlight event to visualize the exact event in the map.</p>
+<p>Click with right button to get the phases information corresponding to the selected event</p>
+<p><img alt="Screenshot" src="../img/db_phases.png" /></p>
+<h2 id="populate-your-db"><span style="color:darkcyan;"><strong>Populate your DB</strong></span></h2>
+<ul>
+<li>Pick in File/Read Hyp Folder to incorporate all information contained inside hyp folders. Hyp folders are the file output from location.</li>
+<li>Pick in File/Magnitudes to populate your database with the information from the output file obtained in source toolbox.</li>
+<li>Pick in File/MTI to populate your database with the information from the output file obtained in MTI toolbox.</li>
+</ul>
+<h2 id="make-a-query"><span style="color:darkcyan;"><strong>Make a Query</strong></span></h2>
+<p>Choose the options on the left widget to filter the hypocenter inside your DataBase. The earthquakes shown in the table can be used in the MTI GUI when runs the inversion.</p></div>
             </div>
         </div>
 
