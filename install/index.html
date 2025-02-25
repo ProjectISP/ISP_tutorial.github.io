@@ -205,11 +205,17 @@
 <pre><code>Which type of installation would you prefer, conventional or advanced ? conventional
 </code></pre>
 <p>Now the installation process is finished. Open a terminal and type:</p>
-<pre><code>&gt;&gt;isp
+<pre><code>&gt;&gt; isp
 </code></pre>
 <p>Just in case the alias isp do not open the software (because the alias has not been written in your shell), go to ./ISP and type:</p>
 <pre><code>conda activate isp or source activate isp
 python start_isp.py
+</code></pre>
+<p>WARNING! For Linux users it is recommendable to install futher dependencies:</p>
+<pre><code>sudo apt update
+sudo apt-get install xdg-utils
+sudo apt install --reinstall libxcb-xinerama0
+sudo apt install --reinstall libxcb1 libx11-xcb1 libxext6 libxkbcommon-x11-0
 </code></pre>
 <h2 id="installation-for-developers-mac-and-linux">Installation for developers (Mac and Linux)</h2>
 <p>Before run this type of installation be sure you have installed and in your PATH system variables <a href="https://cmake.org/install/">cmake</a> &amp; <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler.html#gs.u6wzcf">Intel Fortran Stand Alone version</a> with useful directions for <a href="https://gist.github.com/SomajitDey/aeb6eb4c8083185e06800e1ece4be1bd">Ubuntu users</a>
