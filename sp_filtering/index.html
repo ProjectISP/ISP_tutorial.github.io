@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://projectisp.github.io/ISP_tutorial.github.io/macros/">
+        <link rel="canonical" href="https://projectisp.github.io/ISP_tutorial.github.io/sp_filtering/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Macros - ISP Tutorial</title>
+        <title>Basic Processing Tools - ISP Tutorial</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -102,7 +102,15 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Macros</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Basic Processing Tools</a>
+</li>
+                                    
+<li>
+    <a href="../sp_denoising/" class="dropdown-item">Denoising</a>
+</li>
+                                    
+<li>
+    <a href="../sp_integrate/" class="dropdown-item">Integrate & Differenciate</a>
 </li>
                                 </ul>
                             </li>
@@ -148,7 +156,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../progress/" class="nav-link">
+                                <a rel="next" href="../sp_denoising/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -195,7 +203,7 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#signal-tapering-methods-in-isp" class="nav-link">Signal Tapering Methods in ISP</a>
+            <li class="nav-item" data-bs-level="1"><a href="#signal-tapering-methods" class="nav-link">Signal Tapering Methods</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#introduction" class="nav-link">Introduction</a>
               <ul class="nav flex-column">
@@ -212,7 +220,7 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#signal-filtering-in-isp" class="nav-link">Signal Filtering in ISP</a>
+            <li class="nav-item" data-bs-level="1"><a href="#signal-filtering" class="nav-link">Signal Filtering</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#introduction_1" class="nav-link">Introduction</a>
               <ul class="nav flex-column">
@@ -365,7 +373,7 @@ Quick removal of constant bias.</p>
 </table>
 <hr />
 <p>These detrending tools in <code>ISP</code> help isolate meaningful signal components by removing artifacts caused by sensor drift, baseline offsets, or environmental conditions—crucial steps before spectral analysis, filtering, or triggering algorithms in seismic workflows.</p>
-<h1 id="signal-tapering-methods-in-isp">Signal Tapering Methods in ISP</h1>
+<h1 id="signal-tapering-methods">Signal Tapering Methods</h1>
 <h2 id="introduction">Introduction</h2>
 <p>Tapering is a critical preprocessing step in signal processing used to <strong>smooth the edges of a signal</strong> to minimize spectral leakage when performing operations like the Fast Fourier Transform (FFT). Applying a taper (or window function) reduces abrupt transitions at the signal boundaries, which can cause high-frequency artifacts and distort the frequency representation.</p>
 <p>Tapering is typically applied by multiplying the signal with a window function w[n], which modifies the signal near the beginning and end without significantly affecting its core content. These windows can be applied directly using the tapering methods built into the ISP pipeline. Choose a window based on your analysis goals (e.g., frequency resolution vs. leakage suppression).</p>
@@ -551,7 +559,7 @@ w[n] = 1 - |(n - (N - 1)/2) / ((N + 1)/2)|</p>
 </tbody>
 </table>
 <hr />
-<h1 id="signal-filtering-in-isp">Signal Filtering in ISP</h1>
+<h1 id="signal-filtering">Signal Filtering</h1>
 <h2 id="introduction_1">Introduction</h2>
 <p>Filtering is a foundational operation in signal processing used to isolate or suppress specific frequency components of a signal. In <strong>seismic and geophysical analysis</strong>, filtering helps remove noise, enhance events of interest, and prepare data for further processing like spectral analysis or event detection.</p>
 <p>Filters can be <strong>lowpass</strong>, <strong>highpass</strong>, <strong>bandpass</strong>, or <strong>bandstop</strong>, depending on the range of frequencies they preserve. Each filter type can be designed using various mathematical formulations, such as <strong>Butterworth</strong>, <strong>Chebyshev</strong>, <strong>Elliptic</strong>, and <strong>Bessel</strong> filters, each offering trade-offs in performance and characteristics like sharpness, ripple, or phase response.</p>

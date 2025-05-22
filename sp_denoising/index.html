@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://projectisp.github.io/ISP_tutorial.github.io/sp_denoising/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Denoising - ISP Tutorial</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/color-brewer.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ISP Tutorial</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../install/" class="nav-link">Installation</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../basics/" class="nav-link">Start with the basics</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Modules</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../el/" class="dropdown-item">Earthquake Location</a>
+</li>
+                                    
+<li>
+    <a href="../tf/" class="dropdown-item">Time-Frequency Analysis</a>
+</li>
+                                    
+<li>
+    <a href="../mti/" class="dropdown-item">Seismic Moment Tensor Inversion</a>
+</li>
+                                    
+<li>
+    <a href="../aa/" class="dropdown-item">Array Analysis</a>
+</li>
+                                    
+<li>
+    <a href="../rf/" class="dropdown-item">Receiver Functions</a>
+</li>
+                                    
+<li>
+    <a href="../ant/" class="dropdown-item">Ambient Noise Tomography</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Additional Toolboxes</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../db/" class="dropdown-item">Database</a>
+</li>
+                                    
+<li>
+    <a href="../rd/" class="dropdown-item">Retrieve Data</a>
+</li>
+                                    
+<li>
+    <a href="../ppsds/" class="dropdown-item">PPSDs</a>
+</li>
+                                    
+<li>
+    <a href="../synth/" class="dropdown-item">Synthetic Generator</a>
+</li>
+                                    
+<li>
+    <a href="../nrt/" class="dropdown-item">Near Real Time Adquisition</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Signal Processing</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../sp_filtering/" class="dropdown-item">Basic Processing Tools</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Denoising</a>
+</li>
+                                    
+<li>
+    <a href="../sp_integrate/" class="dropdown-item">Integrate & Differenciate</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../progress/" class="nav-link">Gallery & Progress</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../refs/" class="dropdown-item">References</a>
+</li>
+                                    
+<li>
+    <a href="../license.md" class="dropdown-item">License</a>
+</li>
+                                    
+<li>
+    <a href="../release_notes/" class="dropdown-item">Release Notes</a>
+</li>
+                                    
+<li>
+    <a href="../FAQs.md" class="dropdown-item">FAQs</a>
+</li>
+                                    
+<li>
+    <a href="../Special_Thanks/" class="dropdown-item">The Developer Team of ISP thanks to:</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../sp_filtering/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../sp_integrate/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#denoising-using-discrete-wavelet-transform-dwt-in-isp" class="nav-link">Denoising Using Discrete Wavelet Transform (DWT) in ISP</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#introduction" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#how-dwt-works" class="nav-link">How DWT Works</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#mathematical-principle" class="nav-link">Mathematical Principle</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#denoising-strategy" class="nav-link">Denoising Strategy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#implementation-in-isp" class="nav-link">Implementation in ISP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#parameters-explained" class="nav-link">Parameters Explained</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#practical-tips" class="nav-link">Practical Tips</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#summary-table" class="nav-link">Summary Table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#wiener-filter-denoising" class="nav-link">Wiener Filter Denoising</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#introduction_1" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#mathematical-background" class="nav-link">Mathematical Background</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#implementation-in-isp_1" class="nav-link">Implementation in ISP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#parameters" class="nav-link">Parameters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#practical-use" class="nav-link">Practical Use</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#summary-table_1" class="nav-link">Summary Table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#tips" class="nav-link">Tips</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="denoising-using-discrete-wavelet-transform-dwt-in-isp">Denoising Using Discrete Wavelet Transform (DWT) in ISP</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The <strong>Discrete Wavelet Transform (DWT)</strong> is a powerful tool in signal processing that decomposes a signal into multiple levels of approximation and detail coefficients. Unlike the Fourier transform, which only provides frequency information, wavelet transforms provide <strong>both time and frequency localization</strong>, making them highly effective for analyzing non-stationary signals like seismic data.</p>
+<p>Wavelet denoising works by thresholding the <strong>detail coefficients</strong>, which usually contain noise, while preserving the important structures in the approximation components. Wavelet denoising suppresses <strong>small-amplitude high-frequency noise</strong>, while preserving sharp transients (like seismic P or S waves). It's more adaptive than global filtering (e.g., bandpass). Wavelet-based denoising is a powerful tool in the ISP toolkit, ideal for signals where traditional filters either miss detail or allow noise to pass.</p>
+<hr />
+<h2 id="how-dwt-works">How DWT Works</h2>
+<p>Given a signal x(t), the DWT decomposes it into:</p>
+<ul>
+<li><strong>Approximation coefficients (cA)</strong> – representing the low-frequency components (general trends).</li>
+<li><strong>Detail coefficients (cD)</strong> – representing high-frequency components (details and noise).</li>
+</ul>
+<p>The decomposition is performed recursively, creating a multi-resolution analysis of the signal.</p>
+<hr />
+<h2 id="mathematical-principle">Mathematical Principle</h2>
+<p>The wavelet transform uses a <strong>mother wavelet</strong> psi(t) and scales/shifts it to analyze different parts of the signal.</p>
+<p><strong>Equation:</strong><br />
+x(t) = sum over j and k of [c(j,k) * psi(j,k)(t)]</p>
+<p>Where:
+- j: scale (level)
+- k: translation (position)
+- psi(j,k)(t): scaled and shifted wavelet
+- c(j,k): wavelet coefficients</p>
+<hr />
+<h2 id="denoising-strategy">Denoising Strategy</h2>
+<ol>
+<li><strong>Decompose</strong> the signal into wavelet coefficients up to a maximum level.</li>
+<li><strong>Threshold</strong> the detail coefficients to suppress noise.</li>
+<li><strong>Reconstruct</strong> the signal from the modified coefficients.</li>
+</ol>
+<hr />
+<h2 id="implementation-in-isp">Implementation in ISP</h2>
+<pre><code class="language-python">def wavelet_denoise(tr, threshold=0.04, dwt='sym4'):
+    w = pywt.Wavelet(dwt)
+    maxlev = pywt.dwt_max_level(len(tr.data), w.dec_len)
+    coeffs = pywt.wavedec(tr.data, dwt, level=maxlev)
+
+    for i in range(1, len(coeffs)):
+        coeffs[i] = pywt.threshold(coeffs[i], threshold * max(coeffs[i]))
+
+    tr.data = pywt.waverec(coeffs, dwt)
+    return tr
+</code></pre>
+<hr />
+<h2 id="parameters-explained">Parameters Explained</h2>
+<ul>
+<li><strong><code>dwt</code></strong>: The wavelet type (e.g., 'sym4', 'db4'). Affects the shape of the filters used.</li>
+<li><strong><code>threshold</code></strong>: Defines how aggressively detail coefficients are reduced. Higher values remove more noise but may also cut signal details.</li>
+<li><strong><code>maxlev</code></strong>: Number of decomposition levels. Automatically chosen based on signal length and wavelet type.</li>
+</ul>
+<hr />
+<h2 id="practical-tips">Practical Tips</h2>
+<ul>
+<li>Use wavelets like 'sym4' or 'db4' for seismic signals—they balance smoothness and compact support.</li>
+<li>Apply <strong>tapering and detrending</strong> before wavelet denoising to avoid edge effects.</li>
+<li>Try different thresholds (e.g., 0.01–0.1) to find the best noise-signal tradeoff.</li>
+</ul>
+<hr />
+<h2 id="summary-table">Summary Table</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Role</th>
+<th>Modified?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Approximation (cA)</td>
+<td>Signal trend (low-freq)</td>
+<td>❌ No</td>
+</tr>
+<tr>
+<td>Detail (cD)</td>
+<td>Noise + detail (hi-freq)</td>
+<td>✅ Yes</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="wiener-filter-denoising">Wiener Filter Denoising</h1>
+<h2 id="introduction_1">Introduction</h2>
+<p>The <strong>Wiener filter</strong> is a classic signal processing technique for noise reduction based on <strong>statistical estimation</strong>. The Wiener filter offers flexible, adaptive denoising with simple parameterization and reliable results. Unlike simple smoothing filters, the Wiener filter adapts to <strong>local variance</strong> in the signal and attempts to <strong>preserve detail</strong> while removing noise. The method assumes an <strong>additive noise model</strong> and minimizes the <strong>mean squared error</strong> between the estimated and true signal.</p>
+<hr />
+<h2 id="mathematical-background">Mathematical Background</h2>
+<p>Given a noisy signal:<br />
+<strong>x(t) = s(t) + n(t)</strong><br />
+Where:
+- x(t): observed signal
+- s(t): true (unknown) signal
+- n(t): additive noise</p>
+<p>The Wiener filter aims to estimate s(t) by computing a <strong>weighted local average</strong>, where weights depend on the signal-to-noise ratio.</p>
+<p><strong>Key equation for 1D signal estimate:</strong></p>
+<p><strong>ŝ[n] = μ + (σ² - ν²) / σ² * (x[n] - μ)</strong></p>
+<p>Where:
+- μ: local mean
+- σ²: local variance
+- ν²: noise power (estimated or provided)
+- ŝ[n]: denoised signal value</p>
+<hr />
+<h2 id="implementation-in-isp_1">Implementation in ISP</h2>
+<pre><code class="language-python">def wiener_filter(tr, time_window, noise_power):
+    data = tr.data
+
+    if time_window == 0 and noise_power == 0:
+        denoise = scipy.signal.wiener(data, mysize=None, noise=None)
+        tr.data = denoise
+
+    elif time_window != 0 and noise_power == 0:
+        denoise = scipy.signal.wiener(data, mysize=int(time_window * tr.stats.sampling_rate), noise=None)
+        tr.data = denoise
+
+    elif time_window == 0 and noise_power != 0:
+        noise = noise_power * np.std(data)
+        noise = int(noise)
+        denoise = scipy.signal.wiener(data, mysize=None, noise=noise)
+        tr.data = denoise
+
+    elif time_window != 0 and noise_power != 0:
+        noise = noise_power * np.std(data)
+        noise = int(noise)
+        denoise = scipy.signal.wiener(data, mysize=int(time_window * tr.stats.sampling_rate), noise=noise)
+        tr.data = denoise
+
+    return tr
+</code></pre>
+<hr />
+<h2 id="parameters">Parameters</h2>
+<ul>
+<li><strong><code>time_window</code></strong>: Sets the size (in seconds) of the moving window used to compute local statistics.</li>
+<li><strong><code>noise_power</code></strong>: Scales the noise estimate; higher values assume stronger noise.</li>
+<li><strong><code>mysize</code></strong>: Converted from <code>time_window</code> to sample points for filtering.</li>
+<li><strong><code>noise</code></strong>: Directly sets the noise power if known or estimated from signal standard deviation.</li>
+</ul>
+<hr />
+<h2 id="practical-use">Practical Use</h2>
+<ul>
+<li>If unsure about noise characteristics, start with <code>time_window = 0</code>, <code>noise_power = 0</code> for adaptive filtering.</li>
+<li>For <strong>strong, stationary noise</strong>, estimate noise power using <code>noise_power = 1–3</code> and test visually.</li>
+<li>Increasing <code>time_window</code> smooths over longer trends but can suppress sharp signal features.</li>
+</ul>
+<hr />
+<h2 id="summary-table_1">Summary Table</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>time_window</code></td>
+<td>Controls local averaging window size</td>
+</tr>
+<tr>
+<td><code>noise_power</code></td>
+<td>Controls strength of noise suppression</td>
+</tr>
+<tr>
+<td><code>mysize</code></td>
+<td>Computed from time window and sampling rate</td>
+</tr>
+<tr>
+<td><code>noise</code></td>
+<td>Set from <code>noise_power × std(signal)</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="tips">Tips</h2>
+<ul>
+<li><strong>Preprocess</strong> your signal with detrending and tapering for best results.</li>
+<li>Use small windows (e.g., 0.2 to 1 second) for seismic signals to preserve transients.</li>
+<li>Validate results visually or via SNR measures if available.</li>
+</ul>
+<hr /></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>&copy; 2025 <a href="https://robertocabieces.com"  target="_blank" rel="noopener">Roberto Cabieces</a>
+</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

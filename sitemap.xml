@@ -37,10 +37,6 @@
          <lastmod>2025-05-22</lastmod>
     </url>
     <url>
-         <loc>https://projectisp.github.io/ISP_tutorial.github.io/macros/</loc>
-         <lastmod>2025-05-22</lastmod>
-    </url>
-    <url>
          <loc>https://projectisp.github.io/ISP_tutorial.github.io/mti/</loc>
          <lastmod>2025-05-22</lastmod>
     </url>
@@ -70,6 +66,18 @@
     </url>
     <url>
          <loc>https://projectisp.github.io/ISP_tutorial.github.io/rf/</loc>
+         <lastmod>2025-05-22</lastmod>
+    </url>
+    <url>
+         <loc>https://projectisp.github.io/ISP_tutorial.github.io/sp_denoising/</loc>
+         <lastmod>2025-05-22</lastmod>
+    </url>
+    <url>
+         <loc>https://projectisp.github.io/ISP_tutorial.github.io/sp_filtering/</loc>
+         <lastmod>2025-05-22</lastmod>
+    </url>
+    <url>
+         <loc>https://projectisp.github.io/ISP_tutorial.github.io/sp_integrate/</loc>
          <lastmod>2025-05-22</lastmod>
     </url>
     <url>

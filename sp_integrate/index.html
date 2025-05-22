@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://projectisp.github.io/ISP_tutorial.github.io/tf/">
+        <link rel="canonical" href="https://projectisp.github.io/ISP_tutorial.github.io/sp_integrate/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Time-Frequency Analysis - ISP Tutorial</title>
+        <title>Integrate & Differenciate - ISP Tutorial</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -44,7 +44,7 @@
                                 <a href="../basics/" class="nav-link">Start with the basics</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Modules</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Modules</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -52,7 +52,7 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Time-Frequency Analysis</a>
+    <a href="../tf/" class="dropdown-item">Time-Frequency Analysis</a>
 </li>
                                     
 <li>
@@ -98,7 +98,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Signal Processing</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Signal Processing</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -110,7 +110,7 @@
 </li>
                                     
 <li>
-    <a href="../sp_integrate/" class="dropdown-item">Integrate & Differenciate</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Integrate & Differenciate</a>
 </li>
                                 </ul>
                             </li>
@@ -151,12 +151,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../el/" class="nav-link">
+                                <a rel="prev" href="../sp_denoising/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../mti/" class="nav-link">
+                                <a rel="next" href="../progress/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -178,25 +178,41 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#time-frequency-analysis" class="nav-link">Time-Frequency Analysis</a>
+            <li class="nav-item" data-bs-level="1"><a href="#numerical-integration-and-differentiation" class="nav-link">Numerical Integration and Differentiation</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#multitaper-cwt-and-wigner-distribution" class="nav-link">Multitaper, CWT and Wigner Distribution</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#advanced-tf-analysis-two-seismograms-at-once" class="nav-link">Advanced TF analysis (two seismograms at once)</a>
+            <li class="nav-item" data-bs-level="2"><a href="#introduction" class="nav-link">Introduction</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#connect-with-earthquake-analysis" class="nav-link">Connect with Earthquake Analysis</a>
+            <li class="nav-item" data-bs-level="2"><a href="#numerical-integration" class="nav-link">Numerical Integration</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#multimedia-material-time-frequency-analysis" class="nav-link">Multimedia Material (Time-Frequency Analysis)</a>
+            <li class="nav-item" data-bs-level="2"><a href="#numerical-differentiation" class="nav-link">Numerical Differentiation</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#shortcuts" class="nav-link">Shortcuts</a>
+            <li class="nav-item" data-bs-level="2"><a href="#frequency-domain-operations" class="nav-link">Frequency Domain Operations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#preprocessing-recommendations" class="nav-link">Preprocessing Recommendations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#summary-table" class="nav-link">Summary Table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#which-integration-method-should-you-use" class="nav-link">Which Integration Method Should You Use?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#recommendation-table" class="nav-link">Recommendation Table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#pro-tip" class="nav-link">Pro Tip</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -207,74 +223,180 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="time-frequency-analysis">Time-Frequency Analysis</h1>
-<h2 id="multitaper-cwt-and-wigner-distribution">Multitaper, CWT and Wigner Distribution</h2>
-<p>The Time-Frequency Analysis window is designed to facilitate the computation of advanced seismic signal processes  on individual seismograms.
-The seismograms are selected in the files explorer. You can also set a macro with basic process before running any time-Frequency analysis</p>
-<p>The most important is the selection of the Seismogram (the analysis will be show in the upper panel . “seismogram 1” and lower panel seismogram 2). Then you can select which one of Time-Frequency analysis you want to compute.
-Before Compute the Time-Frequency analysis be sure that you have filled the parameters of that kind of analysis (MT for multitaper spectrogram and CWT for Continuous Wavelet Transform).
-With respect to the Wavelet:
-The wavelet needs, select the wavelet (Morlet, Paul or Mexican Hat are available) and fill the parameters in accordance to the selected wavelet (Mallat, 2009).
-With respect to the Multitaper (Thomson, 1982):
-His analysis needs to specify the Window Length, Time-Bandwidth, the Number of Tapers and the range of the frequencies</p>
-<h2 id="advanced-tf-analysis-two-seismograms-at-once">Advanced TF analysis (two seismograms at once)</h2>
-<p>In the Figures are shown an example of computation of CWT and the uncertainty cone using the Morlet wavelet (upper panel) and multitaper spectrogram (lower panel). In the multimedia material can be found an example of how to mange the TF framework.</p>
-<p><img alt="Screenshot" src="../img/Time_Frequency.png" /></p>
-<p>Once two seismograms are selected we can follow with more advanced signal processing (Open advanced analysis):</p>
+<h1 id="numerical-integration-and-differentiation">Numerical Integration and Differentiation</h1>
+<h2 id="introduction">Introduction</h2>
+<p>In signal processing, <strong>integration</strong> and <strong>differentiation</strong> are fundamental operations that allow us to compute displacement from velocity, or acceleration from velocity, among other conversions. These operations are especially critical in seismology, where sensors often record velocity or acceleration and users may need to convert between them.</p>
+<p>Numerical integration and differentiation can be performed in both the <strong>time domain</strong> and the <strong>frequency domain</strong>, each with specific advantages and challenges.</p>
+<hr />
+<h2 id="numerical-integration">Numerical Integration</h2>
+<h3 id="1-trapezoidal-rule-integrate_cumtrapz">1. Trapezoidal Rule (<code>integrate_cumtrapz</code>)</h3>
+<p><strong>Description</strong>:<br />
+Uses the trapezoidal rule to perform cumulative integration of a time series.</p>
+<p><strong>Equation</strong>:<br />
+For sample spacing Δt:</p>
+<p><strong>y[n] = ∫ x(t) dt ≈ y[n-1] + (Δt / 2) * (x[n] + x[n-1])</strong></p>
+<p>This method is robust and preserves signal length.</p>
+<p><strong>Code Behavior</strong>:</p>
+<pre><code class="language-python">ret = scipy.integrate.cumulative_trapezoid(data, dx=dx)
+ret = np.concatenate([np.array([0]), ret])
+</code></pre>
+<hr />
+<h3 id="2-spline-based-integration-integrate_spline">2. Spline-Based Integration (<code>integrate_spline</code>)</h3>
+<p><strong>Description</strong>:<br />
+Creates an interpolating spline of the input signal, and computes the analytical integral of the spline.</p>
+<p><strong>Key Parameters</strong>:
+- <code>k</code>: spline order (1 = linear, 3 = cubic, up to 5)</p>
+<p><strong>Advantages</strong>:
+- Smoother result than trapezoidal rule
+- Can handle non-uniformities more gracefully</p>
+<p><strong>Conceptual Flow</strong>:
+1. Fit spline ( s(t) ) to input data.
+2. Compute antiderivative ( S(t) = ∫ s(t) dt )
+3. Evaluate ( S(t) ) at each time point.</p>
+<hr />
+<h2 id="numerical-differentiation">Numerical Differentiation</h2>
+<h3 id="3-gradient-method-differentiatemethodgradient">3. Gradient Method (<code>differentiate(method='gradient')</code>)</h3>
+<p><strong>Description</strong>:<br />
+Calculates the time derivative using central differences (interior) and forward/backward differences at boundaries.</p>
+<p><strong>Equation</strong>:<br />
+- Interior: <strong>f'[n] ≈ (f[n+1] - f[n-1]) / (2Δt)</strong>
+- Boundaries: First-order differences</p>
+<p><strong>Function Used</strong>:<br />
+<code>numpy.gradient</code></p>
+<p><strong>Advantages</strong>:
+- Simple and efficient
+- Same output shape as input</p>
+<hr />
+<h2 id="frequency-domain-operations">Frequency Domain Operations</h2>
+<h3 id="integration-in-frequency-domain">Integration in Frequency Domain</h3>
+<p><strong>Principle</strong>:<br />
+Integration corresponds to division by ( iω ), where ω = 2πf.</p>
+<p><strong>Equation</strong>:
+<strong>X(f) → Y(f) = X(f) / (i·2πf)</strong></p>
+<h3 id="differentiation-in-frequency-domain">Differentiation in Frequency Domain</h3>
+<p><strong>Principle</strong>:<br />
+Differentiation corresponds to multiplication by ( iω ).</p>
+<p><strong>Equation</strong>:
+<strong>X(f) → Y(f) = X(f) · (i·2πf)</strong></p>
+<p><strong>Caution</strong>:
+- Low-frequency components can cause <strong>division by small numbers</strong> (numerical instability)
+- Preprocessing such as <strong>highpass filtering</strong> is recommended before integration
+- Windowing may help reduce edge artifacts</p>
+<hr />
+<h2 id="preprocessing-recommendations">Preprocessing Recommendations</h2>
 <ul>
-<li>Spectrum Comparison &gt;&gt;&gt; plot the amplitude and phase spectrum individual and together (Fig. 2).</li>
+<li><strong>Detrending</strong>: Remove any DC offset or trend to avoid ramp artifacts during integration.</li>
+<li><strong>Tapering</strong>: Apply a window to reduce edge effects.</li>
+<li><strong>Filtering</strong>: Highpass filter before integration to suppress low-frequency drift.</li>
+<li><strong>Padding</strong>: Use zero-padding to reduce wrap-around artifacts in frequency-domain operations.</li>
 </ul>
-<p><img alt="Screenshot" src="../img/spectrum_advanced.png" /></p>
-<ul>
-<li>Coherence &gt;&gt;&gt; Plot the magnitude square coherence and its phase (Fig. 3).</li>
-</ul>
-<p><img alt="Screenshot" src="../img/Coherence.png" /></p>
-<ul>
-<li>Cross Correlation &gt;&gt;&gt; Plot the Autocorrelations and the cross correlation of both signals (Fig. 4).</li>
-</ul>
-<p><img alt="Screenshot" src="../img/Cross_autocorrelation.png" /></p>
-<ul>
-<li>Cross Wavelet &gt;&gt;&gt; Plot the Cross-CWT of both signals (Fig. 5).</li>
-</ul>
-<p><img alt="Screenshot" src="../img/Cross_wavelet.png" /></p>
-<h2 id="connect-with-earthquake-analysis">Connect with Earthquake Analysis</h2>
-<p>Super easy, when you have a waveform plot in Earquake analysis, hold your mouse over the waveform and press "<span style="color:red"><strong>m</strong></span>". This action will save your waveform data to be ready to send it to TF Analysis. A wavelet symbol will appear in the bottom left corner of the waveform plot.</p>
-<p>Now just, click over the the symbol of TF Anlysis icon in the Upper part of the widget <img alt="Screenshot" src="../img/TFicon.png" /></p>
-<p>This action will open TF Analysis and will launch Seismogram 3. Split into Long period and High frequency running the CWT. If you have loeaded the metadata and fill the event box, the travel times will also be shown. </p>
-<p><img alt="Screenshot" src="../img/TFconnection.png" /></p>
-<h2 id="multimedia-material-time-frequency-analysis">Multimedia Material (Time-Frequency Analysis)</h2>
-<p>The following video shows a basic analysis of an earthquake</p>
-<!-- blank line -->
-<figure class="video_container">
-  <video controls="true" allowfullscreen="true" poster="../img/poster_image.png" width="740" height="400">
-    <source src="../img/TF_Analysis.mp4" type="video/mp4">
-  </video>
-</figure>
-<!-- blank line -->
-
-<h2 id="shortcuts">Shortcuts</h2>
+<hr />
+<h2 id="summary-table">Summary Table</h2>
 <table>
 <thead>
 <tr>
-<th>Shortcut</th>
-<th style="text-align: left;">Action</th>
+<th>Method</th>
+<th>Domain</th>
+<th>Description</th>
+<th>Key Feature</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>'q'</td>
-<td style="text-align: left;">Set start time</td>
+<td><code>integrate_cumtrapz</code></td>
+<td>Time</td>
+<td>Trapezoidal integration</td>
+<td>Simple, cumulative, stable</td>
 </tr>
 <tr>
-<td>'w'</td>
-<td style="text-align: left;">Process and Plot</td>
+<td><code>integrate_spline</code></td>
+<td>Time</td>
+<td>Spline interpolation + integral</td>
+<td>Smooth result, adjustable order</td>
 </tr>
 <tr>
-<td>'e'</td>
-<td style="text-align: left;">Set end time</td>
+<td><code>differentiate</code></td>
+<td>Time</td>
+<td>Central differences</td>
+<td>Accurate and shape-preserving</td>
+</tr>
+<tr>
+<td>Integration (FFT)</td>
+<td>Frequency</td>
+<td>Divide by ( iω )</td>
+<td>Powerful but needs careful filtering</td>
+</tr>
+<tr>
+<td>Differentiation (FFT)</td>
+<td>Frequency</td>
+<td>Multiply by ( iω )</td>
+<td>Ideal for clean signals</td>
 </tr>
 </tbody>
-</table></div>
+</table>
+<hr />
+<p>These tools provide flexible, accurate methods for transforming signals between physical domains (e.g., acceleration ↔ velocity ↔ displacement) in ISP. Each has trade-offs between smoothness, stability, and simplicity.</p>
+<hr />
+<h2 id="which-integration-method-should-you-use">Which Integration Method Should You Use?</h2>
+<p>The best integration method depends on your signal quality, desired precision, and whether you’re working in the time or frequency domain.</p>
+<h3 id="trapezoidal-integration-time-domain">Trapezoidal Integration (Time Domain)</h3>
+<ul>
+<li><strong>Pros</strong>: Simple, fast, intuitive.</li>
+<li><strong>Cons</strong>: Accumulates noise and low-frequency drift.</li>
+<li><strong>Best For</strong>: Clean, detrended signals; quick and causal applications.</li>
+</ul>
+<h3 id="spline-integration-time-domain">Spline Integration (Time Domain)</h3>
+<ul>
+<li><strong>Pros</strong>: Smooth, accurate with noisy or irregular signals.</li>
+<li><strong>Cons</strong>: Slightly slower, edge effects possible.</li>
+<li><strong>Best For</strong>: Noisy data, offline processing, displacement recovery.</li>
+</ul>
+<h3 id="frequency-domain-integration">Frequency-Domain Integration</h3>
+<ul>
+<li><strong>Pros</strong>: Clean handling of frequency components, zero-phase possible.</li>
+<li><strong>Cons</strong>: Unstable near 0 Hz, requires preprocessing (detrend, taper, highpass).</li>
+<li><strong>Best For</strong>: Band-limited data, spectral pipelines, zero-phase needs.</li>
+</ul>
+<hr />
+<h2 id="recommendation-table">Recommendation Table</h2>
+<table>
+<thead>
+<tr>
+<th>Signal Type</th>
+<th>Recommended Integration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clean, low-noise</td>
+<td>Trapezoidal</td>
+</tr>
+<tr>
+<td>Noisy or irregular</td>
+<td>Spline (e.g., cubic)</td>
+</tr>
+<tr>
+<td>Spectral domain work</td>
+<td>Frequency domain</td>
+</tr>
+<tr>
+<td>Requires smooth result</td>
+<td>Spline</td>
+</tr>
+<tr>
+<td>Low-frequency drift</td>
+<td>Always filter first</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="pro-tip">Pro Tip</h2>
+<p><strong>Always</strong>:
+- <strong>Detrend</strong>: Remove linear trends
+- <strong>Demean</strong>: Remove DC offset
+- <strong>Taper</strong>: Smooth edges
+- <strong>Highpass Filter</strong>: Suppress long-period drift</p>
+<p>These steps are especially crucial before <strong>frequency-domain integration</strong> to avoid numerical artifacts and drift.</p></div>
             </div>
         </div>
 
