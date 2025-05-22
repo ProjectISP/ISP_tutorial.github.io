@@ -170,9 +170,75 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#digital-signal-processing-in-isp" class="nav-link">Digital Signal Processing in ISP</a>
+            <li class="nav-item" data-bs-level="1"><a href="#detrending-methods" class="nav-link">Detrending methods</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#detrending-methods" class="nav-link">Detrending methods</a>
+            <li class="nav-item" data-bs-level="2"><a href="#simpledata" class="nav-link">simple(data)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#polynomialdata-order" class="nav-link">polynomial(data, order)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#splinedata-order-dspline" class="nav-link">spline(data, order, dspline)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#additional-built-in-methods" class="nav-link">Additional Built-in Methods</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#summary-table" class="nav-link">Summary Table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#signal-tapering-methods-in-isp" class="nav-link">Signal Tapering Methods in ISP</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#introduction" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#supported-tapering-methods-and-their-equations" class="nav-link">Supported Tapering Methods and Their Equations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#summary-table_1" class="nav-link">Summary Table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#signal-filtering-in-isp" class="nav-link">Signal Filtering in ISP</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#introduction_1" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#key-concepts-in-filtering" class="nav-link">Key Concepts in Filtering</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#supported-filter-types-in-isp" class="nav-link">Supported Filter Types in ISP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#advanced-filter-types" class="nav-link">Advanced Filter Types</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#summary-table_2" class="nav-link">Summary Table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#notes-on-filtering-parameters" class="nav-link">Notes on Filtering Parameters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#filters-response-comparison" class="nav-link">Filters response Comparison</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -183,11 +249,10 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="digital-signal-processing-in-isp">Digital Signal Processing in <code>ISP</code></h1>
-<h2 id="detrending-methods">Detrending methods</h2>
+<h1 id="detrending-methods">Detrending methods</h1>
 <p>In ISP, detrending is an essential preprocessing step for signal analysis. Detrending removes slowly varying components (trends) that are not related to the signal of interest. Below is a concise explanation of each method, along with relevant mathematical formulations where applicable. These methods remove trends (constant, linear, or curved) that can obscure the true characteristics of a seismic signal. Below is an overview of the implemented detrending methods and the underlying signal processing principles.</p>
 <hr />
-<h3 id="simpledata"><code>simple(data)</code></h3>
+<h2 id="simpledata"><code>simple(data)</code></h2>
 <p><strong>Description</strong>:<br />
 Removes a linear trend defined only by the first and last points of the data.</p>
 <p><strong>Equation</strong>:</p>
@@ -201,7 +266,7 @@ Removes a linear trend defined only by the first and last points of the data.</p
 <p><strong>Use Case</strong>:<br />
 Fast and minimal method for removing linear drift when higher-order curvature is not present.</p>
 <hr />
-<h3 id="polynomialdata-order"><code>polynomial(data, order)</code></h3>
+<h2 id="polynomialdata-order"><code>polynomial(data, order)</code></h2>
 <p><strong>Description</strong>:<br />
 Fits and subtracts a polynomial trend of specified order using least squares.</p>
 <p><strong>Equation</strong>:</p>
@@ -211,7 +276,7 @@ Fits and subtracts a polynomial trend of specified order using least squares.</p
 <p><strong>Use Case</strong>:<br />
 Useful when the signal exhibits smooth, curved trends (e.g., from instrument tilt or environmental changes).</p>
 <hr />
-<h3 id="splinedata-order-dspline"><code>spline(data, order, dspline)</code></h3>
+<h2 id="splinedata-order-dspline"><code>spline(data, order, dspline)</code></h2>
 <p><strong>Description</strong>:<br />
 Fits and subtracts a <strong>smoothing spline</strong>, a piecewise polynomial function defined over knots spaced by <code>dspline</code> samples.</p>
 <p><strong>Mathematical Concept</strong>:<br />
@@ -222,7 +287,7 @@ Minimizes the squared error between the signal and a smooth spline curve:</p>
 <p><strong>Use Case</strong>:<br />
 Ideal for signals with smooth but irregular trends that are not well-represented by a single polynomial.</p>
 <hr />
-<h3 id="additional-built-in-methods">Additional Built-in Methods</h3>
+<h2 id="additional-built-in-methods">Additional Built-in Methods</h2>
 <h4 id="linear"><code>'linear'</code></h4>
 <p>Removes a least-squares linear trend using <code>scipy.signal.detrend</code>.</p>
 <p><strong>Use Case</strong>:<br />
@@ -243,7 +308,7 @@ General-purpose linear detrending.</p>
 <p><strong>Use Case</strong>:<br />
 Quick removal of constant bias.</p>
 <hr />
-<h3 id="summary-table">Summary Table</h3>
+<h2 id="summary-table">Summary Table</h2>
 <table>
 <thead>
 <tr>
@@ -299,7 +364,356 @@ Quick removal of constant bias.</p>
 </tbody>
 </table>
 <hr />
-<p>These detrending tools in <code>ISP</code> help isolate meaningful signal components by removing artifacts caused by sensor drift, baseline offsets, or environmental conditions—crucial steps before spectral analysis, filtering, or triggering algorithms in seismic workflows.</p></div>
+<p>These detrending tools in <code>ISP</code> help isolate meaningful signal components by removing artifacts caused by sensor drift, baseline offsets, or environmental conditions—crucial steps before spectral analysis, filtering, or triggering algorithms in seismic workflows.</p>
+<h1 id="signal-tapering-methods-in-isp">Signal Tapering Methods in ISP</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Tapering is a critical preprocessing step in signal processing used to <strong>smooth the edges of a signal</strong> to minimize spectral leakage when performing operations like the Fast Fourier Transform (FFT). Applying a taper (or window function) reduces abrupt transitions at the signal boundaries, which can cause high-frequency artifacts and distort the frequency representation.</p>
+<p>Tapering is typically applied by multiplying the signal with a window function w[n], which modifies the signal near the beginning and end without significantly affecting its core content. These windows can be applied directly using the tapering methods built into the ISP pipeline. Choose a window based on your analysis goals (e.g., frequency resolution vs. leakage suppression).</p>
+<p><strong>Equation for tapered signal:</strong><br />
+<strong>x_tapered[n] = x[n] × w[n]</strong></p>
+<hr />
+<h2 id="supported-tapering-methods-and-their-equations">Supported Tapering Methods and Their Equations</h2>
+<h3 id="1-cosine">1. <code>cosine</code></h3>
+<p><strong>Equation:</strong><br />
+w[n] = sin(πn / N), for 0 ≤ n ≤ N<br />
+(Details depend on implementation in <code>obspy.signal.invsim.cosine_taper()</code>)</p>
+<hr />
+<h3 id="2-barthann-modified-bartlett-hann-window">2. <code>barthann</code> (Modified Bartlett-Hann Window)</h3>
+<p><strong>Equation:</strong><br />
+w[n] = 0.62 - 0.48|n/N - 0.5| + 0.38cos(2π(n/N - 0.5))</p>
+<hr />
+<h3 id="3-bartlett-triangular-window">3. <code>bartlett</code> (Triangular Window)</h3>
+<p><strong>Equation:</strong><br />
+w[n] = 2 / (N - 1) × ((N - 1)/2 - |n - (N - 1)/2|)</p>
+<hr />
+<h3 id="4-blackman">4. <code>blackman</code></h3>
+<p><strong>Equation:</strong><br />
+w[n] = 0.42 - 0.5 cos(2πn / (N - 1)) + 0.08 cos(4πn / (N - 1))</p>
+<hr />
+<h3 id="5-blackmanharris">5. <code>blackmanharris</code></h3>
+<p><strong>Equation:</strong><br />
+w[n] = 0.35875 - 0.48829 cos(2πn / (N - 1)) + 0.14128 cos(4πn / (N - 1)) - 0.01168 cos(6πn / (N - 1))</p>
+<hr />
+<h3 id="6-bohman">6. <code>bohman</code></h3>
+<p><strong>Equation:</strong><br />
+w[n] = (1 - |x|) cos(πx) + 1/π sin(π|x|), where x = 2n / (N - 1) - 1</p>
+<hr />
+<h3 id="7-boxcar-rectangular-window">7. <code>boxcar</code> (Rectangular Window)</h3>
+<p><strong>Equation:</strong><br />
+w[n] = 1</p>
+<hr />
+<h3 id="8-chebwin-dolph-chebyshev-window">8. <code>chebwin</code> (Dolph-Chebyshev Window)</h3>
+<p><strong>Equation:</strong><br />
+Defined using Chebyshev polynomials to minimize sidelobe levels. No simple time-domain expression.</p>
+<hr />
+<h3 id="9-flattop">9. <code>flattop</code></h3>
+<p><strong>Equation:</strong><br />
+w[n] = 1 - 1.93 cos(2πn/N) + 1.29 cos(4πn/N) - 0.388 cos(6πn/N) + 0.0322 cos(8πn/N)</p>
+<hr />
+<h3 id="10-gaussian">10. <code>gaussian</code></h3>
+<p><strong>Equation:</strong><br />
+w[n] = exp(-0.5 × ((n - μ)/σ)^2), where μ = (N - 1)/2</p>
+<hr />
+<h3 id="11-general_gaussian">11. <code>general_gaussian</code></h3>
+<p><strong>Equation:</strong><br />
+w[n] = exp(-0.5 × |(n - μ)/σ|^(2p)), where <code>p</code> is the shape parameter</p>
+<hr />
+<h3 id="12-hamming">12. <code>hamming</code></h3>
+<p><strong>Equation:</strong><br />
+w[n] = 0.54 - 0.46 cos(2πn / (N - 1))</p>
+<hr />
+<h3 id="13-hann">13. <code>hann</code></h3>
+<p><strong>Equation:</strong><br />
+w[n] = 0.5 × (1 - cos(2πn / (N - 1)))</p>
+<hr />
+<h3 id="14-kaiser">14. <code>kaiser</code></h3>
+<p><strong>Equation:</strong><br />
+w[n] = I₀(β × sqrt(1 - ((2n / (N - 1)) - 1)^2)) / I₀(β),<br />
+where I₀ is the modified Bessel function of order 0 and β is the shape parameter</p>
+<hr />
+<h3 id="15-nuttall">15. <code>nuttall</code></h3>
+<p><strong>Equation:</strong><br />
+w[n] = a₀ - a₁ cos(2πn / (N - 1)) + a₂ cos(4πn / (N - 1)) - a₃ cos(6πn / (N - 1)),<br />
+with standard coefficients: a₀ = 0.355768, a₁ = 0.487396, a₂ = 0.144232, a₃ = 0.012604</p>
+<hr />
+<h3 id="16-parzen">16. <code>parzen</code></h3>
+<p><strong>Equation:</strong><br />
+Piecewise-defined parabolic segments. No single formula; resembles triangular window but smoother.</p>
+<hr />
+<h3 id="17-slepian-dpss-discrete-prolate-spheroidal-sequences">17. <code>slepian</code> (DPSS - Discrete Prolate Spheroidal Sequences)</h3>
+<p><strong>Equation:</strong><br />
+Defined via eigenfunctions of a time-bandwidth product. No closed-form expression.</p>
+<hr />
+<h3 id="18-triang">18. <code>triang</code></h3>
+<p><strong>Equation:</strong><br />
+w[n] = 1 - |(n - (N - 1)/2) / ((N + 1)/2)|</p>
+<hr />
+<h2 id="summary-table_1">Summary Table</h2>
+<table>
+<thead>
+<tr>
+<th>Window</th>
+<th>Key Feature</th>
+<th>Closed-Form Equation Available</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cosine</td>
+<td>Smooth sinusoidal taper</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>barthann</td>
+<td>Smooth hybrid window</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>bartlett</td>
+<td>Triangular</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>blackman</td>
+<td>3-term cosine</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>blackmanharris</td>
+<td>4-term cosine</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>bohman</td>
+<td>Sinusoidal with decay</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>boxcar</td>
+<td>No taper</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>chebwin</td>
+<td>Optimized sidelobes</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>flattop</td>
+<td>Accurate amplitude FFT</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>gaussian</td>
+<td>Bell-shaped</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>general_gaussian</td>
+<td>Adjustable shape</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>hamming</td>
+<td>Low sidelobes</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>hann</td>
+<td>Raised cosine</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>kaiser</td>
+<td>Adjustable β parameter</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>nuttall</td>
+<td>Smooth, low leakage</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>parzen</td>
+<td>Smoothed triangular</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>slepian</td>
+<td>Optimal energy concentration</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>triang</td>
+<td>Linear rise/fall</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="signal-filtering-in-isp">Signal Filtering in ISP</h1>
+<h2 id="introduction_1">Introduction</h2>
+<p>Filtering is a foundational operation in signal processing used to isolate or suppress specific frequency components of a signal. In <strong>seismic and geophysical analysis</strong>, filtering helps remove noise, enhance events of interest, and prepare data for further processing like spectral analysis or event detection.</p>
+<p>Filters can be <strong>lowpass</strong>, <strong>highpass</strong>, <strong>bandpass</strong>, or <strong>bandstop</strong>, depending on the range of frequencies they preserve. Each filter type can be designed using various mathematical formulations, such as <strong>Butterworth</strong>, <strong>Chebyshev</strong>, <strong>Elliptic</strong>, and <strong>Bessel</strong> filters, each offering trade-offs in performance and characteristics like sharpness, ripple, or phase response.</p>
+<hr />
+<h2 id="key-concepts-in-filtering">Key Concepts in Filtering</h2>
+<ul>
+<li><strong>Filter Order (or Number of Poles):</strong> Higher order = sharper cutoff, but more phase distortion and computational cost.</li>
+<li><strong>Zero-Phase Filtering:</strong> Applies filter forward and backward, canceling out phase shifts (e.g., <code>scipy.signal.filtfilt</code>).</li>
+<li><strong>Causal vs. Non-Causal Filters:</strong> Real-time systems require causal filters; post-processing can use non-causal zero-phase filters.</li>
+</ul>
+<hr />
+<h2 id="supported-filter-types-in-isp">Supported Filter Types in ISP</h2>
+<h3 id="1-bandpass-butterworth-bandpass">1. <code>bandpass</code> (Butterworth Bandpass)</h3>
+<p><strong>Description:</strong> Preserves a frequency band between <code>f_low</code> and <code>f_high</code>.</p>
+<p><strong>Equation (Transfer Function):</strong><br />
+|H(jω)|² = 1 / [1 + (ω² - ω₀²)² / (B²ω²)]<br />
+Where ω₀ = center frequency, B = bandwidth</p>
+<p><strong>Parameters Affecting Response:</strong><br />
+- <code>freqmin</code>, <code>freqmax</code>: Define pass band<br />
+- <code>corners</code> (order): Higher value = sharper transition<br />
+- <code>zerophase</code>: If <code>True</code>, applies filter twice (zero-phase)</p>
+<hr />
+<h3 id="2-bandstop-butterworth-bandstop">2. <code>bandstop</code> (Butterworth Bandstop)</h3>
+<p><strong>Description:</strong> Suppresses a frequency band, passing frequencies outside of <code>f_low</code> and <code>f_high</code>.</p>
+<p><strong>Similar Equation to Bandpass</strong>, but inverse effect in frequency domain.</p>
+<hr />
+<h3 id="3-lowpass-butterworth-lowpass">3. <code>lowpass</code> (Butterworth Lowpass)</h3>
+<p><strong>Description:</strong> Allows frequencies below <code>freqmax</code> to pass; attenuates higher frequencies.</p>
+<p><strong>Magnitude Response:</strong><br />
+|H(jω)| = 1 / sqrt(1 + (ω / ω_c)^(2n))<br />
+Where <code>ω_c</code> is the cutoff frequency, <code>n</code> is the filter order</p>
+<hr />
+<h3 id="4-highpass-butterworth-highpass">4. <code>highpass</code> (Butterworth Highpass)</h3>
+<p><strong>Description:</strong> Allows frequencies above <code>freqmin</code> to pass; attenuates lower frequencies.</p>
+<p><strong>Equation:</strong><br />
+|H(jω)| = 1 / sqrt(1 + (ω_c / ω)^(2n))</p>
+<hr />
+<h2 id="advanced-filter-types">Advanced Filter Types</h2>
+<h3 id="5-chebychev-type-i-ii">5. <code>chebychev</code> (Type I &amp; II)</h3>
+<h4 id="type-i">Type I:</h4>
+<ul>
+<li><strong>Description:</strong> Allows ripple in the passband but a sharper cutoff.</li>
+<li><strong>Equation:</strong><br />
+|H(jω)|² = 1 / [1 + ε² T_n²(ω / ω_c)], where T_n is the Chebyshev polynomial of order n</li>
+</ul>
+<h4 id="type-ii">Type II:</h4>
+<ul>
+<li><strong>Description:</strong> Allows ripple in the stopband instead of the passband.</li>
+</ul>
+<p><strong>Key Parameters:</strong>
+- <code>ripple</code> in dB (Type I)
+- <code>order</code>: Controls cutoff sharpness</p>
+<hr />
+<h3 id="6-elliptic-cauer-filter">6. <code>elliptic</code> (Cauer Filter)</h3>
+<p><strong>Description:</strong> Most selective filter for a given order; ripple in both passband and stopband.</p>
+<p><strong>Equation:</strong><br />
+|H(jω)|² = 1 / [1 + ε² R_n²(ξ)], where R_n is an elliptic rational function</p>
+<p><strong>Pros:</strong> Sharpest transition<br />
+<strong>Cons:</strong> Ripple in both bands</p>
+<hr />
+<h3 id="7-bessel-maximally-flat-group-delay">7. <code>bessel</code> (Maximally Flat Group Delay)</h3>
+<p><strong>Description:</strong> Preserves waveform shape in time domain due to nearly linear phase response.</p>
+<p><strong>Key Use Case:</strong> When time-domain waveform fidelity is critical.</p>
+<p><strong>Equation:</strong><br />
+Based on Bessel polynomials; no sharp frequency cutoff</p>
+<p><strong>Trade-Off:</strong> Smooth transition but poor selectivity</p>
+<hr />
+<h2 id="summary-table_2">Summary Table</h2>
+<table>
+<thead>
+<tr>
+<th>Filter</th>
+<th>Passes</th>
+<th>Ripple</th>
+<th>Phase Response</th>
+<th>Steepness</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bandpass</td>
+<td><code>f_low</code> to <code>f_high</code></td>
+<td>None</td>
+<td>Depends on method</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>bandstop</td>
+<td>Outside band</td>
+<td>None</td>
+<td>Depends on method</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>lowpass</td>
+<td>&lt; <code>freqmax</code></td>
+<td>None</td>
+<td>Depends on method</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>highpass</td>
+<td>&gt; <code>freqmin</code></td>
+<td>None</td>
+<td>Depends on method</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>chebychev I</td>
+<td>Configurable</td>
+<td>In passband</td>
+<td>Non-linear</td>
+<td>High</td>
+</tr>
+<tr>
+<td>chebychev II</td>
+<td>Configurable</td>
+<td>In stopband</td>
+<td>Non-linear</td>
+<td>High</td>
+</tr>
+<tr>
+<td>elliptic</td>
+<td>Sharpest</td>
+<td>Both bands</td>
+<td>Non-linear</td>
+<td>Very High</td>
+</tr>
+<tr>
+<td>bessel</td>
+<td>Wideband</td>
+<td>None</td>
+<td>Linear (best)</td>
+<td>Low</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="notes-on-filtering-parameters">Notes on Filtering Parameters</h2>
+<ul>
+<li><strong>Order / Corners</strong>: Higher values give sharper cutoffs but may distort phase unless using <code>zerophase=True</code>.</li>
+<li><strong>Zerophase Filtering</strong>: Recommended for post-processing; avoids phase distortion by applying filter forward and backward.</li>
+<li><strong>Ripple (Chebyshev, Elliptic)</strong>: Controls allowed deviation from flatness in pass/stop bands.</li>
+</ul>
+<hr />
+<p>These filters are available in <code>ISP</code> via simple parameter settings and are based on robust implementations in <code>obspy</code> and <code>scipy.signal</code>.</p>
+<h2 id="filters-response-comparison">Filters response Comparison</h2>
+<p>This diagram shows how different filter types (Butterworth, Chebyshev I &amp; II, Elliptic, Bessel) behave with a lowpass configuration at order 4 and a normalized cutoff frequency of 0.3.</p>
+<p><img alt="Screenshot" src="../img/filter_response_comparison.png" /></p>
+<p>This plot illustrates how different filters introduce phase shifts across frequencies. Notably:</p>
+<ul>
+<li>
+<p><strong>Bessel</strong>: has the most linear phase (preserves waveform shape).</p>
+</li>
+<li>
+<p><strong>Elliptic and Chebyshev filters</strong>: exhibit significant phase distortion.</p>
+</li>
+<li>
+<p><strong>Butterworth</strong>: shows moderate phase non-linearity.</p>
+</li>
+</ul>
+<p><img alt="Screenshot" src="../img/filter_phase_response_comparison.png" /></p></div>
             </div>
         </div>
 
