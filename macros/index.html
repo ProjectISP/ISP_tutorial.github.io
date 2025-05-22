@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://projectisp.github.io/ISP_tutorial.github.io/ppsds/">
+        <link rel="canonical" href="https://projectisp.github.io/ISP_tutorial.github.io/macros/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>PPSDs - ISP Tutorial</title>
+        <title>Macros - ISP Tutorial</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -73,7 +73,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Additional Toolboxes</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Additional Toolboxes</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -85,7 +85,7 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">PPSDs</a>
+    <a href="../ppsds/" class="dropdown-item">PPSDs</a>
 </li>
                                     
 <li>
@@ -98,11 +98,11 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Signal Processing</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Signal Processing</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../macros/" class="dropdown-item">Macros</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Macros</a>
 </li>
                                 </ul>
                             </li>
@@ -143,12 +143,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../rd/" class="nav-link">
+                                <a rel="prev" href="../nrt/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../synth/" class="nav-link">
+                                <a rel="next" href="../progress/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -170,13 +170,9 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#probability-power-spectral-dentitiy-ppsd" class="nav-link">Probability Power Spectral Dentitiy (PPSD)</a>
+            <li class="nav-item" data-bs-level="1"><a href="#digital-signal-processing-in-isp" class="nav-link">Digital Signal Processing in ISP</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#background" class="nav-link">Background</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#how-to-use-this-ppsd-toolbox" class="nav-link">How to use this PPSD toolbox</a>
+            <li class="nav-item" data-bs-level="2"><a href="#detrending-methods" class="nav-link">Detrending methods</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -187,55 +183,123 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="probability-power-spectral-dentitiy-ppsd">Probability Power Spectral Dentitiy (PPSD)</h1>
-<p><img alt="Screenshot" src="../img/ppsd.png" /></p>
-<h2 id="background">Background</h2>
-<p>One the most common tools to evaluate the station performance of seismic data acquisition (Mcnamara and Buland, 2004) is to estimate the Probability Density Functions (PDFs). Once the PDFs are calculated, the seismic noise levels can be compared with the standard low and high noise levels, NLNM and NHNM (Peterson, 1993), or can be calculated cumulative spectrograms to observe seasonal variations.</p>
-<p>The ISP submodule “PPSD” allows to build a database to storage the PDFs of the stations/components desired from PPSDs, with an specific frame work for this task. Moreover the original databased can be upgraded with more data. Once the PDFs  are computed, they can be visualized into another framework that offers multiple visualization options. The Fig. 1 shows the visualization framework with the PDFs of three components from three different station and the Fig 2 &amp; 3 the diurnal and seasonal variation, respectively. The PDFs are also compared with earthquake power desnsity spectrums (Clinton and Heaton, 2002).</p>
-<h2 id="how-to-use-this-ppsd-toolbox">How to use this PPSD toolbox</h2>
-<p>The first step is to generate a database where all PDFs will be saved for later use. For this porpuse the user have available the following dialog.</p>
-<p><img alt="Screenshot" src="../img/PPSDS_DB1.png" /></p>
+<h1 id="digital-signal-processing-in-isp">Digital Signal Processing in <code>ISP</code></h1>
+<h2 id="detrending-methods">Detrending methods</h2>
+<p>In ISP, detrending is an essential preprocessing step for signal analysis. Detrending removes slowly varying components (trends) that are not related to the signal of interest. Below is a concise explanation of each method, along with relevant mathematical formulations where applicable. These methods remove trends (constant, linear, or curved) that can obscure the true characteristics of a seismic signal. Below is an overview of the implemented detrending methods and the underlying signal processing principles.</p>
+<hr />
+<h3 id="simpledata"><code>simple(data)</code></h3>
+<p><strong>Description</strong>:<br />
+Removes a linear trend defined only by the first and last points of the data.</p>
+<p><strong>Equation</strong>:</p>
+<pre><code>trend(n) = x₁ + [(x₂ - x₁) / (N - 1)] * n
+</code></pre>
 <ul>
-<li>
-<p><span style="color:blue"><strong>Set how you want to name your new database</strong></span>: and set the path where you have your folder tree, populated by seismograms and sel the metadata directory path.</p>
-</li>
-<li>
-<p><span style="color:blue"><strong>Set the spectral parameters</strong></span>:</p>
-</li>
+<li><code>x₁</code>, <code>x₂</code>: first and last data points  </li>
+<li><code>n</code>: sample index  </li>
+<li><code>N</code>: length of the data</li>
 </ul>
-<p>Length – Length of data segments passed to psd in seconds. A lenght of 3600 s (1 hour) is recommended to balance the frequency resolution with the nu,ber of segments.</p>
-<p>Overlap of segments passed to psd. Overlap may take values between 0 and 100 and is given as % of the length of one segment, e.g. ppsd_length=3600 and overlap=50 % result in an overlap of 1800s of the segments.</p>
-<p>Smoothing width in octaves. Determines over what period/frequency range the psd is smoothed around every central period/frequency. Given in fractions of octaves (default of 1 means the psd is averaged over a full octave at each central frequency).</p>
-<p>Period step octaves. Step length on frequency axis in fraction of octaves (default of 0.125 means one smoothed psd value on the frequency axis is measured every 1/8 of an octave).</p>
-<ul>
-<li><span style="color:blue"><strong>Select filter</strong></span>: per network, stations and channels. For example</li>
-</ul>
-<p>Nets --&gt; WM,ES</p>
-<p>Stations --&gt; SFS,EPON</p>
-<p>Channels --&gt; HHZ,HHE,HHN</p>
-<p>If you keep empty spaces at the filter boxes the process will run over all sismograms at the folder tree specified above.</p>
-<ul>
-<li>
-<p><span style="color:blue"><strong>Click on Process</strong></span>: At this step ISP will procss all seismograms and will create a database od PDFs. This process can take for a while specially if your folder tree has many seismogram files. Be patient, a progress bar will let you know.</p>
-</li>
-<li>
-<p><span style="color:blue"><strong>Save the Database</strong></span>: Save the PDFs database for later use. VERY RECOMENDABLE</p>
-</li>
-<li>
-<p><span style="color:blue"><strong>Ready to Go</strong></span>: This action will send all information (PDFs and station information) to the PPSSD main frame. A table with all available network/station/channel will be fill.</p>
-</li>
-</ul>
-<p><img alt="Screenshot" src="../img/PPSDs.png" /></p>
-<ul>
-<li>
-<p><span style="color:blue"><strong>Select some raws from the table</strong></span>: set the nu,ber of stations per page that you want to visualize and select the PDF or Variation (be careful with the time window you select, if you hesitate choose something crazy from year 1975- year 2060). </p>
-</li>
-<li>
-<p><span style="color:blue"><strong>Finally click on plote</strong></span>: You can select the page at the bottom right part of the plot. <em>Warning</em>, if the colorpallette appears overlapped, just click another time at plot.</p>
-</li>
-</ul>
-<p><img alt="Screenshot" src="../img/Diurnal_variation.png" /></p>
-<p><img alt="Screenshot" src="../img/Seasonal.png" /></p></div>
+<p><strong>Use Case</strong>:<br />
+Fast and minimal method for removing linear drift when higher-order curvature is not present.</p>
+<hr />
+<h3 id="polynomialdata-order"><code>polynomial(data, order)</code></h3>
+<p><strong>Description</strong>:<br />
+Fits and subtracts a polynomial trend of specified order using least squares.</p>
+<p><strong>Equation</strong>:</p>
+<pre><code>trend(n) = a₀ + a₁·n + a₂·n² + ... + aₖ·nᵏ
+</code></pre>
+<p>Where <code>k = order</code> and coefficients <code>a₀...aₖ</code> are determined by polynomial fitting.</p>
+<p><strong>Use Case</strong>:<br />
+Useful when the signal exhibits smooth, curved trends (e.g., from instrument tilt or environmental changes).</p>
+<hr />
+<h3 id="splinedata-order-dspline"><code>spline(data, order, dspline)</code></h3>
+<p><strong>Description</strong>:<br />
+Fits and subtracts a <strong>smoothing spline</strong>, a piecewise polynomial function defined over knots spaced by <code>dspline</code> samples.</p>
+<p><strong>Mathematical Concept</strong>:<br />
+Minimizes the squared error between the signal and a smooth spline curve:</p>
+<pre><code>Minimize: ∑ (x[n] - s(n))²
+</code></pre>
+<p>Subject to continuity and smoothness of spline <code>s(n)</code>.</p>
+<p><strong>Use Case</strong>:<br />
+Ideal for signals with smooth but irregular trends that are not well-represented by a single polynomial.</p>
+<hr />
+<h3 id="additional-built-in-methods">Additional Built-in Methods</h3>
+<h4 id="linear"><code>'linear'</code></h4>
+<p>Removes a least-squares linear trend using <code>scipy.signal.detrend</code>.</p>
+<p><strong>Use Case</strong>:<br />
+General-purpose linear detrending.</p>
+<hr />
+<h4 id="constant-or-demean"><code>'constant'</code> or <code>'demean'</code></h4>
+<p>Removes the mean of the signal (i.e., DC offset):</p>
+<p>Constant. Removes the mean value from the data.</p>
+<p><strong>Equation:</strong> </p>
+<pre><code>x_d[n] = x[n] - μ, where μ = (1/N) * Σ x[n]
+</code></pre>
+<p>Linear Detrending. Removes the best-fitting line using least squares.</p>
+<p><strong>Equation:</strong></p>
+<pre><code>x_d[n] = x[n] - (a * n + b)
+</code></pre>
+<p>Where <code>a</code> and <code>b</code> are coefficients of the least-squares linear fit to the data.</p>
+<p>When breakpoints (<code>bp</code>) are specified, this fit is performed piecewise between break indices.</p>
+<p><strong>Use Case</strong>:<br />
+Quick removal of constant bias.</p>
+<hr />
+<h3 id="summary-table">Summary Table</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Trend Type Removed</th>
+<th>Equation / Model</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>simple</code></td>
+<td>Linear (endpoints only)</td>
+<td>Line from first to last point</td>
+<td>Fast, minimal drift</td>
+</tr>
+<tr>
+<td><code>polynomial</code></td>
+<td>Polynomial (any order)</td>
+<td>polynomial trend of specified order</td>
+<td>Curved baseline trends</td>
+</tr>
+<tr>
+<td><code>spline</code></td>
+<td>Smooth, adaptive trend</td>
+<td>Piecewise polynomial spline</td>
+<td>Irregular, smooth variations</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Polynomial Degree</th>
+<th>Equation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>constant</code></td>
+<td>Removes mean</td>
+<td>0</td>
+<td>x[n] - μ</td>
+</tr>
+<tr>
+<td><code>linear</code></td>
+<td>Removes linear trend</td>
+<td>1</td>
+<td>x[n] - (a * n + b)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>These detrending tools in <code>ISP</code> help isolate meaningful signal components by removing artifacts caused by sensor drift, baseline offsets, or environmental conditions—crucial steps before spectral analysis, filtering, or triggering algorithms in seismic workflows.</p></div>
             </div>
         </div>
 
