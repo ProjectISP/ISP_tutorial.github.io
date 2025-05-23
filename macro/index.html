@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://projectisp.github.io/ISP_tutorial.github.io/Special_Thanks/">
+        <link rel="canonical" href="https://projectisp.github.io/ISP_tutorial.github.io/macro/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>The Developer Team of ISP thanks to: - ISP Tutorial</title>
+        <title>Macro - ISP Tutorial</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -98,7 +98,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Signal Processing</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Signal Processing</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -130,7 +130,7 @@
 </li>
                                     
 <li>
-    <a href="../macro/" class="dropdown-item">Macro</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Macro</a>
 </li>
                                 </ul>
                             </li>
@@ -138,7 +138,7 @@
                                 <a href="../progress/" class="nav-link">Gallery & Progress</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -158,7 +158,7 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">The Developer Team of ISP thanks to:</a>
+    <a href="../Special_Thanks/" class="dropdown-item">The Developer Team of ISP thanks to:</a>
 </li>
                                 </ul>
                             </li>
@@ -171,12 +171,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../release_notes/" class="nav-link">
+                                <a rel="prev" href="../resample/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" class="nav-link disabled">
+                                <a rel="next" href="../progress/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -198,8 +198,20 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#the-developer-team-of-isp-thanks-to" class="nav-link">The Developer Team of ISP thanks to:</a>
+            <li class="nav-item" data-bs-level="1"><a href="#isp-macro-processing-pipeline" class="nav-link">ISP Macro Processing Pipeline</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#macro-structure" class="nav-link">Macro Structure</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#filter-design-example" class="nav-link">Filter Design Example</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#signal-denoising-example" class="nav-link">Signal Denoising Example</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -207,12 +219,160 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="the-developer-team-of-isp-thanks-to">The Developer Team of ISP thanks to:</h1>
+<h1 id="isp-macro-processing-pipeline">ISP Macro Processing Pipeline</h1>
+<p>The <strong>Macro</strong> module in ISP allows users to apply a series of signal processing steps to seismic data using a flexible, GUI-driven interface. Macros are applied sequentially and can include filtering, denoising, normalization, and transformation operations. 
+This macro system enables reproducible, streamlined signal processing for all ISP toolboxes. Adjust each block interactively and view the effect in real time.</p>
+<p>This page describes the macro structure, available processing tools, and typical workflows with illustrative examples.</p>
+<hr />
+<h2 id="macro-structure">Macro Structure</h2>
+<p>The macro tree defines each processing step in logical order. Each node represents a category or method with customizable parameters.</p>
+<hr />
+<h3 id="detrending-methods">Detrending Methods</h3>
+<p><strong>Remove mean / trend from the signal</strong></p>
 <ul>
-<li>Anthony Lomax and Claudio Satriano for helping in NLL configuration and the help in the framework 3D-model Visualisation.</li>
-<li>ObsPy developers and users community for  giving a hand to this project during the last few years.</li>
-<li>Real Instituto y Observatorio de la Armada (Spain), University of Potsdam (Germany), Institute of Rock Structure and Mechanic (Chzechia),  University of Oviedo (Spain), Universidad de Granada (Spain), Instituto de Ciencias del Mar (Spain) and Instituto Geográfico Nacional (Spain).</li>
-</ul></div>
+<li><code>linear</code> — Remove a best-fit line</li>
+<li><code>demean</code> — Subtract mean value</li>
+<li><code>polynomial</code> — Fit and subtract a polynomial (e.g., order 3)</li>
+<li><code>spline</code> — Remove a smooth spline trend</li>
+</ul>
+<hr />
+<h3 id="taper">Taper</h3>
+<p><strong>Applies a window function to reduce edge effects</strong></p>
+<ul>
+<li><strong>Parameter:</strong> <code>max_percentage</code> (e.g., <code>0.05</code> = 5%)</li>
+<li><strong>Supported Windows:</strong></li>
+<li><code>cosine</code>, <code>barthann</code>, <code>bartlett</code>, <code>blackman</code>, <code>blackmanharris</code></li>
+<li><code>bohman</code>, <code>boxcar</code>, <code>chebwin</code>, <code>flattop</code>, <code>gaussian</code></li>
+<li><code>general_gaussian</code>, <code>hamming</code>, <code>hann</code>, <code>kaiser</code>, <code>nuttall</code></li>
+<li><code>parzen</code>, <code>slepian</code>, <code>triang</code></li>
+</ul>
+<hr />
+<h3 id="normalize">Normalize</h3>
+<p><strong>Scales data globally</strong></p>
+<ul>
+<li><code>0</code>: Normalize by maximum</li>
+<li>Any other value: Divides trace by specified value</li>
+</ul>
+<hr />
+<h3 id="filtering">Filtering</h3>
+<p><strong>Band filter operations</strong></p>
+<ul>
+<li><strong>Parameters:</strong> <code>freqmin</code>, <code>freqmax</code>, <code>zerophase</code>, <code>poles</code></li>
+<li><strong>Methods:</strong></li>
+<li><code>bandpass</code>, <code>lowpass</code>, <code>highpass</code>, <code>bandstop</code></li>
+<li><code>cheby1</code>, <code>cheby2</code>, <code>elliptic</code>, <code>bessel</code></li>
+</ul>
+<blockquote>
+<p><code>freqmin</code> must be less than <code>freqmax</code>.</p>
+</blockquote>
+<hr />
+<h3 id="wiener-filter">Wiener Filter</h3>
+<p><strong>1D Wiener de-noising</strong></p>
+<ul>
+<li><strong>Parameters:</strong> <code>time_window</code> (sec), <code>noise_power</code></li>
+<li><strong>Tip:</strong> Use <code>1s</code> window; if <code>noise_power=0</code>, it's estimated from variance.</li>
+</ul>
+<hr />
+<h3 id="resample">Resample</h3>
+<p><strong>Adjust signal's sampling rate</strong></p>
+<ul>
+<li><strong>Parameters:</strong> <code>new_sampling_rate</code>, <code>pre_filter</code> (recommended <code>True</code>)</li>
+</ul>
+<hr />
+<h3 id="fill-gaps">Fill Gaps</h3>
+<p><strong>Reconstruct missing data</strong></p>
+<ul>
+<li><strong>Methods:</strong> <code>latest</code> or <code>interpolate</code></li>
+</ul>
+<hr />
+<h3 id="differentiation">Differentiation</h3>
+<ul>
+<li><strong>Methods:</strong> <code>gradient</code></li>
+</ul>
+<hr />
+<h3 id="integration">Integration</h3>
+<ul>
+<li><strong>Methods:</strong> <code>cumtrapz</code>, <code>spline</code></li>
+</ul>
+<hr />
+<h3 id="time-shifting">Time Shifting</h3>
+<p><strong>Shift traces by custom time offsets</strong></p>
+<ul>
+<li><strong>Parameter:</strong> List of shifts (in seconds)</li>
+</ul>
+<hr />
+<h3 id="remove-instrument-response">Remove Instrument Response</h3>
+<ul>
+<li><strong>Parameters:</strong> pre-filter corners, <code>water_level</code> (60–90), <code>output</code> units</li>
+</ul>
+<hr />
+<h3 id="add-white-noise">Add White Noise</h3>
+<p><strong>Simulate noise at defined power</strong></p>
+<ul>
+<li><strong>Parameter:</strong> Noise power in dB relative to signal max</li>
+</ul>
+<hr />
+<h3 id="spectral-whitening">Spectral Whitening</h3>
+<p><strong>Flattens spectrum using a defined bandwidth</strong></p>
+<ul>
+<li><strong>Parameters:</strong> <code>spectral_bandwidth</code>, <code>taper</code> (True/False)</li>
+</ul>
+<hr />
+<h3 id="time-normalization">Time Normalization</h3>
+<p><strong>Normalize signal in time</strong></p>
+<ul>
+<li><strong>Parameters:</strong> <code>time_window</code>, <code>method</code></li>
+<li><strong>Methods:</strong></li>
+<li><code>time-normalization</code>, <code>1-bit</code>, <code>clipping</code> (with iterations)</li>
+</ul>
+<hr />
+<h3 id="wavelet-denoise">Wavelet Denoise</h3>
+<p><strong>Wavelet-based signal denoising</strong></p>
+<ul>
+<li><strong>Parameters:</strong> <code>wavelet_family</code> (e.g., <code>sym8</code>), <code>threshold</code> (e.g., <code>0.05</code>)</li>
+</ul>
+<hr />
+<h3 id="smoothing">Smoothing</h3>
+<p><strong>Reduces high-frequency noise</strong></p>
+<ul>
+<li><strong>Parameters:</strong> <code>time_window</code>, <code>fwhm</code></li>
+<li><strong>Methods:</strong> <code>mean</code>, <code>gaussian</code>, <code>tkeo</code></li>
+</ul>
+<hr />
+<h3 id="spike-removal">Spike Removal</h3>
+<p><strong>Remove outliers or spikes</strong></p>
+<ul>
+<li><strong>Parameters:</strong> <code>time_window</code>, <code>threshold</code> (in std units)</li>
+</ul>
+<hr />
+<h2 id="filter-design-example">Filter Design Example</h2>
+<p>In this example, we use a regional earthquake trace expected to contain energy in the 0.5–8 Hz band. We:</p>
+<ol>
+<li>Remove linear trend</li>
+<li>Apply a cosine taper (5%)</li>
+<li>Use a <strong>bandpass filter</strong> with:</li>
+<li><code>freqmin=0.5</code></li>
+<li><code>freqmax=8</code></li>
+<li><code>poles=4</code></li>
+<li><code>zerophase=True</code></li>
+</ol>
+<p><img alt="Screenshot" src="../img/macro_filter.png" /></p>
+<p>The top panel shows the raw signal, and the bottom shows the filtered version:</p>
+<p><img alt="Screenshot" src="../img/filtered_signal.png" /></p>
+<hr />
+<h2 id="signal-denoising-example">Signal Denoising Example</h2>
+<p>We now show how to denoise a noisy ocean-bottom seismometer trace using:</p>
+<ul>
+<li><strong>Wiener filter</strong></li>
+<li><strong>Wavelet denoising</strong></li>
+</ul>
+<h3 id="step-1-wiener-filter">Step 1: Wiener Filter</h3>
+<p><img alt="Screenshot" src="../img/wiener_macro.png" /></p>
+<h3 id="step-2-wavelet-transform">Step 2: Wavelet Transform</h3>
+<p><img alt="Screenshot" src="../img/dwt_macro.png" /></p>
+<h3 id="final-output">Final Output</h3>
+<p><img alt="Screenshot" src="../img/denoise_signal.png" /></p>
+<hr /></div>
             </div>
         </div>
 
