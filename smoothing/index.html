@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://projectisp.github.io/ISP_tutorial.github.io/nrt/">
+        <link rel="canonical" href="https://projectisp.github.io/ISP_tutorial.github.io/smoothing/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Near Real Time Adquisition - ISP Tutorial</title>
+        <title>Smoothing - ISP Tutorial</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -73,7 +73,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Additional Toolboxes</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Additional Toolboxes</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -93,12 +93,12 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Near Real Time Adquisition</a>
+    <a href="../nrt/" class="dropdown-item">Near Real Time Adquisition</a>
 </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Signal Processing</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Signal Processing</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -114,7 +114,7 @@
 </li>
                                     
 <li>
-    <a href="../smoothing/" class="dropdown-item">Smoothing</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Smoothing</a>
 </li>
                                     
 <li>
@@ -167,12 +167,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../synth/" class="nav-link">
+                                <a rel="prev" href="../sp_integrate/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../sp_filtering/" class="nav-link">
+                                <a rel="next" href="../sp_denoising/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -194,9 +194,29 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#near-real-time-adquisition" class="nav-link">Near Real Time Adquisition</a>
+            <li class="nav-item" data-bs-level="1"><a href="#signal-smoothing-in-seismology" class="nav-link">Signal Smoothing in Seismology</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#structure" class="nav-link">Structure</a>
+            <li class="nav-item" data-bs-level="2"><a href="#1-mean-smoothing" class="nav-link">1. Mean Smoothing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-gaussian-smoothing" class="nav-link">2. Gaussian Smoothing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-teager-kaiser-energy-operator-tkeo" class="nav-link">3. Teager-Kaiser Energy Operator (TKEO)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#summary-table" class="nav-link">Summary Table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-spike-removal-with-the-hampel-filter" class="nav-link">4. Spike Removal with the Hampel Filter</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#summary-update" class="nav-link">Summary Update</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -207,38 +227,190 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="near-real-time-adquisition">Near Real Time Adquisition</h1>
-<p>The tool Near Real Time Adquisition is intended to retrieve data from a server.</p>
-<p><img alt="Screenshot" src="../img/nrt.png" /></p>
-<h2 id="structure">Structure</h2>
+<h1 id="signal-smoothing-in-seismology">Signal Smoothing in Seismology</h1>
+<p>Smoothing is a fundamental preprocessing step in seismic signal processing. It reduces high-frequency noise while preserving the underlying trends or structures in the signal. Smoothing is often used before visualization, detection, or feature extraction.</p>
+<p>In <code>ISP</code>, the <code>smoothing</code> function supports three types of smoothing techniques:</p>
 <ul>
-<li><strong>Metadata</strong></li>
+<li><strong>Mean Smoothing</strong></li>
+<li><strong>Gaussian Smoothing</strong></li>
+<li><strong>Teager-Kaiser Energy Operator (TKEO)</strong></li>
 </ul>
-<p>Set the metadata file</p>
-<ul>
-<li>**Net/Station/Channel</li>
-</ul>
-<p>Place separated by "," the name of nets stations and channels you want to retrieve. It is convinient to use wildcards such as "BH?" or "*"</p>
-<ul>
-<li><strong>Server Address</strong></li>
-</ul>
-<p>Set the name of the server address you want to point to.</p>
-<ul>
-<li><strong>Max Num Traces</strong></li>
-</ul>
-<p>Number of traces you want to plot</p>
-<ul>
-<li><strong>Time Window</strong></li>
-</ul>
-<p>Duration of the time window in minutes you want to plot the traces</p>
-<ul>
-<li><strong>Save Data</strong></li>
-</ul>
-<p>This action will allow saving the mseed files that are collected in the destionation folder. The mseed will have a maximum of 24 h being the cut at "00:00:00.0000".</p>
-<ul>
-<li><strong>Plot Map</strong></li>
-</ul>
-<p>This action will plot the map of the metadata stations in red plus the statios you are collecting data in green.</p></div>
+<hr />
+<h2 id="1-mean-smoothing">1. Mean Smoothing</h2>
+<p>This technique replaces each sample with the <strong>average of its neighbors</strong> within a fixed time window. It’s useful for simple noise reduction.</p>
+<p><strong>Equation:</strong></p>
+<div class="arithmatex">\[
+x_{smoothed}[n] = \frac{1}{2k} \sum_{i=n-k}^{n+k} x[i]
+\]</div>
+<p><strong>Python Snippet:</strong></p>
+<pre><code class="language-python">for i in range(k, n - k - 1):
+    filtsig[i] = np.mean(tr.data[i - k:i + k])
+</code></pre>
+<p><strong>Pros:</strong><br />
+- Easy to implement<br />
+- Effective for simple noise</p>
+<p><strong>Cons:</strong><br />
+- Can blur signal edges or transients<br />
+- Uniform weighting may suppress meaningful features</p>
+<hr />
+<h2 id="2-gaussian-smoothing">2. Gaussian Smoothing</h2>
+<p>Gaussian smoothing weights neighbors with a <strong>bell-shaped kernel</strong>, giving more importance to samples near the center.</p>
+<p><strong>Equation (kernel):</strong></p>
+<div class="arithmatex">\[
+w[i] = \exp\left( -\frac{4 \ln(2) \cdot i^2}{\text{FWHM}^2} \right)
+\]</div>
+<p>The kernel is normalized to preserve signal energy:</p>
+<div class="arithmatex">\[
+\sum w[i] = 1
+\]</div>
+<p><strong>Smoothing Operation:</strong></p>
+<div class="arithmatex">\[
+x_{smoothed}[n] = \sum_{i=-k}^{k} x[n+i] \cdot w[i]
+\]</div>
+<p><strong>Python Snippet:</strong></p>
+<pre><code class="language-python">gauswin = np.exp(-(4 * np.log(2) * gtime ** 2) / fwhm ** 2)
+gauswin /= np.sum(gauswin)
+for i in range(k + 1, n - k - 1):
+    filtsigG[i] = np.sum(tr.data[i - k:i + k] * gauswin)
+</code></pre>
+<p><strong>Pros:</strong><br />
+- Smooths without sharp cutoffs<br />
+- Preserves shape better than mean smoothing</p>
+<p><strong>Tips:</strong><br />
+- Use <code>FWHM</code> in seconds to control the spread<br />
+- Always use tapering/detrending before smoothing</p>
+<hr />
+<h2 id="3-teager-kaiser-energy-operator-tkeo">3. Teager-Kaiser Energy Operator (TKEO)</h2>
+<p>TKEO is a <strong>nonlinear</strong> operator used to enhance the energy content of rapid oscillations. It's especially useful in event detection and muscle/EMG analysis.</p>
+<p><strong>Equation:</strong></p>
+<div class="arithmatex">\[
+x_{tkeo}[n] = x[n]^2 - x[n-1] \cdot x[n+1]
+\]</div>
+<p><strong>Python Snippet:</strong></p>
+<pre><code class="language-python">emgf[1:-1] = emg[1:-1] ** 2 - emg[0:-2] * emg[2:]
+</code></pre>
+<p><strong>Pros:</strong><br />
+- Highlights instantaneous energy<br />
+- Useful for impulsive signal detection</p>
+<p><strong>Cons:</strong><br />
+- Sensitive to noise<br />
+- Should be followed by smoothing or thresholding</p>
+<hr />
+<h2 id="summary-table">Summary Table</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Type</th>
+<th>Best For</th>
+<th>Preserves Phase</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mean</td>
+<td>Linear</td>
+<td>General noise</td>
+<td>Yes</td>
+<td>May blur transitions</td>
+</tr>
+<tr>
+<td>Gaussian</td>
+<td>Linear</td>
+<td>Smooth trend + shape</td>
+<td>Yes</td>
+<td>Weighted for center bias</td>
+</tr>
+<tr>
+<td>TKEO</td>
+<td>Nonlinear</td>
+<td>Oscillation energy</td>
+<td>No</td>
+<td>Use for detection stages</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Signal smoothing is a simple yet powerful tool to reduce noise and extract structure. Use with care to preserve signal characteristics needed for further seismic analysis.</p>
+<hr />
+<h2 id="4-spike-removal-with-the-hampel-filter">4. Spike Removal with the Hampel Filter</h2>
+<p>The <strong>Hampel filter</strong> is a robust method for detecting and removing outliers (spikes) in time series. It replaces points that deviate significantly from the local median using a <strong>threshold based on standard deviation</strong>.</p>
+<p><strong>Concept:</strong></p>
+<p>For each point <span class="arithmatex">\( x[n] \)</span>, define a window <span class="arithmatex">\( W \)</span> around it and compute:
+- Median: <span class="arithmatex">\( m \)</span>
+- Median Absolute Deviation (MAD): <span class="arithmatex">\(   ext{MAD} =  ext{median}(|x[i] - m|) \)</span></p>
+<p>If:</p>
+<div class="arithmatex">\[
+|x[n] - m| &gt; t \cdot 1.4826 \cdot   ext{MAD}
+\]</div>
+<p>then <span class="arithmatex">\( x[n] \)</span> is replaced by the local median <span class="arithmatex">\( m \)</span>.</p>
+<p><strong>Python Code:</strong></p>
+<pre><code class="language-python">def hampel_filter(trace, window_size=10, threshold=3):
+    x = trace.data
+    n = len(x)
+    new_x = x.copy()
+
+    k = window_size
+    for i in range(k, n - k):
+        window = x[i - k:i + k + 1]
+        median = np.median(window)
+        mad = np.median(np.abs(window - median))
+        if np.abs(x[i] - median) &gt; threshold * 1.4826 * mad:
+            new_x[i] = median
+
+    trace.data = new_x
+    return trace
+</code></pre>
+<p><strong>Pros:</strong><br />
+- Excellent for spike removal without affecting underlying trends<br />
+- Robust to outliers</p>
+<p><strong>Tips:</strong><br />
+- Use before smoothing or normalization<br />
+- Adjust <code>window_size</code> and <code>threshold</code> depending on noise level</p>
+<hr />
+<h2 id="summary-update">Summary Update</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Type</th>
+<th>Best For</th>
+<th>Preserves Phase</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mean</td>
+<td>Linear</td>
+<td>General noise</td>
+<td>Yes</td>
+<td>May blur transitions</td>
+</tr>
+<tr>
+<td>Gaussian</td>
+<td>Linear</td>
+<td>Smooth trend + shape</td>
+<td>Yes</td>
+<td>Weighted for center bias</td>
+</tr>
+<tr>
+<td>TKEO</td>
+<td>Nonlinear</td>
+<td>Oscillation energy</td>
+<td>No</td>
+<td>Use for detection stages</td>
+</tr>
+<tr>
+<td>Hampel</td>
+<td>Nonlinear</td>
+<td>Spike/outlier removal</td>
+<td>Yes</td>
+<td>Robust to outliers</td>
+</tr>
+</tbody>
+</table></div>
             </div>
         </div>
 

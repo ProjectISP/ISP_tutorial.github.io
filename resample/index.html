@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://projectisp.github.io/ISP_tutorial.github.io/nrt/">
+        <link rel="canonical" href="https://projectisp.github.io/ISP_tutorial.github.io/resample/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Near Real Time Adquisition - ISP Tutorial</title>
+        <title>Resampling - ISP Tutorial</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -73,7 +73,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Additional Toolboxes</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Additional Toolboxes</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -93,12 +93,12 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Near Real Time Adquisition</a>
+    <a href="../nrt/" class="dropdown-item">Near Real Time Adquisition</a>
 </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Signal Processing</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Signal Processing</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -126,7 +126,7 @@
 </li>
                                     
 <li>
-    <a href="../resample/" class="dropdown-item">Resampling</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Resampling</a>
 </li>
                                 </ul>
                             </li>
@@ -167,12 +167,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../synth/" class="nav-link">
+                                <a rel="prev" href="../noise_processing/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../sp_filtering/" class="nav-link">
+                                <a rel="next" href="../progress/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -194,9 +194,25 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#near-real-time-adquisition" class="nav-link">Near Real Time Adquisition</a>
+            <li class="nav-item" data-bs-level="1"><a href="#signal-resampling-and-downsampling-in-seismology" class="nav-link">Signal Resampling and Downsampling in Seismology</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#structure" class="nav-link">Structure</a>
+            <li class="nav-item" data-bs-level="2"><a href="#why-be-careful-with-downsampling" class="nav-link">Why Be Careful with Downsampling?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#recommended-downsampling-strategy" class="nav-link">Recommended Downsampling Strategy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#mathematical-concept-of-fourier-based-resampling" class="nav-link">Mathematical Concept of Fourier-Based Resampling</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#adjusting-spectrum-length-for-resampling" class="nav-link">Adjusting Spectrum Length for Resampling</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#summary-table" class="nav-link">Summary Table</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -207,38 +223,135 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="near-real-time-adquisition">Near Real Time Adquisition</h1>
-<p>The tool Near Real Time Adquisition is intended to retrieve data from a server.</p>
-<p><img alt="Screenshot" src="../img/nrt.png" /></p>
-<h2 id="structure">Structure</h2>
+<h1 id="signal-resampling-and-downsampling-in-seismology">Signal Resampling and Downsampling in Seismology</h1>
+<p><strong>Resampling</strong> changes the sampling rate of a signal, either by increasing it (<strong>upsampling</strong>) or decreasing it (<strong>downsampling</strong>). In seismology, downsampling is especially important when:</p>
 <ul>
-<li><strong>Metadata</strong></li>
+<li>Reducing file sizes for long time series</li>
+<li>Matching sampling rates between stations</li>
+<li>Preparing data for band-limited analyses</li>
 </ul>
-<p>Set the metadata file</p>
-<ul>
-<li>**Net/Station/Channel</li>
-</ul>
-<p>Place separated by "," the name of nets stations and channels you want to retrieve. It is convinient to use wildcards such as "BH?" or "*"</p>
-<ul>
-<li><strong>Server Address</strong></li>
-</ul>
-<p>Set the name of the server address you want to point to.</p>
-<ul>
-<li><strong>Max Num Traces</strong></li>
-</ul>
-<p>Number of traces you want to plot</p>
-<ul>
-<li><strong>Time Window</strong></li>
-</ul>
-<p>Duration of the time window in minutes you want to plot the traces</p>
-<ul>
-<li><strong>Save Data</strong></li>
-</ul>
-<p>This action will allow saving the mseed files that are collected in the destionation folder. The mseed will have a maximum of 24 h being the cut at "00:00:00.0000".</p>
-<ul>
-<li><strong>Plot Map</strong></li>
-</ul>
-<p>This action will plot the map of the metadata stations in red plus the statios you are collecting data in green.</p></div>
+<hr />
+<h2 id="why-be-careful-with-downsampling">Why Be Careful with Downsampling?</h2>
+<p>Downsampling without preparation can lead to <strong>aliasing</strong>, where high-frequency energy folds back into lower frequencies and distorts the signal.</p>
+<h3 id="key-steps-to-proper-downsampling">Key Steps to Proper Downsampling:</h3>
+<ol>
+<li><strong>Detrend the signal</strong> to remove DC offsets.</li>
+<li><strong>Apply a lowpass filter</strong> to eliminate frequencies above the new Nyquist frequency.</li>
+<li><strong>Resample in small steps</strong>, especially when reducing by large factors (e.g., 100 Hz → 1 Hz).</li>
+</ol>
+<hr />
+<h2 id="recommended-downsampling-strategy">Recommended Downsampling Strategy</h2>
+<pre><code class="language-python">def safe_downsample(trace, target_rate, max_factor=10, pre_filter=True):
+    &quot;&quot;&quot;
+    Downsample a trace to target_rate in steps, applying filtering.
+
+    Parameters:
+    - trace: ObsPy Trace object
+    - target_rate: Final desired sampling rate (Hz)
+    - max_factor: Maximum downsample ratio per step (e.g., 10)
+    - pre_filter: Whether to apply lowpass filter before each step
+    &quot;&quot;&quot;
+    from obspy import Trace
+    import copy
+
+    tr = trace.copy()
+
+
+    while tr.stats.sampling_rate &gt; target_rate:
+        current_rate = tr.stats.sampling_rate
+        factor = min(current_rate / target_rate, max_factor)
+        new_rate = current_rate / factor
+
+        tr.detrend(&quot;demean&quot;)
+        tr.taper(max_percentage=0.05)
+
+        if pre_filter:
+            f_nyquist = new_rate * 0.5
+            tr.filter(&quot;lowpass&quot;, freq=0.9 * f_nyquist, corners=4, zerophase=True)
+
+        tr.resample(new_rate)
+
+    return tr
+</code></pre>
+<hr />
+<h2 id="mathematical-concept-of-fourier-based-resampling">Mathematical Concept of Fourier-Based Resampling</h2>
+<p>Fourier-based resampling operates in the frequency domain using the following key steps:</p>
+<ol>
+<li>
+<p>Compute the FFT of the time-domain signal:
+   $$
+   X[k] = \sum_{n=0}^{N-1} x[n] \cdot e^{-2\pi i \cdot kn/N}
+   $$</p>
+</li>
+<li>
+<p>Interpolate or zero-pad/truncate the spectrum to match the new length <span class="arithmatex">\( N' \)</span>, corresponding to the desired sampling rate.</p>
+</li>
+<li>
+<p>Optionally apply a window <span class="arithmatex">\( W[k] \)</span> (e.g., Hann) to reduce spectral leakage.</p>
+</li>
+<li>
+<p>Perform the inverse FFT to return to the time domain:
+   $$
+   x'[n] = \text{IFFT}(X'[k])
+   $$</p>
+</li>
+</ol>
+<p><strong>Note:</strong> This method assumes periodicity of the signal and is well-suited for smoothly varying signals.</p>
+<hr />
+<h2 id="adjusting-spectrum-length-for-resampling">Adjusting Spectrum Length for Resampling</h2>
+<p>To change the sampling rate using Fourier methods, we adjust the number of frequency components before applying the inverse FFT. This process depends on whether we are downsampling or upsampling.</p>
+<hr />
+<h3 id="downsampling-truncate-the-spectrum">🔽 Downsampling: Truncate the Spectrum</h3>
+<p>When reducing the sampling rate, the new Nyquist frequency is lower. We must <strong>truncate</strong> high-frequency components that the new sampling rate cannot represent.</p>
+<p><strong>How?</strong></p>
+<pre><code class="language-python"># Assume X is the FFT of the original signal
+X_truncated = X[:N_new // 2 + 1]
+</code></pre>
+<hr />
+<h3 id="upsampling-zero-pad-the-spectrum">🔼 Upsampling: Zero-Pad the Spectrum</h3>
+<p>When increasing the sampling rate, the signal must contain more samples, so we <strong>insert zeros</strong> in the frequency domain.</p>
+<p><strong>How?</strong></p>
+<pre><code class="language-python"># Assume X is the FFT of the original signal
+pad_length = N_new // 2 + 1 - len(X)
+X_padded = np.pad(X, (0, pad_length), 'constant')
+</code></pre>
+<hr />
+<h3 id="important-note-on-symmetry">Important Note on Symmetry</h3>
+<p>When working with real signals and <code>rfft</code>, ensure the spectrum retains Hermitian symmetry. Both truncation and padding should only be done on the one-sided spectrum and handled carefully when converting back to time domain with <code>irfft</code>.</p>
+<hr />
+<h2 id="summary-table">Summary Table</h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Detrend</td>
+<td>Removes constant offset</td>
+</tr>
+<tr>
+<td>Lowpass Filter</td>
+<td>Prevents aliasing by cutting high frequencies</td>
+</tr>
+<tr>
+<td>Resample</td>
+<td>Adjusts time step and signal length</td>
+</tr>
+<tr>
+<td>Multi-Step</td>
+<td>Ensures safe and smooth reduction</td>
+</tr>
+<tr>
+<td>FFT Adjustments</td>
+<td>Truncate or pad spectrum appropriately</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>This strategy ensures high-quality downsampling for long-duration or broadband seismic signals, protecting both time and frequency content.</p></div>
             </div>
         </div>
 
