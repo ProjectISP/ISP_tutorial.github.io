@@ -106,11 +106,19 @@
 </li>
                                     
 <li>
-    <a href="../sp_denoising/" class="dropdown-item">Denoising</a>
+    <a href="../remove_response/" class="dropdown-item">Remove Instrument Response</a>
 </li>
                                     
 <li>
     <a href="../sp_integrate/" class="dropdown-item">Integrate & Differenciate</a>
+</li>
+                                    
+<li>
+    <a href="../sp_denoising/" class="dropdown-item">Denoising</a>
+</li>
+                                    
+<li>
+    <a href="../noise_processing/" class="dropdown-item">Noise Processing</a>
 </li>
                                 </ul>
                             </li>
@@ -156,7 +164,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../sp_denoising/" class="nav-link">
+                                <a rel="next" href="../remove_response/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -213,7 +221,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#summary-table_1" class="nav-link">Summary Table</a>
+            <li class="nav-item" data-bs-level="2"><a href="#summary" class="nav-link">Summary</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link"></a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -238,7 +250,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#summary-table_2" class="nav-link">Summary Table</a>
+            <li class="nav-item" data-bs-level="2"><a href="#summary-table_1" class="nav-link">Summary Table</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -263,35 +275,39 @@
 <h2 id="simpledata"><code>simple(data)</code></h2>
 <p><strong>Description</strong>:<br />
 Removes a linear trend defined only by the first and last points of the data.</p>
-<p><strong>Equation</strong>:</p>
-<pre><code>trend(n) = x₁ + [(x₂ - x₁) / (N - 1)] * n
-</code></pre>
-<ul>
-<li><code>x₁</code>, <code>x₂</code>: first and last data points  </li>
-<li><code>n</code>: sample index  </li>
-<li><code>N</code>: length of the data</li>
-</ul>
+<p><strong>Equation:</strong><br />
+$$
+\text{trend}(n) = x_1 + \left( \frac{x_2 - x_1}{N - 1} \right) \cdot n
+$$</p>
+<p>Where:
+- <span class="arithmatex">\( x_1 \)</span>, <span class="arithmatex">\( x_2 \)</span>: first and last data points<br />
+- <span class="arithmatex">\( n \)</span>: sample index<br />
+- <span class="arithmatex">\( N \)</span>: length of the data</p>
 <p><strong>Use Case</strong>:<br />
 Fast and minimal method for removing linear drift when higher-order curvature is not present.</p>
 <hr />
 <h2 id="polynomialdata-order"><code>polynomial(data, order)</code></h2>
 <p><strong>Description</strong>:<br />
 Fits and subtracts a polynomial trend of specified order using least squares.</p>
-<p><strong>Equation</strong>:</p>
-<pre><code>trend(n) = a₀ + a₁·n + a₂·n² + ... + aₖ·nᵏ
-</code></pre>
-<p>Where <code>k = order</code> and coefficients <code>a₀...aₖ</code> are determined by polynomial fitting.</p>
+<p><strong>Equation:</strong><br />
+$$
+\text{trend}(n) = a_0 + a_1 \cdot n + a_2 \cdot n^2 + \dots + a_k \cdot n^k
+$$</p>
+<p>Where:
+- <span class="arithmatex">\( k \)</span> = order<br />
+- <span class="arithmatex">\( a_0, \ldots, a_k \)</span>: coefficients determined by polynomial fitting</p>
 <p><strong>Use Case</strong>:<br />
 Useful when the signal exhibits smooth, curved trends (e.g., from instrument tilt or environmental changes).</p>
 <hr />
 <h2 id="splinedata-order-dspline"><code>spline(data, order, dspline)</code></h2>
 <p><strong>Description</strong>:<br />
 Fits and subtracts a <strong>smoothing spline</strong>, a piecewise polynomial function defined over knots spaced by <code>dspline</code> samples.</p>
-<p><strong>Mathematical Concept</strong>:<br />
+<p><strong>Mathematical Concept:</strong><br />
 Minimizes the squared error between the signal and a smooth spline curve:</p>
-<pre><code>Minimize: ∑ (x[n] - s(n))²
-</code></pre>
-<p>Subject to continuity and smoothness of spline <code>s(n)</code>.</p>
+<div class="arithmatex">\[
+\min \sum_{n} \left( x[n] - s(n) \right)^2
+\]</div>
+<p>Subject to continuity and smoothness of the spline <span class="arithmatex">\( s(n) \)</span>.</p>
 <p><strong>Use Case</strong>:<br />
 Ideal for signals with smooth but irregular trends that are not well-represented by a single polynomial.</p>
 <hr />
@@ -304,17 +320,20 @@ General-purpose linear detrending.</p>
 <h4 id="constant-or-demean"><code>'constant'</code> or <code>'demean'</code></h4>
 <p>Removes the mean of the signal (i.e., DC offset):</p>
 <p>Constant. Removes the mean value from the data.</p>
-<p><strong>Equation:</strong> </p>
-<pre><code>x_d[n] = x[n] - μ, where μ = (1/N) * Σ x[n]
-</code></pre>
+<p><strong>Equation:</strong><br />
+$$
+x_d[n] = x[n] - \mu, \quad \text{where } \mu = \frac{1}{N} \sum_{n=0}^{N-1} x[n]
+$$</p>
 <p>Linear Detrending. Removes the best-fitting line using least squares.</p>
-<p><strong>Equation:</strong></p>
-<pre><code>x_d[n] = x[n] - (a * n + b)
-</code></pre>
-<p>Where <code>a</code> and <code>b</code> are coefficients of the least-squares linear fit to the data.</p>
-<p>When breakpoints (<code>bp</code>) are specified, this fit is performed piecewise between break indices.</p>
-<p><strong>Use Case</strong>:<br />
-Quick removal of constant bias.</p>
+<p><strong>Equation:</strong><br />
+$$
+x_d[n] = x[n] - (a \cdot n + b)
+$$</p>
+<p>Where:
+- <span class="arithmatex">\( a \)</span> and <span class="arithmatex">\( b \)</span> are coefficients of the least-squares linear fit to the data.</p>
+<p>When breakpoints (<code>bp</code>) are specified, this fit is performed <strong>piecewise</strong> between break indices.</p>
+<p><strong>Use Case:</strong><br />
+Quick removal of linear trends or offsets.</p>
 <hr />
 <h2 id="summary-table">Summary Table</h2>
 <table>
@@ -361,13 +380,13 @@ Quick removal of constant bias.</p>
 <td><code>constant</code></td>
 <td>Removes mean</td>
 <td>0</td>
-<td>x[n] - μ</td>
+<td><span class="arithmatex">\( x[n] - \mu \)</span></td>
 </tr>
 <tr>
 <td><code>linear</code></td>
 <td>Removes linear trend</td>
 <td>1</td>
-<td>x[n] - (a * n + b)</td>
+<td><span class="arithmatex">\( x[n] - (a \cdot n + b) \)</span></td>
 </tr>
 </tbody>
 </table>
@@ -376,87 +395,110 @@ Quick removal of constant bias.</p>
 <h1 id="signal-tapering-methods">Signal Tapering Methods</h1>
 <h2 id="introduction">Introduction</h2>
 <p>Tapering is a critical preprocessing step in signal processing used to <strong>smooth the edges of a signal</strong> to minimize spectral leakage when performing operations like the Fast Fourier Transform (FFT). Applying a taper (or window function) reduces abrupt transitions at the signal boundaries, which can cause high-frequency artifacts and distort the frequency representation.</p>
-<p>Tapering is typically applied by multiplying the signal with a window function w[n], which modifies the signal near the beginning and end without significantly affecting its core content. These windows can be applied directly using the tapering methods built into the ISP pipeline. Choose a window based on your analysis goals (e.g., frequency resolution vs. leakage suppression).</p>
+<p>Tapering is typically applied by multiplying the signal with a window function <span class="arithmatex">\( w[n] \)</span>, which modifies the signal near the beginning and end without significantly affecting its core content. These windows can be applied directly using the tapering methods built into the ISP pipeline. Choose a window based on your analysis goals (e.g., frequency resolution vs. leakage suppression).</p>
 <p><strong>Equation for tapered signal:</strong><br />
-<strong>x_tapered[n] = x[n] × w[n]</strong></p>
+$$
+x_\text{tapered}[n] = x[n] \cdot w[n]
+$$</p>
 <hr />
 <h2 id="supported-tapering-methods-and-their-equations">Supported Tapering Methods and Their Equations</h2>
 <h3 id="1-cosine">1. <code>cosine</code></h3>
 <p><strong>Equation:</strong><br />
-w[n] = sin(πn / N), for 0 ≤ n ≤ N<br />
-(Details depend on implementation in <code>obspy.signal.invsim.cosine_taper()</code>)</p>
+$$
+w[n] = \sin\left( \frac{\pi n}{N} \right), \quad 0 \leq n \leq N
+$$</p>
 <hr />
 <h3 id="2-barthann-modified-bartlett-hann-window">2. <code>barthann</code> (Modified Bartlett-Hann Window)</h3>
 <p><strong>Equation:</strong><br />
-w[n] = 0.62 - 0.48|n/N - 0.5| + 0.38cos(2π(n/N - 0.5))</p>
+$$
+w[n] = 0.62 - 0.48 \left| \frac{n}{N} - 0.5 \right| + 0.38 \cos\left( 2\pi\left( \frac{n}{N} - 0.5 \right) \right)
+$$</p>
 <hr />
 <h3 id="3-bartlett-triangular-window">3. <code>bartlett</code> (Triangular Window)</h3>
 <p><strong>Equation:</strong><br />
-w[n] = 2 / (N - 1) × ((N - 1)/2 - |n - (N - 1)/2|)</p>
+$$
+w[n] = \frac{2}{N - 1} \cdot \left( \frac{N - 1}{2} - \left| n - \frac{N - 1}{2} \right| \right)
+$$</p>
 <hr />
 <h3 id="4-blackman">4. <code>blackman</code></h3>
 <p><strong>Equation:</strong><br />
-w[n] = 0.42 - 0.5 cos(2πn / (N - 1)) + 0.08 cos(4πn / (N - 1))</p>
+$$
+w[n] = 0.42 - 0.5 \cos\left( \frac{2\pi n}{N - 1} \right) + 0.08 \cos\left( \frac{4\pi n}{N - 1} \right)
+$$</p>
 <hr />
 <h3 id="5-blackmanharris">5. <code>blackmanharris</code></h3>
 <p><strong>Equation:</strong><br />
-w[n] = 0.35875 - 0.48829 cos(2πn / (N - 1)) + 0.14128 cos(4πn / (N - 1)) - 0.01168 cos(6πn / (N - 1))</p>
+$$
+w[n] = 0.35875 - 0.48829 \cos\left( \frac{2\pi n}{N - 1} \right) + 0.14128 \cos\left( \frac{4\pi n}{N - 1} \right) - 0.01168 \cos\left( \frac{6\pi n}{N - 1} \right)
+$$</p>
 <hr />
 <h3 id="6-bohman">6. <code>bohman</code></h3>
 <p><strong>Equation:</strong><br />
-w[n] = (1 - |x|) cos(πx) + 1/π sin(π|x|), where x = 2n / (N - 1) - 1</p>
+$$
+w[n] = (1 - |x|) \cos(\pi x) + \frac{1}{\pi} \sin(\pi |x|), \quad x = \frac{2n}{N - 1} - 1
+$$</p>
 <hr />
 <h3 id="7-boxcar-rectangular-window">7. <code>boxcar</code> (Rectangular Window)</h3>
 <p><strong>Equation:</strong><br />
-w[n] = 1</p>
-<hr />
-<h3 id="8-chebwin-dolph-chebyshev-window">8. <code>chebwin</code> (Dolph-Chebyshev Window)</h3>
-<p><strong>Equation:</strong><br />
-Defined using Chebyshev polynomials to minimize sidelobe levels. No simple time-domain expression.</p>
+$$
+w[n] = 1
+$$</p>
 <hr />
 <h3 id="9-flattop">9. <code>flattop</code></h3>
 <p><strong>Equation:</strong><br />
-w[n] = 1 - 1.93 cos(2πn/N) + 1.29 cos(4πn/N) - 0.388 cos(6πn/N) + 0.0322 cos(8πn/N)</p>
+$$
+w[n] = 1 - 1.93 \cos\left( \frac{2\pi n}{N} \right) + 1.29 \cos\left( \frac{4\pi n}{N} \right) - 0.388 \cos\left( \frac{6\pi n}{N} \right) + 0.0322 \cos\left( \frac{8\pi n}{N} \right)
+$$</p>
 <hr />
 <h3 id="10-gaussian">10. <code>gaussian</code></h3>
 <p><strong>Equation:</strong><br />
-w[n] = exp(-0.5 × ((n - μ)/σ)^2), where μ = (N - 1)/2</p>
+$$
+w[n] = \exp\left( -0.5 \cdot \left( \frac{n - \mu}{\sigma} \right)^2 \right), \quad \mu = \frac{N - 1}{2}
+$$</p>
 <hr />
 <h3 id="11-general_gaussian">11. <code>general_gaussian</code></h3>
 <p><strong>Equation:</strong><br />
-w[n] = exp(-0.5 × |(n - μ)/σ|^(2p)), where <code>p</code> is the shape parameter</p>
+$$
+w[n] = \exp\left( -0.5 \cdot \left| \frac{n - \mu}{\sigma} \right|^{2p} \right)
+$$</p>
 <hr />
 <h3 id="12-hamming">12. <code>hamming</code></h3>
 <p><strong>Equation:</strong><br />
-w[n] = 0.54 - 0.46 cos(2πn / (N - 1))</p>
+$$
+w[n] = 0.54 - 0.46 \cos\left( \frac{2\pi n}{N - 1} \right)
+$$</p>
 <hr />
 <h3 id="13-hann">13. <code>hann</code></h3>
 <p><strong>Equation:</strong><br />
-w[n] = 0.5 × (1 - cos(2πn / (N - 1)))</p>
+$$
+w[n] = 0.5 \cdot \left( 1 - \cos\left( \frac{2\pi n}{N - 1} \right) \right)
+$$</p>
 <hr />
 <h3 id="14-kaiser">14. <code>kaiser</code></h3>
 <p><strong>Equation:</strong><br />
-w[n] = I₀(β × sqrt(1 - ((2n / (N - 1)) - 1)^2)) / I₀(β),<br />
-where I₀ is the modified Bessel function of order 0 and β is the shape parameter</p>
+$$
+w[n] = \frac{I_0\left( \beta \sqrt{1 - \left( \frac{2n}{N - 1} - 1 \right)^2 } \right)}{I_0(\beta)}
+$$</p>
+<p>Where <span class="arithmatex">\( I_0 \)</span> is the modified Bessel function of the first kind.</p>
 <hr />
 <h3 id="15-nuttall">15. <code>nuttall</code></h3>
 <p><strong>Equation:</strong><br />
-w[n] = a₀ - a₁ cos(2πn / (N - 1)) + a₂ cos(4πn / (N - 1)) - a₃ cos(6πn / (N - 1)),<br />
-with standard coefficients: a₀ = 0.355768, a₁ = 0.487396, a₂ = 0.144232, a₃ = 0.012604</p>
-<hr />
-<h3 id="16-parzen">16. <code>parzen</code></h3>
-<p><strong>Equation:</strong><br />
-Piecewise-defined parabolic segments. No single formula; resembles triangular window but smoother.</p>
-<hr />
-<h3 id="17-slepian-dpss-discrete-prolate-spheroidal-sequences">17. <code>slepian</code> (DPSS - Discrete Prolate Spheroidal Sequences)</h3>
-<p><strong>Equation:</strong><br />
-Defined via eigenfunctions of a time-bandwidth product. No closed-form expression.</p>
+$$
+w[n] = a_0 - a_1 \cos\left( \frac{2\pi n}{N - 1} \right) + a_2 \cos\left( \frac{4\pi n}{N - 1} \right) - a_3 \cos\left( \frac{6\pi n}{N - 1} \right)
+$$</p>
+<p>Standard coefficients:<br />
+- <span class="arithmatex">\( a_0 = 0.355768 \)</span><br />
+- <span class="arithmatex">\( a_1 = 0.487396 \)</span><br />
+- <span class="arithmatex">\( a_2 = 0.144232 \)</span><br />
+- <span class="arithmatex">\( a_3 = 0.012604 \)</span></p>
 <hr />
 <h3 id="18-triang">18. <code>triang</code></h3>
 <p><strong>Equation:</strong><br />
-w[n] = 1 - |(n - (N - 1)/2) / ((N + 1)/2)|</p>
+$$
+w[n] = 1 - \left| \frac{n - \frac{N - 1}{2}}{\frac{N + 1}{2}} \right|
+$$</p>
 <hr />
-<h2 id="summary-table_1">Summary Table</h2>
+<h2 id="summary">Summary</h2>
 <table>
 <thead>
 <tr>
@@ -558,7 +600,7 @@ w[n] = 1 - |(n - (N - 1)/2) / ((N + 1)/2)|</p>
 </tr>
 </tbody>
 </table>
-<hr />
+<h2 id="_1"><img alt="Screenshot" src="../img/tapering.png" /></h2>
 <h1 id="signal-filtering">Signal Filtering</h1>
 <h2 id="introduction_1">Introduction</h2>
 <p>Filtering is a foundational operation in signal processing used to isolate or suppress specific frequency components of a signal. In <strong>seismic and geophysical analysis</strong>, filtering helps remove noise, enhance events of interest, and prepare data for further processing like spectral analysis or event detection.</p>
@@ -573,53 +615,69 @@ w[n] = 1 - |(n - (N - 1)/2) / ((N + 1)/2)|</p>
 <hr />
 <h2 id="supported-filter-types-in-isp">Supported Filter Types in ISP</h2>
 <h3 id="1-bandpass-butterworth-bandpass">1. <code>bandpass</code> (Butterworth Bandpass)</h3>
-<p><strong>Description:</strong> Preserves a frequency band between <code>f_low</code> and <code>f_high</code>.</p>
-<p><strong>Equation (Transfer Function):</strong><br />
-|H(jω)|² = 1 / [1 + (ω² - ω₀²)² / (B²ω²)]<br />
-Where ω₀ = center frequency, B = bandwidth</p>
-<p><strong>Parameters Affecting Response:</strong><br />
-- <code>freqmin</code>, <code>freqmax</code>: Define pass band<br />
-- <code>corners</code> (order): Higher value = sharper transition<br />
-- <code>zerophase</code>: If <code>True</code>, applies filter twice (zero-phase)</p>
+<p><strong>Description:</strong><br />
+Preserves a frequency band between <code>f_low</code> and <code>f_high</code>.</p>
+<p><strong>Transfer Function:</strong><br />
+$$
+|H(j\omega)|^2 = \frac{1}{1 + \frac{(\omega^2 - \omega_0^2)^2}{B^2 \omega^2}}
+$$<br />
+Where:
+- <span class="arithmatex">\( \omega_0 \)</span> = center frequency<br />
+- <span class="arithmatex">\( B \)</span> = bandwidth</p>
 <hr />
 <h3 id="2-bandstop-butterworth-bandstop">2. <code>bandstop</code> (Butterworth Bandstop)</h3>
-<p><strong>Description:</strong> Suppresses a frequency band, passing frequencies outside of <code>f_low</code> and <code>f_high</code>.</p>
-<p><strong>Similar Equation to Bandpass</strong>, but inverse effect in frequency domain.</p>
+<p><strong>Description:</strong><br />
+Suppresses a frequency band, passing frequencies outside of <code>f_low</code> and <code>f_high</code>.</p>
+<p><strong>Transfer Function:</strong><br />
+Same form as bandpass, but with the attenuation focused within the band instead of outside it.</p>
 <hr />
 <h3 id="3-lowpass-butterworth-lowpass">3. <code>lowpass</code> (Butterworth Lowpass)</h3>
-<p><strong>Description:</strong> Allows frequencies below <code>freqmax</code> to pass; attenuates higher frequencies.</p>
+<p><strong>Description:</strong><br />
+Allows frequencies below <code>freqmax</code> to pass; attenuates higher frequencies.</p>
 <p><strong>Magnitude Response:</strong><br />
-|H(jω)| = 1 / sqrt(1 + (ω / ω_c)^(2n))<br />
-Where <code>ω_c</code> is the cutoff frequency, <code>n</code> is the filter order</p>
+$$
+|H(j\omega)| = \frac{1}{\sqrt{1 + \left(\frac{\omega}{\omega_c}\right)^{2n}}}
+$$</p>
+<p>Where:
+- <span class="arithmatex">\( \omega_c \)</span>: cutoff frequency<br />
+- <span class="arithmatex">\( n \)</span>: filter order</p>
 <hr />
 <h3 id="4-highpass-butterworth-highpass">4. <code>highpass</code> (Butterworth Highpass)</h3>
-<p><strong>Description:</strong> Allows frequencies above <code>freqmin</code> to pass; attenuates lower frequencies.</p>
-<p><strong>Equation:</strong><br />
-|H(jω)| = 1 / sqrt(1 + (ω_c / ω)^(2n))</p>
+<p><strong>Description:</strong><br />
+Allows frequencies above <code>freqmin</code> to pass; attenuates lower frequencies.</p>
+<p><strong>Magnitude Response:</strong><br />
+$$
+|H(j\omega)| = \frac{1}{\sqrt{1 + \left(\frac{\omega_c}{\omega}\right)^{2n}}}
+$$</p>
 <hr />
 <h2 id="advanced-filter-types">Advanced Filter Types</h2>
 <h3 id="5-chebychev-type-i-ii">5. <code>chebychev</code> (Type I &amp; II)</h3>
-<h4 id="type-i">Type I:</h4>
-<ul>
-<li><strong>Description:</strong> Allows ripple in the passband but a sharper cutoff.</li>
-<li><strong>Equation:</strong><br />
-|H(jω)|² = 1 / [1 + ε² T_n²(ω / ω_c)], where T_n is the Chebyshev polynomial of order n</li>
-</ul>
-<h4 id="type-ii">Type II:</h4>
-<ul>
-<li><strong>Description:</strong> Allows ripple in the stopband instead of the passband.</li>
-</ul>
-<p><strong>Key Parameters:</strong>
-- <code>ripple</code> in dB (Type I)
-- <code>order</code>: Controls cutoff sharpness</p>
+<h4 id="type-i">Type I</h4>
+<p><strong>Description:</strong><br />
+Allows ripple in the passband but gives a sharper cutoff than Butterworth.</p>
+<p><strong>Magnitude Response:</strong><br />
+$$
+|H(j\omega)|^2 = \frac{1}{1 + \epsilon^2 T_n^2\left(\frac{\omega}{\omega_c}\right)}
+$$<br />
+Where:
+- <span class="arithmatex">\( \epsilon \)</span>: ripple factor<br />
+- <span class="arithmatex">\( T_n \)</span>: Chebyshev polynomial of order <span class="arithmatex">\( n \)</span></p>
+<h4 id="type-ii">Type II</h4>
+<p><strong>Description:</strong><br />
+Allows ripple in the <strong>stopband</strong> instead of the passband.</p>
+<p><strong>Notes:</strong><br />
+Same cutoff sharpness advantages but a different ripple behavior.</p>
 <hr />
 <h3 id="6-elliptic-cauer-filter">6. <code>elliptic</code> (Cauer Filter)</h3>
-<p><strong>Description:</strong> Most selective filter for a given order; ripple in both passband and stopband.</p>
-<p><strong>Equation:</strong><br />
-|H(jω)|² = 1 / [1 + ε² R_n²(ξ)], where R_n is an elliptic rational function</p>
-<p><strong>Pros:</strong> Sharpest transition<br />
-<strong>Cons:</strong> Ripple in both bands</p>
-<hr />
+<p><strong>Description:</strong><br />
+Most selective filter for a given order; ripple in both passband and stopband.</p>
+<p><strong>Magnitude Response:</strong><br />
+$$
+|H(j\omega)|^2 = \frac{1}{1 + \epsilon^2 R_n^2(\xi)}
+$$<br />
+Where <span class="arithmatex">\( R_n \)</span> is an elliptic rational function.</p>
+<p><strong>Pros:</strong> Very sharp transition.<br />
+<strong>Cons:</strong> Ripple in both passband and stopband.</p>
 <h3 id="7-bessel-maximally-flat-group-delay">7. <code>bessel</code> (Maximally Flat Group Delay)</h3>
 <p><strong>Description:</strong> Preserves waveform shape in time domain due to nearly linear phase response.</p>
 <p><strong>Key Use Case:</strong> When time-domain waveform fidelity is critical.</p>
@@ -627,7 +685,7 @@ Where <code>ω_c</code> is the cutoff frequency, <code>n</code> is the filter or
 Based on Bessel polynomials; no sharp frequency cutoff</p>
 <p><strong>Trade-Off:</strong> Smooth transition but poor selectivity</p>
 <hr />
-<h2 id="summary-table_2">Summary Table</h2>
+<h2 id="summary-table_1">Summary Table</h2>
 <table>
 <thead>
 <tr>
@@ -737,6 +795,8 @@ Based on Bessel polynomials; no sharp frequency cutoff</p>
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../js/base.js"></script>
+        <script src="../javascripts/mathjax.js"></script>
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

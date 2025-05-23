@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://projectisp.github.io/ISP_tutorial.github.io/sp_integrate/">
+        <link rel="canonical" href="https://projectisp.github.io/ISP_tutorial.github.io/noise_processing/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Integrate & Differenciate - ISP Tutorial</title>
+        <title>Noise Processing - ISP Tutorial</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -110,7 +110,7 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Integrate & Differenciate</a>
+    <a href="../sp_integrate/" class="dropdown-item">Integrate & Differenciate</a>
 </li>
                                     
 <li>
@@ -118,7 +118,7 @@
 </li>
                                     
 <li>
-    <a href="../noise_processing/" class="dropdown-item">Noise Processing</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Noise Processing</a>
 </li>
                                 </ul>
                             </li>
@@ -159,12 +159,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../remove_response/" class="nav-link">
+                                <a rel="prev" href="../sp_denoising/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../sp_denoising/" class="nav-link">
+                                <a rel="next" href="../progress/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -186,41 +186,29 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#numerical-integration-and-differentiation" class="nav-link">Numerical Integration and Differentiation</a>
+            <li class="nav-item" data-bs-level="1"><a href="#noise-processing-in-seismology" class="nav-link">Noise Processing in Seismology</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#introduction" class="nav-link">Introduction</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#numerical-integration" class="nav-link">Numerical Integration</a>
+            <li class="nav-item" data-bs-level="2"><a href="#1-simulating-noise" class="nav-link">1. Simulating Noise</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#numerical-differentiation" class="nav-link">Numerical Differentiation</a>
+            <li class="nav-item" data-bs-level="2"><a href="#2-preparing-noise-for-cross-correlation" class="nav-link">2. Preparing Noise for Cross-Correlation</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#frequency-domain-operations" class="nav-link">Frequency Domain Operations</a>
+            <li class="nav-item" data-bs-level="2"><a href="#3-best-practices-for-noise-processing" class="nav-link">3. Best Practices for Noise Processing</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#preprocessing-recommendations" class="nav-link">Preprocessing Recommendations</a>
+            <li class="nav-item" data-bs-level="2"><a href="#4-use-case-noise-cross-correlation" class="nav-link">4. Use Case: Noise Cross-Correlation</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#summary-table" class="nav-link">Summary Table</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#which-integration-method-should-you-use" class="nav-link">Which Integration Method Should You Use?</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#recommendation-table" class="nav-link">Recommendation Table</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#pro-tip" class="nav-link">Pro Tip</a>
+            <li class="nav-item" data-bs-level="2"><a href="#summary" class="nav-link">Summary</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -231,180 +219,234 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="numerical-integration-and-differentiation">Numerical Integration and Differentiation</h1>
+<h1 id="noise-processing-in-seismology">Noise Processing in Seismology</h1>
 <h2 id="introduction">Introduction</h2>
-<p>In signal processing, <strong>integration</strong> and <strong>differentiation</strong> are fundamental operations that allow us to compute displacement from velocity, or acceleration from velocity, among other conversions. These operations are especially critical in seismology, where sensors often record velocity or acceleration and users may need to convert between them.</p>
-<p>Numerical integration and differentiation can be performed in both the <strong>time domain</strong> and the <strong>frequency domain</strong>, each with specific advantages and challenges.</p>
+<p>Seismic noise is not merely a nuisance — it holds valuable information about the Earth's structure when properly processed. In modern seismology, especially in ambient noise tomography and passive imaging, noise becomes the <strong>signal</strong>. Understanding how to manipulate, simulate, and prepare noise for analysis is essential.</p>
+<p>This tutorial presents techniques to:
+- <strong>Simulate noise</strong> (white or colored)
+- <strong>Preprocess data</strong> for noise cross-correlation
+- Apply <strong>time-domain normalization</strong> and <strong>spectral whitening</strong></p>
 <hr />
-<h2 id="numerical-integration">Numerical Integration</h2>
-<h3 id="1-trapezoidal-rule-integrate_cumtrapz">1. Trapezoidal Rule (<code>integrate_cumtrapz</code>)</h3>
-<p><strong>Description</strong>:<br />
-Uses the trapezoidal rule to perform cumulative integration of a time series.</p>
-<p><strong>Equation</strong>:<br />
-For sample spacing Δt:</p>
-<p><strong>y[n] = ∫ x(t) dt ≈ y[n-1] + (Δt / 2) * (x[n] + x[n-1])</strong></p>
-<p>This method is robust and preserves signal length.</p>
-<p><strong>Code Behavior</strong>:</p>
-<pre><code class="language-python">ret = scipy.integrate.cumulative_trapezoid(data, dx=dx)
-ret = np.concatenate([np.array([0]), ret])
+<h2 id="1-simulating-noise">1. Simulating Noise</h2>
+<p>Synthetic noise allows us to test algorithms, study SNR effects, and validate signal extraction procedures.</p>
+<h3 id="11-adding-white-noise">1.1 Adding White Noise</h3>
+<p>White noise has equal power across all frequencies. It's useful for basic testing or simulating high-frequency noise.</p>
+<p><strong>Equation:</strong><br />
+$$
+x_{noisy}[n] = x[n] + \alpha \cdot \mathcal{N}(0, 1)
+$$</p>
+<p>Where:
+- <span class="arithmatex">\( x[n] \)</span>: original signal
+- <span class="arithmatex">\( \alpha \)</span>: noise amplitude scaling factor
+- <span class="arithmatex">\( \mathcal{N}(0, 1) \)</span>: standard normal distribution</p>
+<pre><code class="language-python">def add_white_noise(trace, noise_level=0.01):
+    noise = np.random.normal(0, noise_level, len(trace.data))
+    trace.data += noise
+    return trace
 </code></pre>
 <hr />
-<h3 id="2-spline-based-integration-integrate_spline">2. Spline-Based Integration (<code>integrate_spline</code>)</h3>
-<p><strong>Description</strong>:<br />
-Creates an interpolating spline of the input signal, and computes the analytical integral of the spline.</p>
-<p><strong>Key Parameters</strong>:
-- <code>k</code>: spline order (1 = linear, 3 = cubic, up to 5)</p>
-<p><strong>Advantages</strong>:
-- Smoother result than trapezoidal rule
-- Can handle non-uniformities more gracefully</p>
-<p><strong>Conceptual Flow</strong>:
-1. Fit spline <span class="arithmatex">\( s(t) \)</span> to input data.
-2. Compute antiderivative <span class="arithmatex">\( S(t) = ∫ s(t) dt \)</span>
-3. Evaluate <span class="arithmatex">\( S(t) \)</span> at each time point.</p>
+<h3 id="12-adding-colored-noise-eg-pink-brown">1.2 Adding Colored Noise (e.g., Pink, Brown)</h3>
+<p>Colored noise has a power spectral density inversely proportional to frequency.</p>
+<p><strong>Example</strong>:<br />
+- Pink noise: <span class="arithmatex">\( P(f) \propto 1/f \)</span>
+- Brown noise: <span class="arithmatex">\( P(f) \propto 1/f^2 \)</span></p>
+<pre><code class="language-python">def add_colored_noise(trace, exponent=1):
+    white = np.random.randn(len(trace.data))
+    fft = np.fft.rfft(white)
+    freqs = np.fft.rfftfreq(len(trace.data), d=trace.stats.delta)
+    fft /= np.where(freqs == 0, 1, freqs ** (exponent / 2))
+    noise = np.fft.irfft(fft, n=len(trace.data))
+    trace.data += noise
+    return trace
+</code></pre>
 <hr />
-<h2 id="numerical-differentiation">Numerical Differentiation</h2>
-<h3 id="3-gradient-method-differentiatemethodgradient">3. Gradient Method (<code>differentiate(method='gradient')</code>)</h3>
-<p><strong>Description</strong>:<br />
-Calculates the time derivative using central differences (interior) and forward/backward differences at boundaries.</p>
-<p><strong>Equation</strong>:<br />
-- Interior: <strong>f'[n] ≈ (f[n+1] - f[n-1]) / (2Δt)</strong>
-- Boundaries: First-order differences</p>
-<p><strong>Function Used</strong>:<br />
-<code>numpy.gradient</code></p>
-<p><strong>Advantages</strong>:
-- Simple and efficient
-- Same output shape as input</p>
+<h2 id="2-preparing-noise-for-cross-correlation">2. Preparing Noise for Cross-Correlation</h2>
+<p>Before computing noise cross-correlations, raw noise traces must be <strong>normalized and whitened</strong> to emphasize coherent signals and suppress local bursts or instrument artifacts.</p>
 <hr />
-<h2 id="frequency-domain-operations">Frequency Domain Operations</h2>
-<h3 id="integration-in-frequency-domain">Integration in Frequency Domain</h3>
-<p><strong>Principle</strong>:<br />
-Integration corresponds to division by <span class="arithmatex">\( iω \)</span>, where ω = 2πf.</p>
-<p><strong>Equation</strong>:
-<strong>X(f) → Y(f) = X(f) / (i·2πf)</strong></p>
-<h3 id="differentiation-in-frequency-domain">Differentiation in Frequency Domain</h3>
-<p><strong>Principle</strong>:<br />
-Differentiation corresponds to multiplication by <span class="arithmatex">\( iω \)</span>.</p>
-<p><strong>Equation</strong>:
-<strong>X(f) → Y(f) = X(f) · (i·2πf)</strong></p>
-<p><strong>Caution</strong>:
-- Low-frequency components can cause <strong>division by small numbers</strong> (numerical instability)
-- Preprocessing such as <strong>highpass filtering</strong> is recommended before integration
-- Windowing may help reduce edge artifacts</p>
-<hr />
-<h2 id="preprocessing-recommendations">Preprocessing Recommendations</h2>
+<h3 id="21-time-domain-normalization-eg-one-bit-normalization">2.1 Time-Domain Normalization (e.g., One-Bit Normalization)</h3>
+<p>Time normalization standardizes amplitude fluctuations to reduce the influence of transient spikes or earthquakes.</p>
+<p><strong>One-bit normalization:</strong></p>
+<div class="arithmatex">\[
+x_{norm}[n] =   ext{sign}(x[n])
+\]</div>
+<p>Removes amplitude info, keeps polarity.</p>
+<pre><code class="language-python">def one_bit_normalize(trace):
+    trace.data = np.sign(trace.data)
+    return trace
+</code></pre>
 <ul>
-<li><strong>Detrending</strong>: Remove any DC offset or trend to avoid ramp artifacts during integration.</li>
-<li><strong>Tapering</strong>: Apply a window to reduce edge effects.</li>
-<li><strong>Filtering</strong>: Highpass filter before integration to suppress low-frequency drift.</li>
-<li><strong>Padding</strong>: Use zero-padding to reduce wrap-around artifacts in frequency-domain operations.</li>
+<li><strong>Clipping normalization</strong> (cap values at ± threshold)</li>
 </ul>
+<div class="arithmatex">\[
+x_{norm}[n] = 
+\begin{cases}
+  -C &amp;  ext{if } x[n] &lt; -C \\
+  x[n] &amp;    ext{if } -C \leq x[n] \leq C \\
+  +C &amp;  ext{if } x[n] &gt; C
+\end{cases}
+\]</div>
+<pre><code class="language-python">
+def normalize_clip(tr,clip_factor=6, clip_weight=10, norm_method='clipping')
+
+    if norm_method == 'clipping':
+        lim = clip_factor * np.std(tr.data)
+        tr.data[tr.data &gt; lim] = lim
+        tr.data[tr.data &lt; -lim] = -lim
+
+    elif norm_method == &quot;clipping_iter&quot;:
+        lim = clip_factor * np.std(np.abs(self.tr.data))
+
+        # as long as still values left above the waterlevel, clip_weight
+        while tr.data[np.abs(self.tr.data) &gt; lim] != []:
+            tr.data[tr.data &gt; lim] /= clip_weight
+            tr.data[tr.data &lt; -lim] /= clip_weight
+</code></pre>
+<ul>
+<li><strong>Running absolute mean normalization</strong></li>
+</ul>
+<div class="arithmatex">\[
+x_{norm}[n] = \frac{x[n]}{\frac{1}{W} \sum_{i=n-W/2}^{n+W/2} |x[i]|}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\( W \)</span>: window length in samples<br />
+- <span class="arithmatex">\( |x[i]| \)</span>: absolute value of the signal within the window</p>
+<pre><code class="language-python">def normalize(tr, norm_win=15):
+    norm_win = int(norm_win*tr.stats.sampling_rate)
+    window = np.ones(norm_win)/norm_win
+    tr.data = tr.data/np.convolve(np.abs(self.tr.data), window, mode='same')
+    tr.taper(type=&quot;blackman&quot;, max_percentage=0.05)
+</code></pre>
 <hr />
-<h2 id="summary-table">Summary Table</h2>
+<h3 id="22-spectral-whitening">2.2 Spectral Whitening</h3>
+<p>Spectral whitening equalizes all frequency bands to prevent dominance by low frequencies.</p>
+<p><strong>Conceptual Equation:</strong></p>
+<p>Given the FFT of a trace <span class="arithmatex">\( X(f) \)</span>, and the smoothed amplitude <span class="arithmatex">\( A_{avg}(f) \)</span>, whitening is done as:</p>
+<div class="arithmatex">\[
+X_{white}(f) = \frac{X(f)}{A_{avg}(f)}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\( A_{avg}(f) \)</span>: computed as a moving average of <span class="arithmatex">\( |X(f)| \)</span> over a specified frequency bandwidth</p>
+<pre><code class="language-python">def spectral_whitening(tr, freq_width=0.05, taper_edge=True):
+
+    &quot;&quot;&quot;&quot;
+    freq_width: Frequency smoothing windows [Hz] / both sides
+    taper_edge: taper with cosine window the low frequencies
+
+    return: whithened trace (Phase is not modified)
+    &quot;&quot;&quot;&quot;&quot;
+
+    fs = tr.stats.sampling_rate
+    N = tr.count()
+    D = 2 ** math.ceil(math.log2(N))
+    freq_res = 1 / (D / fs)
+    # N_smooth = int(freq_width / (2 * freq_res))
+    N_smooth = int(freq_width / (freq_res))
+
+    if N_smooth % 2 == 0:  # To have a central point
+        N_smooth = N_smooth + 1
+    else:
+        pass
+
+    # avarage_window_width = (2 * N_smooth + 1) #Denominador
+    avarage_window_width = (N_smooth + 1)  # Denominador
+    half_width = int((N_smooth + 1) / 2)  # midpoint
+    half_width_pos = half_width - 1
+
+    # Prefilt
+    tr.detrend(type='simple')
+    tr.taper(max_percentage=0.05)
+
+    # ready to whiten
+    data = tr.data
+    data_f = np.fft.rfft(data, D)
+    freq = np.fft.rfftfreq(D, 1. / fs)
+    N_rfft = len(data_f)
+    data_f_whiten = data_f.copy()
+    index = np.arange(0, N_rfft - half_width, 1)
+
+    data_f_whiten = whiten_aux(data_f, data_f_whiten, index, half_width, avarage_window_width, half_width_pos)
+
+    # Taper (optional) and remove mean diffs in edges of the frequency domain
+
+    wf = (np.cos(np.linspace(np.pi / 2, np.pi, half_width)) ** 2)
+
+    if taper_edge:
+
+        diff_mean = np.abs(np.mean(np.abs(data_f[0:half_width])) - np.mean(np.abs(data_f_whiten[half_width:])) * wf)
+
+    else:
+
+        diff_mean = np.abs(np.mean(np.abs(data_f[0:half_width])) - np.mean(np.abs(data_f_whiten[half_width:])))
+
+    diff_mean2 = np.abs(
+        np.mean(np.abs(data_f[(N_rfft - half_width):])) - np.mean(np.abs(data_f_whiten[(N_rfft - half_width):])))
+
+    if taper_edge:
+
+        data_f_whiten[0:half_width] = ((data_f[0:half_width]) / diff_mean)*wf  # First part of spectrum tapered
+    else:
+
+        data_f_whiten[0:half_width] = ((data_f[0:half_width]) / diff_mean)
+
+
+    data_f_whiten[(N_rfft - half_width):] = (data_f[(N_rfft - half_width):]) / diff_mean2  # end of spectrum
+    data = np.fft.irfft(data_f_whiten)
+    data = data[0:N]
+    tr.data = data
+
+    return tr
+</code></pre>
+<p><strong>Best Practice:</strong><br />
+Always apply tapering by applying a bandpass filtering before whitening to avoid spectral edge effects and aliasing.</p>
+<hr />
+<h2 id="3-best-practices-for-noise-processing">3. Best Practices for Noise Processing</h2>
 <table>
 <thead>
 <tr>
-<th>Method</th>
-<th>Domain</th>
-<th>Description</th>
-<th>Key Feature</th>
+<th>Step</th>
+<th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>integrate_cumtrapz</code></td>
-<td>Time</td>
-<td>Trapezoidal integration</td>
-<td>Simple, cumulative, stable</td>
+<td>Add synthetic noise</td>
+<td>Test methods, control SNR</td>
 </tr>
 <tr>
-<td><code>integrate_spline</code></td>
-<td>Time</td>
-<td>Spline interpolation + integral</td>
-<td>Smooth result, adjustable order</td>
+<td>One-bit normalization</td>
+<td>Reduce spike/earthquake bias</td>
 </tr>
 <tr>
-<td><code>differentiate</code></td>
-<td>Time</td>
-<td>Central differences</td>
-<td>Accurate and shape-preserving</td>
+<td>Spectral whitening</td>
+<td>Flatten spectrum, enhance coherence</td>
 </tr>
 <tr>
-<td>Integration (FFT)</td>
-<td>Frequency</td>
-<td>Divide by <span class="arithmatex">\( iω \)</span></td>
-<td>Powerful but needs careful filtering</td>
+<td>Detrend &amp; taper</td>
+<td>Prevent spectral artifacts</td>
 </tr>
 <tr>
-<td>Differentiation (FFT)</td>
-<td>Frequency</td>
-<td>Multiply by <span class="arithmatex">\( iω \)</span></td>
-<td>Ideal for clean signals</td>
+<td>Bandpass filter</td>
+<td>Limit frequency range before analysis</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<p>These tools provide flexible, accurate methods for transforming signals between physical domains (e.g., acceleration ↔ velocity ↔ displacement) in ISP. Each has trade-offs between smoothness, stability, and simplicity.</p>
+<h2 id="4-use-case-noise-cross-correlation">4. Use Case: Noise Cross-Correlation</h2>
+<p>After applying time and spectral normalization:</p>
+<pre><code class="language-python">from obspy.signal.cross_correlation import correlate
+
+# Preprocess both traces
+tr1 = spectral_whitening(one_bit_normalize(tr1))
+tr2 = spectral_whitening(one_bit_normalize(tr2))
+
+# Cross-correlate
+cc = correlate(tr1.data, tr2.data, shift=len(tr1.data)//2)
+</code></pre>
+<p>This produces a <strong>noise correlation function (NCF)</strong> which may approximate the Green's function between the two stations.</p>
 <hr />
-<h2 id="which-integration-method-should-you-use">Which Integration Method Should You Use?</h2>
-<p>The best integration method depends on your signal quality, desired precision, and whether you’re working in the time or frequency domain.</p>
-<h3 id="trapezoidal-integration-time-domain">Trapezoidal Integration (Time Domain)</h3>
-<ul>
-<li><strong>Pros</strong>: Simple, fast, intuitive.</li>
-<li><strong>Cons</strong>: Accumulates noise and low-frequency drift.</li>
-<li><strong>Best For</strong>: Clean, detrended signals; quick and causal applications.</li>
-</ul>
-<h3 id="spline-integration-time-domain">Spline Integration (Time Domain)</h3>
-<ul>
-<li><strong>Pros</strong>: Smooth, accurate with noisy or irregular signals.</li>
-<li><strong>Cons</strong>: Slightly slower, edge effects possible.</li>
-<li><strong>Best For</strong>: Noisy data, offline processing, displacement recovery.</li>
-</ul>
-<h3 id="frequency-domain-integration">Frequency-Domain Integration</h3>
-<ul>
-<li><strong>Pros</strong>: Clean handling of frequency components, zero-phase possible.</li>
-<li><strong>Cons</strong>: Unstable near 0 Hz, requires preprocessing (detrend, taper, highpass).</li>
-<li><strong>Best For</strong>: Band-limited data, spectral pipelines, zero-phase needs.</li>
-</ul>
-<hr />
-<h2 id="recommendation-table">Recommendation Table</h2>
-<table>
-<thead>
-<tr>
-<th>Signal Type</th>
-<th>Recommended Integration</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Clean, low-noise</td>
-<td>Trapezoidal</td>
-</tr>
-<tr>
-<td>Noisy or irregular</td>
-<td>Spline (e.g., cubic)</td>
-</tr>
-<tr>
-<td>Spectral domain work</td>
-<td>Frequency domain</td>
-</tr>
-<tr>
-<td>Requires smooth result</td>
-<td>Spline</td>
-</tr>
-<tr>
-<td>Low-frequency drift</td>
-<td>Always filter first</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="pro-tip">Pro Tip</h2>
-<p><strong>Always</strong>:
-- <strong>Detrend</strong>: Remove linear trends
-- <strong>Demean</strong>: Remove DC offset
-- <strong>Taper</strong>: Smooth edges
-- <strong>Highpass Filter</strong>: Suppress long-period drift</p>
-<p>These steps are especially crucial before <strong>frequency-domain integration</strong> to avoid numerical artifacts and drift.</p></div>
+<h2 id="summary">Summary</h2>
+<p>Noise processing transforms chaotic raw signals into usable seismic information. Whether simulating realistic environments with colored noise or preparing for cross-correlation via one-bit normalization and spectral whitening, these steps are essential for passive imaging and ambient noise studies.</p>
+<p>This pipeline is fully integrated into the <code>ISP</code> processing tools, enabling robust and flexible ambient noise workflows.</p></div>
             </div>
         </div>
 

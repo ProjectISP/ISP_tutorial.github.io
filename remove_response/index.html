@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://projectisp.github.io/ISP_tutorial.github.io/release_notes/">
+        <link rel="canonical" href="https://projectisp.github.io/ISP_tutorial.github.io/remove_response/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Release Notes - ISP Tutorial</title>
+        <title>Remove Instrument Response - ISP Tutorial</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -98,7 +98,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Signal Processing</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Signal Processing</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -106,7 +106,7 @@
 </li>
                                     
 <li>
-    <a href="../remove_response/" class="dropdown-item">Remove Instrument Response</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Remove Instrument Response</a>
 </li>
                                     
 <li>
@@ -126,7 +126,7 @@
                                 <a href="../progress/" class="nav-link">Gallery & Progress</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -138,7 +138,7 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Release Notes</a>
+    <a href="../release_notes/" class="dropdown-item">Release Notes</a>
 </li>
                                     
 <li>
@@ -159,12 +159,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../refs/" class="nav-link">
+                                <a rel="prev" href="../sp_filtering/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../Special_Thanks/" class="nav-link">
+                                <a rel="next" href="../sp_integrate/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -185,12 +185,141 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#removing-instrumental-response-in-seismology" class="nav-link">Removing Instrumental Response in Seismology</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#what-is-an-instrument-response" class="nav-link">What Is an Instrument Response?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#general-workflow" class="nav-link">General Workflow</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#example-using-obspy" class="nav-link">Example Using ObsPy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#best-practices" class="nav-link">Best Practices</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#summary-table" class="nav-link">Summary Table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<p>ISP is licensed under the GNU Lesser General Public License (LGPL) v3.0</p></div>
+<h1 id="removing-instrumental-response-in-seismology">Removing Instrumental Response in Seismology</h1>
+<p>In seismology, raw seismic data is recorded in <strong>instrument-specific units</strong> such as volts or counts. To make this data physically meaningful (e.g., velocity in m/s or acceleration in m/s²), it is necessary to <strong>remove the instrument response</strong>. This process transforms the data from <strong>instrumental domain</strong> to <strong>physical units</strong>.</p>
+<p>This is crucial for:
+- Comparing data from different stations or networks
+- Performing quantitative analyses like magnitude estimation or spectral modeling
+- Ensuring reproducibility and consistency in scientific studies</p>
+<hr />
+<h2 id="what-is-an-instrument-response">What Is an Instrument Response?</h2>
+<p>Each seismic instrument has a unique transfer function that describes how ground motion is converted into recorded data. This includes:
+- <strong>Poles and zeros</strong> (complex filter characteristics)
+- <strong>Gain</strong> (amplification factor)
+- <strong>Sensitivity</strong> (response to input motion)</p>
+<p>The instrument response can be described as a linear system:
+$$
+X(s) = G \cdot H(s) \cdot U(s)
+$$
+Where:
+- <span class="arithmatex">\( X(s) \)</span>: recorded signal in the Laplace domain
+- <span class="arithmatex">\( G \)</span>: gain factor
+- <span class="arithmatex">\( H(s) \)</span>: instrument transfer function (defined by poles and zeros)
+- <span class="arithmatex">\( U(s) \)</span>: true ground motion</p>
+<p>Removing the response means solving for <span class="arithmatex">\( U(s) \)</span>.</p>
+<hr />
+<h2 id="general-workflow">General Workflow</h2>
+<ol>
+<li><strong>Retrieve Instrument Metadata</strong></li>
+<li>
+<p>From a datacenter (e.g., IRIS, EIDA) via FDSN or local RESP/PAZ files</p>
+</li>
+<li>
+<p><strong>Apply Detrending and Tapering</strong></p>
+</li>
+<li>
+<p>Prepares data for deconvolution by avoiding edge effects</p>
+</li>
+<li>
+<p><strong>Deconvolve Instrument Response</strong></p>
+</li>
+<li>
+<p>Removes instrument effect from signal using poles, zeros, and gain</p>
+</li>
+<li>
+<p><strong>Output in Desired Unit</strong></p>
+</li>
+<li>Displacement, velocity, or acceleration</li>
+</ol>
+<p>The figure shows the instrumental response suppression process of a seismogram. a) Seismogram, b) amplitude spectrum of the seismogram (blue line) and amplitude spectrum of the filter (orange line), c) amplitude spectrum of the filtered seismogram and inverse of the amplitude spectrum of the instrument response, d) filtered seismogram, e) amplitude spectrum of the velocity seismogram (blue line), f) velocity seismogram.</p>
+<p><img alt="Screenshot" src="../img/remove_response.png" /></p>
+<hr />
+<h2 id="example-using-obspy">Example Using ObsPy</h2>
+<pre><code class="language-python">from obspy import read, read_inventory
+
+# Load seismic trace
+tr = read(&quot;seismic_data.mseed&quot;)[0]
+fs = tr.stats.sampling_rate
+# Load instrument response metadata
+inv = read_inventory(&quot;RESP_file_or_stationxml.xml&quot;)
+
+# Remove instrument response
+tr.remove_response(inventory=inv, output=&quot;VEL&quot;, pre_filt=(0.005, 0.008, fs/3, fs/4),
+                   water_level=90, taper=True, plot=True)
+</code></pre>
+<p><strong>Parameters Explained:</strong>
+- <code>output</code>: Desired physical unit ("DISP", "VEL", "ACC")
+- <code>pre_filt</code>: Frequency band to preserve (prevents amplification of noise)
+- <code>water_level</code>: Stabilizes deconvolution
+- <code>plot</code>: Visualizes the process for verification</p>
+<hr />
+<h2 id="best-practices">Best Practices</h2>
+<ul>
+<li>Always inspect metadata (make sure it's correct for your station/time).</li>
+<li>Use <strong>pre-filtering</strong> to prevent noise amplification.</li>
+<li>Apply <strong>tapering</strong> before response removal to avoid ringing.</li>
+<li>Choose <strong>output units</strong> based on your analysis goals.</li>
+</ul>
+<hr />
+<h2 id="summary-table">Summary Table</h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieve Metadata</td>
+<td>Get poles, zeros, gain</td>
+</tr>
+<tr>
+<td>Detrend &amp; Taper</td>
+<td>Prepare for stable deconvolution</td>
+</tr>
+<tr>
+<td>Remove Response</td>
+<td>Get ground motion in physical units</td>
+</tr>
+<tr>
+<td>Validate &amp; Plot</td>
+<td>Confirm results visually</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>This step is essential for turning raw seismic signals into scientifically usable ground motion measurements. In <code>ISP</code>, this operation is available with simple parameters via wrappers around ObsPy's robust response-removal functionality.</p></div>
             </div>
         </div>
 

@@ -106,11 +106,19 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Denoising</a>
+    <a href="../remove_response/" class="dropdown-item">Remove Instrument Response</a>
 </li>
                                     
 <li>
     <a href="../sp_integrate/" class="dropdown-item">Integrate & Differenciate</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Denoising</a>
+</li>
+                                    
+<li>
+    <a href="../noise_processing/" class="dropdown-item">Noise Processing</a>
 </li>
                                 </ul>
                             </li>
@@ -151,12 +159,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../sp_filtering/" class="nav-link">
+                                <a rel="prev" href="../sp_integrate/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../sp_integrate/" class="nav-link">
+                                <a rel="next" href="../noise_processing/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -268,12 +276,14 @@
 <h2 id="mathematical-principle">Mathematical Principle</h2>
 <p>The wavelet transform uses a <strong>mother wavelet</strong> psi(t) and scales/shifts it to analyze different parts of the signal.</p>
 <p><strong>Equation:</strong><br />
-x(t) = sum over j and k of [c(j,k) * psi(j,k)(t)]</p>
+$$
+x(t) = \sum_{j} \sum_{k} c_{j,k} \, \psi_{j,k}(t)
+$$</p>
 <p>Where:
-- j: scale (level)
-- k: translation (position)
-- psi(j,k)(t): scaled and shifted wavelet
-- c(j,k): wavelet coefficients</p>
+- <span class="arithmatex">\( j \)</span>: scale (level)<br />
+- <span class="arithmatex">\( k \)</span>: translation (position)<br />
+- <span class="arithmatex">\( \psi_{j,k}(t) \)</span>: scaled and shifted wavelet<br />
+- <span class="arithmatex">\( c_{j,k} \)</span>: wavelet coefficients</p>
 <hr />
 <h2 id="denoising-strategy">Denoising Strategy</h2>
 <ol>
@@ -338,19 +348,23 @@ x(t) = sum over j and k of [c(j,k) * psi(j,k)(t)]</p>
 <hr />
 <h2 id="mathematical-background">Mathematical Background</h2>
 <p>Given a noisy signal:<br />
-<strong>x(t) = s(t) + n(t)</strong><br />
-Where:
-- x(t): observed signal
-- s(t): true (unknown) signal
-- n(t): additive noise</p>
-<p>The Wiener filter aims to estimate s(t) by computing a <strong>weighted local average</strong>, where weights depend on the signal-to-noise ratio.</p>
-<p><strong>Key equation for 1D signal estimate:</strong></p>
-<p><strong>ŝ[n] = μ + (σ² - ν²) / σ² * (x[n] - μ)</strong></p>
+$$
+x(t) = s(t) + n(t)
+$$</p>
 <p>Where:
-- μ: local mean
-- σ²: local variance
-- ν²: noise power (estimated or provided)
-- ŝ[n]: denoised signal value</p>
+- <span class="arithmatex">\( x(t) \)</span>: observed signal<br />
+- <span class="arithmatex">\( s(t) \)</span>: true (unknown) signal<br />
+- <span class="arithmatex">\( n(t) \)</span>: additive noise</p>
+<p>The Wiener filter aims to estimate <span class="arithmatex">\( s(t) \)</span> by computing a <strong>weighted local average</strong>, where weights depend on the signal-to-noise ratio.</p>
+<p><strong>Key equation for 1D signal estimate:</strong>
+$$
+\hat{s}[n] = \mu + \left( \frac{\sigma^2 - \nu^2}{\sigma^2} \right) \cdot (x[n] - \mu)
+$$</p>
+<p>Where:
+- <span class="arithmatex">\( \mu \)</span>: local mean<br />
+- <span class="arithmatex">\( \sigma^2 \)</span>: local variance<br />
+- <span class="arithmatex">\( \nu^2 \)</span>: noise power (estimated or provided)<br />
+- <span class="arithmatex">\( \hat{s}[n] \)</span>: denoised signal value</p>
 <hr />
 <h2 id="implementation-in-isp_1">Implementation in ISP</h2>
 <pre><code class="language-python">def wiener_filter(tr, time_window, noise_power):
@@ -417,11 +431,10 @@ Where:
 </tr>
 <tr>
 <td><code>noise</code></td>
-<td>Set from <code>noise_power × std(signal)</code></td>
+<td>Set from \( \text{noise_power} \times \text{std(signal)} \)</td>
 </tr>
 </tbody>
 </table>
-<hr />
 <h2 id="tips">Tips</h2>
 <ul>
 <li><strong>Preprocess</strong> your signal with detrending and tapering for best results.</li>
@@ -444,6 +457,8 @@ Where:
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../js/base.js"></script>
+        <script src="../javascripts/mathjax.js"></script>
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
