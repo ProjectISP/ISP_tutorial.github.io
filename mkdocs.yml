@@ -1,0 +1,45 @@
+site_name: ISP Tutorial
+site_url: https://projectisp.github.io/ISP_tutorial.github.io/
+nav:
+    - Home: 'index.md'
+    - Installation: 'install.md'
+    - Start with the basics: 'basics.md'
+    - 'Modules':
+        - 'Earthquake Location': 'el.md'
+        - 'Time-Frequency Analysis': 'tf.md'
+        - 'Seismic Moment Tensor Inversion': 'mti.md'
+        - 'Array Analysis': 'aa.md'
+        - 'Receiver Functions': 'rf.md'
+        - 'Ambient Noise Tomography': 'ant.md'
+    - 'Additional Toolboxes':
+        - 'Database': 'db.md'
+        - 'Retrieve Data': 'rd.md'
+        - 'PPSDs': 'ppsds.md'
+        - 'Synthetic Generator': 'synth.md'
+        - 'Near Real Time Adquisition': 'nrt.md'
+    - 'Signal Processing':
+        - 'Basic Processing Tools': 'sp_filtering.md'
+        - 'Remove Instrument Response': 'remove_response.md'
+        - 'Integrate & Differenciate': 'sp_integrate.md'
+        - 'Smoothing': 'smoothing.md'
+        - 'Denoising': 'sp_denoising.md'
+        - 'Noise Processing': 'noise_processing.md'
+        - 'Resampling': 'resample.md'
+        - 'Macro': 'macro.md'
+
+    - 'Gallery & Progress': 'progress.md'
+    - 'About':
+        - 'References': 'refs.md'
+        - 'License': 'license.md'
+        - 'Release Notes': 'release_notes.md'
+        - 'FAQs': 'FAQs.md'
+        - 'Special_Thanks.md'
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+
+theme: spacelab
+copyright: |
+  &copy; 2025 <a href="https://robertocabieces.com"  target="_blank" rel="noopener">Roberto Cabieces</a>
+

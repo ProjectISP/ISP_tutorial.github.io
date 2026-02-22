@@ -1,0 +1,21 @@
+pip install mkdocs
+pip install mkdocs-bootswatch ("https://mkdocs.github.io/mkdocs-bootswatch/")
+
+Point to in the browser from the folder with mkdocs.yml
+mkdocs serve
+http://127.0.0.1:8000/
+
+
+#Buld
+From:
+/Users/robertocabieces/Documents/ISP_doc
+mkdocs build
+
+see index.html
+
+
+Push changes:
+From:
+/Users/robertocabieces/Documents/ISP_doc/ISP_tutorial.github.io
+
+mkdocs gh-deploy --config-file ../mkdocs.yml --remote-branch master

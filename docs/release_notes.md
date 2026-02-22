@@ -1,0 +1,1 @@
+ISP is licensed under the GNU Lesser General Public License (LGPL) v3.0
