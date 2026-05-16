@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://projectisp.github.io/ISP_tutorial.github.io/el/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Earthquake Location - ISP Tutorial</title>
+        <title>Earthquake Loc and Source Parameters - ISP Tutorial</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -48,7 +48,7 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Earthquake Location</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Earthquake Loc and Source Parameters</a>
 </li>
                                     
 <li>
@@ -216,15 +216,23 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#phase-picking" class="nav-link">Phase Picking</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#focal-mechanism-first-polarity" class="nav-link">Focal Mechanism - First Polarity</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#spectral-analysis-source-parameters" class="nav-link">Spectral Analysis - Source Parameters</a>
+            <li class="nav-item" data-bs-level="2"><a href="#coincidence-trigger" class="nav-link">Coincidence Trigger</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#phase-picking-and-associator" class="nav-link">Phase Picking and Associator</a>
+            <li class="nav-item" data-bs-level="2"><a href="#associator" class="nav-link">Associator</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#spectral-analysis-source-parameters" class="nav-link">Spectral Analysis - Source Parameters</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -515,36 +523,107 @@ Just select the binary file *.buf (can be generated from the model as described 
 <p><img alt="Screenshot" src="../img/Velocity_Viewer.png" /></p>
 <p>Moreover, if you have picked the seismic phases and have been designated the polarity in “Event frame” , you will be able to  obtain the Focal Mechanism (it uses the subprogram FocMec)</p>
 <hr />
+<h2 id="phase-picking">Phase Picking</h2>
+<p>The Picking algorythm of ISP/surfQuake uses the Deep Neural Network of Phasenet (<a href="https://academic.oup.com/gji/article/216/1/261/5129142">Zhu and Beroza, 2019</a>) to estimate the arrival times of P- and S-wave. The arrival times are saved as a csv file and in daily folders to be ready to be used by the associator. Example of csv header:</p>
+<pre><code>date,fname,year,month,day,net,station,flag,tt,date_time,weight,amplitude,phase
+20220131,CA.ARBS.P,2022,1,31,CA,ARBS,1,39383.88,2022-01-31T10:56:23.880000,0.53,8557892.7,P
+20220131,CA.ARBS.S,2022,1,31,CA,ARBS,1,85480.59,2022-01-31T23:44:40.590000,0.30,8481788.2,S
+</code></pre>
+<p>Be sure you have just created a <a href="https://projectisp.github.io/surfquaketutorial.github.io/project/"><span style="color:#5DADE2">Project</span></a> or you have loaded one. Then click on <span style="color:#5DADE2">Run Auto Pick</span>. This action will start the phase picker and will save the output in <span style="color:#5DADE2">Output Directory</span> ready to be used in the associator toolbox and <span style="color:#5DADE2">original_picks</span> as csv file for direct reading.</p>
+<p>After the picking is done, you can optionally run the automatic First Polarity determination. tis will run a deep neural network PolarCap and will edit the picking file with the First Polarity results.</p>
+<p><img alt="Screenshot" src="../img/picking2.png" /></p>
+<hr />
 <h2 id="focal-mechanism-first-polarity">Focal Mechanism - First Polarity</h2>
-<p>The run script that manage FocMec behind ISP is in the file <span style="color:blue"><strong>./isp/EartuqakeAnalysis/location_output/first_polarity/focmec_run</strong></span>.</p>
+<p>1) Automatic P-wave first motion polarity determination. The inputs are the project and the picking file in nonlinloc pick format (i.e., might be generated using automatic picking tool). Output is an edited pick file with polarities.
+Reference:</p>
+<pre><code>    Chakraborty, M., Cartaya, C. Q., Li, W., Faber, J., Rümpker, G., Stoecker, H., &amp; Srivastava, N. (2022). 
+    PolarCAP–A deep learning approach for first motion polarity classification of earthquake waveforms. 
+    Artificial Intelligence in Geosciences, 3, 46-52.
+</code></pre>
+<p>Go to Phase Picking and Run Polarities</p>
+<p>This action can be run after phase picking. The program will cut the traces and it will estimate the corresponding firt polarities. Then the picking file will be edited with the corresponding polarities. See the output file edited inside your output directory.
+Rememeber this action is only required if you want proceed with fault plane estimation</p>
+<p>2) FOCal MEChanism determinations (FOCMEC) software  for determining and displaying double-couple earthquake focal mechanisms using the polarity and amplitude ratios of P and S waves.
+Reference:</p>
+<pre><code>    Snoke, J. A. (2003). “FOCMEC: Focal Mechanism Determinations.” 
+    International Handbook of Earthquake and Engineering Seismology, Part B, Academic Press, pp. 1629–1630.
+    https://seiscode.iris.washington.edu/projects/focmec
+</code></pre>
+<p>Even though this is explained in this part of the documentation, FOCMEC must be run after locate your events, due to Fault Plane estimation requires the location of the hypocenters. Only events located with associated polarities to their picks will be consider.</p>
+<p>It is very important to have a good station coverage around the epicenters. After run focmec you can select any event from the table and plot the fault planes, T &amp; P axis, and P-wave polarities.</p>
+<p>Inside the tool <em>Locate events</em> you will find a tab called FOCMEC. If your picks have associated polarities either manually set or automatically then run focmec. If you need to run FOCMEC for more than one event, then you need to associate your picks firs using <em>Coincidence Trigger or Associator</em>.</p>
 <p><img alt="Screenshot" src="../img/focmec.png" /></p>
-<pre>
-    <code>
-mechanism.out
-No comments
-\* Comment is previous line: Input file for focmec is next
-test.inp
-y     Use emergent arrivals?  [y]
-    correct file  [y]
-y   relative weighting..[y]
-0.0     allowed P polarity erors..[0]
-100 exit after this many acceptable solutions...[100]
-    minimum B trend  [0]
-    B increment  [5]
-    maximum B trend  [355]
-    min B plunge..[0]
-    increment  [5]
-    maximum..[90]
-    minimum Angle..[0]
-    increment  [5]
-    maximum  [175]
-    </code>
-</pre>
+<hr />
+<h2 id="coincidence-trigger">Coincidence Trigger</h2>
+<p>Coincidence Trigger process input wavefroms to surrogate it as Charachteristic Functions. Then, associate CFs threshold in time spans to events. It is very useful to roughtly detect event time and separate picks for those events. ISP and surfQuake offer a coincidence trigger tool that uses signal-to-noise ratio and kurtosis CFs. The core of the coincidence trigger can be also found here <a href="https://docs.obspy.org/packages/autogen/obspy.signal.trigger.coincidence_trigger.html">ObsPy</a></p>
+<p>References:</p>
+<pre><code>        Allen, R. (1982). Automatic phase pickers: Their present use and future prospects. Bulletin of the Seismological Society of America, 72(6B), S225-S242.
 
-<p>Indeed what is most important is to play with the value "allowed P polarity erors", by default set to 0.0.</p>
+        Poiata, N., C. Satriano, J.-P. Vilotte, P. Bernard, and K. Obara (2016). Multi-band array detection and 
+        location of seismic sources recorded by dense seismic networks, Geophys. J. Int.,
+        205(3), 1548-1573, doi:10.1093/gji/ggw071.
+</code></pre>
+<p>Details:</p>
+<p><strong>CF_decay_win</strong>: The constant CF_decay_win (in seconds) determines the memory of the recursive envelope/kurtosis.</p>
+<p><strong>sta_win</strong>: signal window in seconds.</p>
+<p><strong>lta_win</strong>: noise window in seconds.</p>
+<p><strong>method_preferred</strong>: SNR or Kurtosis.</p>
+<p><strong>coincidence</strong>: Number of traces satisfying the threshold_on to declare an event.</p>
+<p><strong>threshold_on / threshold_ff</strong>: Threshold to determine when it is trigger the coincidences in the charachteristic functions.</p>
+<p><strong>fmin / fmax</strong>: Frequency range where is be applied the nawworband filter bank (kurtosis) or the bandpass filter for SNR.</p>
+<p>See the image below with the recommended parameters for regional earthquakes.</p>
+<p><img alt="Screenshot" src="../img/picking2.png" /></p>
+<h2 id="associator">Associator</h2>
+<p>The main goal of this tool is to associate the arrival times of different P- and S-waves to the their corresponding events. The associator algorythm used in ISP and surfQuake is REAL (<a href="https://github.com/Dal-mzhang/REAL/"><span style="color:#5DADE2;">Zhang et al., 2019</span></a>). The user needs to set the input parameters and point to the folder where the picks have been storaged. In th following sections it will be describe the surfquake imprementation of REAL, for a full description of the parameters visit <a href="https://github.com/Dal-mzhang/REAL/blob/master/REAL_userguide_July2021.pdf"><span style="color:#5DADE2;">REAL cookbook</span></a></p>
+<p>The performance of REAL depends critically on parameter tuning. These parameters control:
+1) Search geometry
+2) Grid resolution
+3) Time tolerance
+4) Pick thresholds</p>
+<p>The parameters in the configuration file define the geographic limits of the study area, the search volume used by REAL, the resolution of the travel-time grid, and the minimum number of picks required to accept an association. A good configuration should cover the target region and the seismic network while avoiding search windows that are unnecessarily large.</p>
+<h3 id="geographic-frame">Geographic frame</h3>
+<p>The <code>GEOGRAPHIC_FRAME</code> section defines the spatial limits used by the associator.</p>
+<ul>
+<li><code>LAT_REF_MAX</code> / <code>LAT_REF_MIN</code>: Maximum and minimum latitude of the study area.</li>
+<li><code>LON_REF_MAX</code> / <code>LON_REF_MIN</code>: Maximum and minimum longitude of the study area.</li>
+<li><code>DEPTH</code>: Maximum depth, in kilometres, considered during the association.</li>
+</ul>
+<p>The geographic frame should include the complete station network and the expected seismicity area. It is recommended to add a small margin around the network, usually around <code>0.5–1.0°</code>. If the area is too large, REAL can generate more false associations. If it is too small, events located close to the borders may be missed.</p>
+<h3 id="grid-search-parameters">Grid search parameters</h3>
+<p>The <code>GRID_SEARCH_PARAMETERS</code> section controls the event search volume and the time window used to group picks.</p>
+<ul>
+<li><code>HORIZONTAL_SEARCH_RANGE</code>: Horizontal distance, in degrees, used during the event search.</li>
+<li><code>DEPTH_SEARCH_RANGE</code>: Maximum depth range, in kilometres, used during the event search.</li>
+<li><code>EVENT_TIME_WINDOW</code>: Time window, in seconds, used to associate picks that may belong to the same event.</li>
+<li><code>HORIZONTAL_SEARCH_GRID_SIZE</code>: Horizontal spacing, in degrees, of the search grid.</li>
+<li><code>DEPTH_SEARCH_GRID_SIZE</code>: Vertical spacing, in kilometres, of the search grid.</li>
+</ul>
+<p>As a general rule, the horizontal search range should be larger than twice the average station spacing. Dense networks can usually work with values around <code>0.5–1.0°</code>, medium-density networks with <code>1–2°</code>, and sparse networks with <code>2–4°</code>.</p>
+<p>The grid size defines the precision and computational cost of the search. Smaller values improve the resolution but increase the execution time. Typical values for <code>HORIZONTAL_SEARCH_GRID_SIZE</code> are <code>0.02–0.05°</code> for production runs and <code>0.05–0.1°</code> for testing. Values larger than <code>0.2°</code> should normally be avoided. For <code>DEPTH_SEARCH_GRID_SIZE</code>, common values are <code>2–5 km</code>.</p>
+<p>The <code>EVENT_TIME_WINDOW</code> should be adapted to the seismicity rate. Low-seismicity regions can use wider windows, such as <code>90–120 s</code>. For swarms or regions with many close events, shorter windows, such as <code>30–60 s</code>, usually reduce false associations.</p>
+<h3 id="travel-time-grid-search">Travel-time grid search</h3>
+<p>The <code>TRAVEL_TIME_GRID_SEARCH</code> section defines the grid used to compute and store travel times.</p>
+<ul>
+<li><code>HORIZONTAL_RANGE</code>: Maximum horizontal distance, in degrees, covered by the travel-time grid.</li>
+<li><code>DEPTH_RANGE</code>: Maximum depth, in kilometres, covered by the travel-time grid.</li>
+<li><code>HORIZONTAL_GRID_RESOLUTION_SIZE</code>: Horizontal resolution, in degrees, of the travel-time grid.</li>
+<li><code>DEPTH_GRID_RESOLUTION_SIZE</code>: Depth resolution, in kilometres, of the travel-time grid.</li>
+</ul>
+<p>The travel-time grid must cover the maximum expected distance between stations and possible events. It is recommended to add a margin of approximately <code>20–30%</code>. If the travel-time grid is too small, REAL may not associate any events. Typical resolution values are <code>0.01°</code> horizontally and <code>1–2 km</code> in depth.</p>
+<h3 id="pick-thresholds">Pick thresholds</h3>
+<p>The <code>THRESHOLD_PICKS</code> section defines the minimum number of observations required to accept an event candidate.</p>
+<ul>
+<li><code>MIN_NUM_P_WAVE_PICKS</code>: Minimum number of P-wave picks required.</li>
+<li><code>MIN_NUM_S_WAVE_PICKS</code>: Minimum number of S-wave picks required.</li>
+<li><code>NUM_STATIONS_RECORDED</code>: Minimum number of stations that must record the event.</li>
+</ul>
+<p>For small networks with <code>5–8</code> stations, a good starting value for <code>MIN_NUM_P_WAVE_PICKS</code> is usually <code>2–3</code>. For networks with <code>10–15</code> stations, values around <code>3–4</code> are commonly used. The <code>MIN_NUM_S_WAVE_PICKS</code> parameter can initially be set to <code>0</code> and increased later if S-wave picks are reliable. For <code>NUM_STATIONS_RECORDED</code>, dense networks can use <code>3–5</code>, while sparse networks may require <code>2–3</code>.</p>
+<h3 id="parameter-interactions">Parameter interactions</h3>
+<p>The parameters should be tuned together rather than independently. Large search ranges combined with wide time windows can increase the number of false associations. Smaller grid sizes improve precision but increase computation time. Narrow search ranges and short time windows reduce noise, but they can also miss events if the expected event location or origin time is not well constrained.</p>
+<p>A practical workflow is to begin with permissive values, inspect the resulting associations, and then progressively tighten the thresholds, search ranges, and time windows until the number of false associations is reduced without losing valid events.</p>
+<p><img alt="Screenshot" src="../img/picking1.png" /></p>
 <hr />
 <h2 id="spectral-analysis-source-parameters">Spectral Analysis - Source Parameters</h2>
-<h3 id="moment-magnitude">Moment Magnitude</h3>
 <p>This module is based on <a href="https://sourcespec.readthedocs.io/en/stable/">SourceSpec v1.7</a> and it uses the location storaged in the folder Loc Folder (hyp files) to estimate the event source parameters (seismic moment, corner frequency, radiated energy, source size, static stress drop, apparent stress).</p>
 <p>The configuration file that ISP points to is placed at:</p>
 <p>ISP/isp/source_spec_parse/config/source_spec.conf</p>
@@ -553,17 +632,6 @@ y   relative weighting..[y]
 <p>Complementary Magnitudes (work in progress):</p>
 <p>With the <a href="http://www.isc.ac.uk/standards/magnitudes/">Magnitude Estimation</a> you can calculate):
 Body-wave (<span style="color:red">mb</span>), Surface-wave (<span style="color:red">Ms</span>) and Coda Magnitude (<span style="color:red">Mc</span>).</p>
-<h2 id="phase-picking-and-associator">Phase Picking and Associator</h2>
-<p>The Picking algorythm of ISP/surfQuake uses the Deep Neural Network of Phasenet (<a href="https://academic.oup.com/gji/article/216/1/261/5129142">Zhu and Beroza, 2019</a>) to estimate the arrival times of P- and S-wave. The arrival times are saved as a csv file and in daily folders to be ready to be used by the associator. Example of csv header:</p>
-<pre><code>date,fname,year,month,day,net,station,flag,tt,date_time,weight,amplitude,phase
-20220131,CA.ARBS.P,2022,1,31,CA,ARBS,1,39383.88,2022-01-31T10:56:23.880000,0.53,8557892.7,P
-20220131,CA.ARBS.S,2022,1,31,CA,ARBS,1,85480.59,2022-01-31T23:44:40.590000,0.30,8481788.2,S
-</code></pre>
-<p>Be sure you have just created a <a href="https://projectisp.github.io/surfquaketutorial.github.io/project/"><span style="color:#5DADE2">Project</span></a> or you have loaded one. Then click on <span style="color:#5DADE2">Run Auto Pick</span>. This action will start the phase picker and will save the output in <span style="color:#5DADE2">Output Directory</span> ready to be used in the associator toolbox and <span style="color:#5DADE2">original_picks</span> as csv file for direct reading.</p>
-<p>After the picking is done, you can optionally run the automatic First Polarity determination. tis will run a deep neural network PolarCap and will edit the picking file with the First Polarity results.</p>
-<h3 id="neural-network-for-picking-and-first-polarity">Neural Network for picking and First Polarity</h3>
-<p><img alt="Screenshot" src="../img/picking2.png" />
-<img alt="Screenshot" src="../img/picking1.png" /></p>
 <hr />
 <h2 id="multimedia-material">Multimedia Material</h2>
 <h3 id="seismogram-analysis">Seismogram Analysis</h3>
