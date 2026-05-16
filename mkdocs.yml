@@ -5,7 +5,7 @@ nav:
     - Installation: 'install.md'
     - Start with the basics: 'basics.md'
     - 'Modules':
-        - 'Earthquake Location': 'el.md'
+        - 'Earthquake Loc and Source Parameters': 'el.md'
         - 'Time-Frequency Analysis': 'tf.md'
         - 'Seismic Moment Tensor Inversion': 'mti.md'
         - 'Array Analysis': 'aa.md'
